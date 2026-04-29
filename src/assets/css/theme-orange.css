@@ -1,0 +1,5 @@
+:root {
+    /*theme orange*/
+    --theme-bg: #F26C20;
+    --theme-gradient: linear-gradient(180deg, #F26C20 0, #F26C20);
+}

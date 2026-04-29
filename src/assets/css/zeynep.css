@@ -1,0 +1,115 @@
+.home-back {
+  display: block;
+  padding: 5px 15px;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+}
+.home-back i{
+  font-size: 25px;
+  margin-right: 10px;
+}
+.zeynep{
+  top:0;
+  z-index:1011;
+  bottom:0;
+  overflow:hidden;
+  overflow-y:auto;
+  pointer-events:none;
+  position: static;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transform:translateX(-100%) translateZ(0px);
+  transform:translateX(-100%) translateZ(0px);
+  
+}
+.zeynep:not(.no-transition),
+.zeynep .submenu:not(.no-transition){
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -o-transition: all 250ms;
+  transition: all 250ms;
+}
+.zeynep-overlay{
+  background-color:rgba(0, 0, 0, .42);
+  bottom:0;
+  display:none;
+  left:0;
+  position:fixed;
+  right:0;
+  top:0;
+  z-index:1010;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.zeynep-opened .zeynep-overlay{
+  display:block;
+}
+.zeynep.opened{
+  pointer-events:auto;
+  -webkit-transform:translateX(0px) translateZ(0px);
+  transform:translateX(0px) translateZ(0px);
+}
+.zeynep.submenu-opened{
+  overflow:hidden;
+}
+.zeynep .submenu{
+  bottom:0;
+  min-height:100%;
+  overflow:hidden;
+  overflow-y:auto;
+  pointer-events:none;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.zeynep .submenu.opened{
+  left:0;
+  pointer-events:auto;
+}
+.zeynep .submenu.opened:not(.current){
+  overflow:hidden;
+}
+.zeynep ul {
+  list-style-type: none;
+  padding: 0;
+  padding-left:0px;
+}
+.zeynep ul > li {
+  display: block;
+}
+.zeynep .submenu {
+  background-color: #000;
+  left: 295px;
+}
+.zeynep .submenu > label {
+  color: #fff;
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 0;
+  padding: 6px 15px;
+  width: 100%;
+  background: var(--v-primary-base);
+}
+.zeynep .submenu > label img {
+  width: 25px;
+  margin-right: 10px;
+}
+.submenu-header a {
+  background: #2B2B2B;
+  padding: 4px 15px;
+  font-size: 13px !important;
+  display: flex;
+  align-items: center;
+}
+.submenu-header a i{
+  margin-right: 10px;
+  font-size: 20px;
+}
