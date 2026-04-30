@@ -3,6 +3,8 @@ import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
 import useBalance from "../../../hooks/balance";
+import { Link } from "react-router-dom";
+import { setShowChangePasswordModal } from "../../../redux/features/global/globalSlice";
 
 const Dropdown = ({ setShowDropdown }) => {
   const { data } = useBalance();
@@ -27,13 +29,13 @@ const Dropdown = ({ setShowDropdown }) => {
           <h6>
             <span>Hi,</span> &nbsp; {user}
           </h6>
-          <a
-            href="javascript:void(0)"
+          <Link
+            onClick={() => setShowDropdown(false)}
             id="account-menu-hide-button"
             className="closebtn"
           >
             <i className="mdi mdi-close" />
-          </a>
+          </Link>
         </li>
         <li className="balance-information">
           <div className="balance-title text-white">
@@ -69,79 +71,92 @@ const Dropdown = ({ setShowDropdown }) => {
         </li>
 
         <li>
-          <a
-            href="/account/account_statement"
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/account/account_statement"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-google-analytics" />
             <span>Account Statement</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="/account/unsettled-bets"
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/account/unsettled-bets"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-chart-gantt" />
             <span>Open Bets</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="javascript:void(0)"
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="javascript:void(0)"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-text-box-outline" />
             <span>Bonus rules</span>
-          </a>
+          </Link>
         </li>
 
         <li>
-          <a
-            href="javascript:void(0)"
+          <Link
+            onClick={() => {
+              dispatch(setShowChangePasswordModal(true));
+              setShowDropdown(false);
+            }}
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-lock" />
             <span>Reset Password</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/account/set-button-variables" className="dropdown-item">
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/stake-settings"
+            className="dropdown-item"
+          >
             <i className="mdi mdi-tune" />
             <span>Settings</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="/account/my-bets"
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/account/my-bets"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-format-list-bulleted-square" />
             <span>My Bets</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="/multi-market"
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/multi-market"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-heart-outline" />
             <span>Favorites</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="javascript:void(0)"
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="javascript:void(0)"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-text-box-outline" />
             <span>Rules &amp; Regulations</span>
-          </a>
+          </Link>
         </li>
         <li className="logout-li">
-          <a onClick={handleLogout}>
+          <Link onClick={handleLogout}>
             <span>Logout</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

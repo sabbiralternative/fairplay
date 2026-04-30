@@ -1,6 +1,5 @@
 import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useLogo } from "../../../context/ApiProvider";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
 import { useForm } from "react-hook-form";
@@ -8,6 +7,7 @@ import { Settings } from "../../../api";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import {
   setShowBanner,
+  setShowChangePasswordModal,
   setShowForgotPasswordModal,
   setShowLoginModal,
   setShowRegisterModal,
@@ -16,7 +16,6 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const { closePopupForForever } = useSelector((state) => state.global);
-  const navigate = useNavigate();
   const { logo } = useLogo();
   const dispatch = useDispatch();
   const [handleLogin] = useLoginMutation();
@@ -57,7 +56,7 @@ const Login = () => {
       if (result?.result?.changePassword) {
         localStorage.setItem("changePassword", true);
         closeModal();
-        navigate("/change-password");
+        dispatch(setShowChangePasswordModal(true));
       }
       if (!result?.result?.changePassword && token && user) {
         closeModal();

@@ -31,28 +31,28 @@ const Footer = () => {
     <div>
       <div className="mobile__footer">
         <div className="mf_navbar">
-          <a href="/casino/99998">
-            <img src="assets/img/icon/live-cards.png" />
+          <Link to="/casino/99998">
+            <img src="/assets/img/icon/live-cards.png" />
             <span>Our Casino</span>
-          </a>
+          </Link>
         </div>
         <div className="mf_navbar">
-          <a href="/popular-events">
-            <img src="assets/img/icon/4.png" />
+          <Link to="/popular-events">
+            <img src="/assets/img/icon/4.png" />
             <span>Popular Events</span>
-          </a>
+          </Link>
         </div>
         <div className="mf_navbar">
-          <a href="/exchange_sports/inplay">
-            <img src="assets/img/icon/Inplay.png" />
+          <Link to="/?eventTypeId=0">
+            <img src="/assets/img/icon/Inplay.png" />
             <span>Inplay</span>
-          </a>
+          </Link>
         </div>
         <div className="mf_navbar">
-          <a href="javascript:void(0);">
-            <img src="assets/img/icon/99991.png" />
+          <Link to="/">
+            <img src="/assets/img/icon/99991.png" />
             <span>Sportsbook</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

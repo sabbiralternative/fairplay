@@ -5,11 +5,19 @@ import { Settings } from "../api";
 import Header from "../components/UI/Header/Header";
 import Footer from "../components/UI/Footer/Footer";
 import Sidebar from "../components/UI/Sidebar/Sidebar";
+import Register from "../components/modals/Register/Register";
+import ForgotPassword from "../components/modals/ForgotPassword/ForgotPassword";
+import ChangePassword from "../components/modals/ChangePassword/ChangePassword";
 
 const MainLayout = () => {
   const [, setShowBuildVersion] = useState(false);
   const stored_build_version = localStorage.getItem("build_version");
-  const { group } = useSelector((state) => state.global);
+  const {
+    group,
+    showRegisterModal,
+    showForgotPasswordModal,
+    showChangePasswordModal,
+  } = useSelector((state) => state.global);
   const location = useLocation();
   const ref = useRef();
 
@@ -38,7 +46,9 @@ const MainLayout = () => {
 
   return (
     <div>
-      {" "}
+      {showChangePasswordModal && <ChangePassword />}
+      {showRegisterModal && <Register />}{" "}
+      {showForgotPasswordModal && <ForgotPassword />}{" "}
       <div>
         <Header />
         <Sidebar />

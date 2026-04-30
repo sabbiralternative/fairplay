@@ -14,6 +14,7 @@ const initialState = {
   showAPKModal: false,
   windowWidth: window.innerWidth,
   closePopupForForever: false,
+  showChangePasswordModal: false,
 };
 
 const stateSlice = createSlice({
@@ -34,6 +35,9 @@ const stateSlice = createSlice({
     },
     setShowForgotPasswordModal: (state, action) => {
       state.showForgotPasswordModal = action.payload;
+    },
+    setShowChangePasswordModal: (state, action) => {
+      state.showChangePasswordModal = action.payload;
     },
     setSelectedCategory: (state, action) => {
       state.selectedCategory = action.payload;
@@ -76,6 +80,7 @@ export const {
   setWindowWidth,
   setShowAPKModal,
   setClosePopUpForForever,
+  setShowChangePasswordModal,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;

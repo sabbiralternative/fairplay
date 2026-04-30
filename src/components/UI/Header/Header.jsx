@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Settings } from "../../../api";
 import { useLogo } from "../../../context/ApiProvider";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
 import {
   setClosePopUpForForever,
@@ -84,10 +84,7 @@ const Header = () => {
         >
           <div className="d-flex align-items-center justify-content-between">
             <i className="mdi mdi-menu toggle-sidebar-btn d-md-none" />
-            <a
-              href="/exchange_sports/inplay"
-              className="logo d-flex align-items-center"
-            >
+            <Link href="/" className="logo d-flex align-items-center">
               <img
                 alt=""
                 className="img-fluid"
@@ -97,7 +94,7 @@ const Header = () => {
                 }}
                 src={logo}
               />
-            </a>
+            </Link>
           </div>
           <nav className="header-nav ms-auto">
             <ul className="d-flex align-items-center">

@@ -3,7 +3,6 @@ import EventTableSection from "../../components/modules/Home/EventTableSection";
 import LiveCards from "../../components/modules/Home/LiveCards";
 import NewCasinoThumbnails from "../../components/modules/Home/NewCasinoThumbnails";
 import PopularGames from "../../components/modules/Home/PopularGames";
-import { UpcomingMatch } from "../../components/modules/Home/UpcomingMatch";
 
 const Home = () => {
   return (
@@ -77,7 +76,6 @@ const Home = () => {
                   <EventTableSection />
                   <PopularGames />
                   <LiveCards />
-                  <UpcomingMatch />
 
                   <div className="premium-banner mb-3">
                     <img
