@@ -73,6 +73,57 @@ const Dropdown = ({ setShowDropdown }) => {
         <li>
           <Link
             onClick={() => setShowDropdown(false)}
+            to="/deposit"
+            className="dropdown-item d-flex align-items-center"
+          >
+            <i className="mdi mdi-google-analytics" />
+            <span>Deposit</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/withdraw"
+            className="dropdown-item d-flex align-items-center"
+          >
+            <i className="mdi mdi-google-analytics" />
+            <span>Withdraw</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/deposit-withdraw-report"
+            className="dropdown-item d-flex align-items-center"
+          >
+            <i className="mdi mdi-google-analytics" />
+            <span>Deposit Withdraw Report</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/betting-profit-loss"
+            className="dropdown-item d-flex align-items-center"
+          >
+            <i className="mdi mdi-google-analytics" />
+            <span>Betting Profit & Loss</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/my-bank-details"
+            className="dropdown-item d-flex align-items-center"
+          >
+            <i className="mdi mdi-google-analytics" />
+            <span>My Bank Details</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => setShowDropdown(false)}
             to="/account/account_statement"
             className="dropdown-item d-flex align-items-center"
           >

@@ -1,12 +1,39 @@
-import { Link, useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Settings } from "../../../api";
+import { useState } from "react";
+import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 
 const QuickLinks = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const eventTypeId = params.get("eventTypeId");
+  const { token } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+  const [showWarning, setShowWarning] = useState(false);
+  const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
+
+  const handleNavigateToIFrame = (name, id) => {
+    if (token) {
+      if (Settings.casino_currency !== "AED") {
+        navigate(`/casino/${name}/${id}`);
+      } else {
+        setGameInfo({ gameName: "", gameId: "" });
+        setGameInfo({ gameName: name, gameId: id });
+        setShowWarning(true);
+      }
+    } else {
+      toast.error("Please login to access the game");
+    }
+  };
 
   return (
     <div className="navbar-main">
+      {showWarning && (
+        <WarningCondition gameInfo={gameInfo} setShowWarning={setShowWarning} />
+      )}
       <div className="navbar-content">
         <ul id="pills-tab" role="tablist" className="nav nav-tabs nav-pills">
           <li className="nav-item">
@@ -83,7 +110,7 @@ const QuickLinks = () => {
             <Link
               to="/casino?product=All&category=All"
               id="Inplay-tab"
-              className="nav-link"
+              className={`nav-link  ${location.pathname === "/casino" ? "active" : ""}`}
             >
               <div className="menu-icon">
                 <img alt="" className="me-2" src="/assets/img/icon/99998.png" />
@@ -92,15 +119,23 @@ const QuickLinks = () => {
             </Link>
           </li>
           <li role="presentation" className="nav-item">
-            <Link to="Javascript:void(0)" id="Inplay-tab" className="nav-link">
+            <a
+              onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
+              id="Inplay-tab"
+              className={`nav-link  ${location.pathname === "/casino/sportsbook/550000" ? "active" : ""}`}
+            >
               <div className="menu-icon">
                 <img alt="" className="me-2" src="/assets/img/icon/99991.png" />
               </div>
               Sportsbook{" "}
-            </Link>
+            </a>
           </li>
           <li role="presentation" className="nav-item">
-            <Link to="/exchange_sports/7" id="Inplay-tab" className="nav-link">
+            <Link
+              t
+              to="/?eventTypeId=7"
+              className={`nav-link  ${eventTypeId === "7" ? "active" : ""}`}
+            >
               <div className="menu-icon">
                 <img alt="" className="me-2" src="/assets/img/icon/7.png" />
               </div>
@@ -109,9 +144,8 @@ const QuickLinks = () => {
           </li>
           <li role="presentation" className="nav-item">
             <Link
-              to="/exchange_sports/4339"
-              id="Inplay-tab"
-              className="nav-link"
+              to="/?eventTypeId=4339"
+              className={`nav-link  ${eventTypeId === "4339" ? "active" : ""}`}
             >
               <div className="menu-icon">
                 <img alt="" className="me-2" src="/assets/img/icon/4339.png" />

@@ -1099,6 +1099,15 @@ body.detail-screen #main {
   padding: 0 20px;
 }
 
+.header .search-form .typeahead-container .dropdown-item {
+  color: #fff !important;
+  left: 0;
+  font-size: 13px;
+  font-weight: 300;
+  padding: 10px !important;
+  border-bottom: 1px solid #404040 !important;
+}
+
 @media (max-width: 1199px) {
   .header .search-bar {
     position: fixed;
@@ -1124,7 +1133,7 @@ body.detail-screen #main {
 .header .search-form {
   width: 100%;
 }
-.header .search-form typeahead-container {
+.header .search-form .typeahead-container {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   background: #333 !important;
@@ -1132,7 +1141,7 @@ body.detail-screen #main {
   top: 38px !important;
   width: auto !important;
 }
-.header .search-form typeahead-container .dropdown-item {
+.header .search-form .accordion-flush .dropdown-item {
   color: #fff !important;
   left: 0;
   font-size: 13px;
@@ -1140,7 +1149,7 @@ body.detail-screen #main {
   padding: 10px !important;
   border-bottom: 1px solid #404040 !important;
 }
-.header .search-form typeahead-container .dropdown-item:hover {
+.header .search-form .typeahead-container .dropdown-item:hover {
   background: var(--theme-bg) !important;
 }
 

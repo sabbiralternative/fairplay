@@ -14,6 +14,7 @@ import QuickLinks from "./QuickLinks";
 import Login from "../../modals/Login/Login";
 import Authorized from "./Authorized";
 import Dropdown from "./Dropdown";
+import Search from "./Search";
 
 const Header = () => {
   const location = useLocation();
@@ -104,25 +105,7 @@ const Header = () => {
                 </a>
               </li>
 
-              <div className="search-bar">
-                <form
-                  noValidate
-                  method="POST"
-                  action="#"
-                  className="search-form d-flex align-items-center ng-untouched ng-pristine ng-valid"
-                >
-                  <button type="submit" title="Search">
-                    <i className="bi bi-search" />
-                  </button>
-                  <input
-                    type="text"
-                    placeholder="Search for a Sport, Game or Team"
-                    className="apl-form-large -qa-search-bar ng-untouched ng-pristine ng-valid"
-                    aria-expanded="false"
-                    aria-autocomplete="list"
-                  />
-                </form>
-              </div>
+              <Search />
               {token ? (
                 <Authorized setShowDropdown={setShowDropdown} />
               ) : (
@@ -138,47 +121,6 @@ const Header = () => {
             </ul>
           </nav>
         </header>
-        <div
-          id="mobsearcbar"
-          tabIndex={-1}
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-          className="modal fade"
-        >
-          <div
-            role="document"
-            className="modal-dialog modal-dialog-centered mob_searchbar"
-          >
-            <div className="modal-content">
-              <div className="modal-body">
-                <div className="search-bar">
-                  <h2>search</h2>
-                  <form
-                    noValidate
-                    method="POST"
-                    action="#"
-                    className="search-form d-flex align-items-center ng-untouched ng-pristine ng-valid"
-                  >
-                    <button type="submit" title="Search">
-                      <i className="bi bi-search" />
-                    </button>
-                    <input
-                      type="text"
-                      placeholder="Search for a Sport, Game or Team"
-                      className="apl-form-large -qa-search-bar ng-untouched ng-pristine ng-valid"
-                      aria-expanded="false"
-                      aria-autocomplete="list"
-                    />
-                  </form>
-                  <a className="close">
-                    <i className="mdi mdi-close" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <QuickLinks />
       </div>

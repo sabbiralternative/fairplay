@@ -190,7 +190,7 @@ const Login = () => {
                       </div>
                       <input
                         {...register("password", { required: true })}
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         className="form-control ng-untouched ng-pristine ng-invalid"
                       />
                       <label className="floating-label">
@@ -201,7 +201,7 @@ const Login = () => {
                         className="eye-on-off"
                       >
                         <i
-                          className={`mdi  ${showPassword ? "mdi-eye-off" : "mdi-eye-off"}`}
+                          className={`mdi  ${showPassword ? "mdi-eye" : "mdi-eye-off"}`}
                         />
                       </a>
                     </div>

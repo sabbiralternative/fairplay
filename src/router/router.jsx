@@ -5,6 +5,13 @@ import APK from "../pages/APK/APK";
 import EventDetails from "../pages/EventDetails/EventDetails";
 import Casino from "../pages/Casino/Casino";
 import StakeSettings from "../pages/StakeSettings/StakeSettings";
+import IFrame from "../pages/IFrame/IFrame";
+import Deposit from "../pages/Deposit/Deposit";
+import Withdraw from "../pages/Withdraw/Withdraw";
+import DepositWithdrawReport from "../pages/DepositWithdrawReport/DepositWithdrawReport";
+import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
+import BettingProfitLoss from "../pages/BettingProfitLoss/BettingProfitLoss";
+import SingleProfitLoss from "../pages/BettingProfitLoss/SingleProfitLoss";
 
 export const router = createBrowserRouter(
   [
@@ -32,6 +39,34 @@ export const router = createBrowserRouter(
         {
           path: "/apk",
           element: <APK />,
+        },
+        {
+          path: "/:route/:name/:gameId",
+          element: <IFrame />,
+        },
+        {
+          path: "/deposit",
+          element: <Deposit />,
+        },
+        {
+          path: "/withdraw",
+          element: <Withdraw />,
+        },
+        {
+          path: "/deposit-withdraw-report",
+          element: <DepositWithdrawReport />,
+        },
+        {
+          path: "/my-bank-details",
+          element: <MyBankDetails />,
+        },
+        {
+          path: "/betting-profit-loss",
+          element: <BettingProfitLoss />,
+        },
+        {
+          path: "/betting-profit-loss/:marketId",
+          element: <SingleProfitLoss />,
         },
       ],
     },
