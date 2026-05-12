@@ -5,6 +5,7 @@ import { logout } from "../../../redux/features/auth/authSlice";
 import useBalance from "../../../hooks/balance";
 import { Link } from "react-router-dom";
 import { setShowChangePasswordModal } from "../../../redux/features/global/globalSlice";
+import { Settings } from "../../../api";
 
 const Dropdown = ({ setShowDropdown }) => {
   const { data } = useBalance();
@@ -124,31 +125,54 @@ const Dropdown = ({ setShowDropdown }) => {
         <li>
           <Link
             onClick={() => setShowDropdown(false)}
-            to="/account/account_statement"
+            to="/bonus-statement"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-google-analytics" />
-            <span>Account Statement</span>
+            <span>Bonus Statement</span>
+          </Link>
+        </li>
+        {Settings?.referral && (
+          <li>
+            <Link
+              onClick={() => setShowDropdown(false)}
+              to="/affiliate"
+              className="dropdown-item d-flex align-items-center"
+            >
+              <i className="mdi mdi-google-analytics" />
+              <span>Affiliate</span>
+            </Link>
+          </li>
+        )}
+
+        <li>
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/promotions"
+            className="dropdown-item d-flex align-items-center"
+          >
+            <i className="mdi mdi-google-analytics" />
+            <span>Promos & Bonus</span>
           </Link>
         </li>
         <li>
           <Link
             onClick={() => setShowDropdown(false)}
-            to="/account/unsettled-bets"
+            to="/lossback-bonus"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-chart-gantt" />
-            <span>Open Bets</span>
+            <span> Lossback Bonus</span>
           </Link>
         </li>
         <li>
           <Link
             onClick={() => setShowDropdown(false)}
-            to="javascript:void(0)"
+            to="/app-only-bonus"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-text-box-outline" />
-            <span>Bonus rules</span>
+            <span> App Only Bonus</span>
           </Link>
         </li>
 
@@ -174,30 +198,11 @@ const Dropdown = ({ setShowDropdown }) => {
             <span>Settings</span>
           </Link>
         </li>
+
         <li>
           <Link
             onClick={() => setShowDropdown(false)}
-            to="/account/my-bets"
-            className="dropdown-item d-flex align-items-center"
-          >
-            <i className="mdi mdi-format-list-bulleted-square" />
-            <span>My Bets</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            onClick={() => setShowDropdown(false)}
-            to="/multi-market"
-            className="dropdown-item d-flex align-items-center"
-          >
-            <i className="mdi mdi-heart-outline" />
-            <span>Favorites</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            onClick={() => setShowDropdown(false)}
-            to="javascript:void(0)"
+            to="/rules"
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-text-box-outline" />

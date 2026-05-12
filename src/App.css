@@ -693,7 +693,7 @@ div:where(.swal2-container) div:where(.swal2-actions) {
 /* App pop up */
 .android-popup {
   width: 100%;
-  background: var(--theme-gradient1);
+  background: var(--theme-bg);
   padding: 5px;
   display: flex;
   align-items: center;

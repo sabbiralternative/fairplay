@@ -32,7 +32,7 @@ const Withdraw = () => {
       dispatch(setAddBank(true));
     }
   }, [bankData, showBankAccount, dispatch]);
-
+  console.log(bankData);
   return (
     <main id="main" className="main a23_css">
       {!showBankAccount && !confirmWithdraw && (
