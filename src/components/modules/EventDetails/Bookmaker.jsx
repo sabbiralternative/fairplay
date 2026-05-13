@@ -11,6 +11,7 @@ import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 import { isGameSuspended } from "../../../utils/isOddSuspended";
 import DesktopBetSlip from "./DesktopBetSlip";
+import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 
 const Bookmaker = ({ data }) => {
   const [speedCashOut, setSpeedCashOut] = useState(null);
@@ -19,7 +20,6 @@ const Bookmaker = ({ data }) => {
   const dispatch = useDispatch();
   const { runnerId, stake, predictOdd } = useSelector((state) => state.event);
   const { token } = useSelector((state) => state.auth);
-  const { windowWidth } = useSelector((state) => state.global);
   const { data: exposure } = useExposure(eventId);
 
   const handleBetSlip = (betType, games, runner, price) => {
@@ -221,6 +221,12 @@ const Bookmaker = ({ data }) => {
   }
   return (
     <Fragment>
+      {speedCashOut && (
+        <SpeedCashOut
+          speedCashOut={speedCashOut}
+          setSpeedCashOut={setSpeedCashOut}
+        />
+      )}
       {data?.map((game) => {
         const teamProfitForGame = teamProfit?.find(
           (profit) =>
@@ -337,7 +343,31 @@ const Bookmaker = ({ data }) => {
                                 {" "}
                                 {runner?.name}
                               </span>
-                              <span className="runpls"></span>
+                              <span className="runpls">
+                                {pnl && (
+                                  <span
+                                    className={`${
+                                      pnl?.pnl > 0
+                                        ? "text-success"
+                                        : "text-danger"
+                                    }`}
+                                  >
+                                    {pnl?.pnl}
+                                  </span>
+                                )}
+
+                                {stake && runnerId && predictOddValues && (
+                                  <span
+                                    className={` ${
+                                      predictOddValues?.exposure > 0
+                                        ? "text-success"
+                                        : "text-danger"
+                                    } `}
+                                  >
+                                    &nbsp;({predictOddValues?.exposure})
+                                  </span>
+                                )}
+                              </span>
                             </a>
                           </div>
                           <div className="col-md-6 col-5">

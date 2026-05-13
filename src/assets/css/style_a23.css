@@ -1066,7 +1066,7 @@ a,
   }
 }
 
-.a23_css .banner[_ngcontent-jfw-c112] {
+.a23_css .banner {
   display: block;
   position: relative;
   left: 50%;
@@ -1079,7 +1079,7 @@ a,
 }
 
 @media only screen and (min-width: 360px) {
-  .a23_css .banner[_ngcontent-jfw-c112] {
+  .a23_css .banner {
     height: 150px;
   }
 }
@@ -1119,7 +1119,7 @@ a,
 }
 
 @media only screen and (min-width: 360px) {
-  .a23_css .banner[_ngcontent-jfw-c112] {
+  .a23_css .banner {
     height: 100%;
   }
 }

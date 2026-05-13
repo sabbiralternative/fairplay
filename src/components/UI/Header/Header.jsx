@@ -15,17 +15,22 @@ import Login from "../../modals/Login/Login";
 import Authorized from "./Authorized";
 import Dropdown from "./Dropdown";
 import Search from "./Search";
+import AppPopup from "./AppPopUp";
+import Notification from "./Notification";
+import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
+import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 
 const Header = () => {
+  const stored_build_version = localStorage.getItem("build_version");
+  const [showBuildVersion, setShowBuildVersion] = useState(false);
   const location = useLocation();
   const { logo } = useLogo();
   const { token } = useSelector((state) => state.auth);
   const { showLoginModal } = useSelector((state) => state.global);
   const [showDropdown, setShowDropdown] = useState(false);
   const dispatch = useDispatch();
-  const { showAppPopUp, windowWidth, closePopupForForever } = useSelector(
-    (state) => state?.global,
-  );
+  const { showAppPopUp, windowWidth, closePopupForForever, showAPKModal } =
+    useSelector((state) => state?.global);
 
   useEffect(() => {
     const apk_modal_shown = sessionStorage.getItem("apk_modal_shown");
@@ -59,6 +64,21 @@ const Header = () => {
     location.pathname,
   ]);
 
+  useEffect(() => {
+    const newVersion = Settings?.build_version;
+    if (!stored_build_version) {
+      if (newVersion) {
+        localStorage.setItem("build_version", newVersion);
+      }
+    }
+    if (stored_build_version && newVersion) {
+      const parseVersion = JSON.parse(stored_build_version);
+      if (newVersion > parseVersion) {
+        setShowBuildVersion(true);
+      }
+    }
+  }, [stored_build_version]);
+
   if (Settings.app_only && !closePopupForForever) {
     return <Error />;
   }
@@ -67,22 +87,25 @@ const Header = () => {
     <Fragment>
       {showLoginModal && <Login />}
       {showDropdown && <Dropdown setShowDropdown={setShowDropdown} />}
-      {/* <Notification />
-      {Settings.apk_link && showAppPopUp && windowWidth < 1040 && <AppPopup />} */}
-      <div>
-        <div>
-          <div className="commentary_main marquee">
-            <span />
-            <button>
-              <i className="mdi mdi-close" />
-            </button>
-          </div>
-        </div>
 
+      {Settings.apk_link && showAPKModal && (
+        <DownloadAPK setShowAPKModal={setShowAPKModal} />
+      )}
+      {showBuildVersion && !showAPKModal && (
+        <BuildVersion
+          build_version={Settings?.build_version}
+          setShowBuildVersion={setShowBuildVersion}
+        />
+      )}
+      <div>
         <header
           id="header"
           className="header fixed-top d-flex align-items-center"
         >
+          <Notification />
+          {Settings.apk_link && showAppPopUp && windowWidth < 1040 && (
+            <AppPopup />
+          )}
           <div className="d-flex align-items-center justify-content-between">
             <i className="mdi mdi-menu toggle-sidebar-btn d-md-none" />
             <Link href="/" className="logo d-flex align-items-center">

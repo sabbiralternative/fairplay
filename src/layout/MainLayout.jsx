@@ -8,6 +8,7 @@ import Sidebar from "../components/UI/Sidebar/Sidebar";
 import Register from "../components/modals/Register/Register";
 import ForgotPassword from "../components/modals/ForgotPassword/ForgotPassword";
 import ChangePassword from "../components/modals/ChangePassword/ChangePassword";
+import Rules from "../components/modals/Rules/Rules";
 
 const MainLayout = () => {
   const [, setShowBuildVersion] = useState(false);
@@ -17,6 +18,7 @@ const MainLayout = () => {
     showRegisterModal,
     showForgotPasswordModal,
     showChangePasswordModal,
+    showRulesModal,
   } = useSelector((state) => state.global);
   const location = useLocation();
   const ref = useRef();
@@ -46,6 +48,7 @@ const MainLayout = () => {
 
   return (
     <div>
+      {showRulesModal && <Rules />}
       {showChangePasswordModal && <ChangePassword />}
       {showRegisterModal && <Register />}{" "}
       {showForgotPasswordModal && <ForgotPassword />}{" "}

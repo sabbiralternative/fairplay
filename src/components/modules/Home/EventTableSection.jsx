@@ -40,9 +40,10 @@ const EventTableSection = () => {
       <div className="events-table-section">
         <div>
           <div>
-            {eventTypeId == 7 || eventTypeId == 4339 ? (
+            {(eventTypeId == 7 || eventTypeId == 4339) && data?.length > 0 && (
               <HorseGreyhound data={data} eventTypeId={eventTypeId} />
-            ) : (
+            )}
+            {(eventTypeId !== 7 || eventTypeId != 4339) && (
               <div>
                 {categories?.map((category) => {
                   const groupedData = Object.entries(data)

@@ -1,8 +1,34 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { Settings } from "../../../api";
+import toast from "react-hot-toast";
+import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 
 const Sidebar = () => {
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const [showWarning, setShowWarning] = useState(false);
+  const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
+
+  const handleNavigateToIFrame = (name, id) => {
+    if (token) {
+      if (Settings.casino_currency !== "AED") {
+        navigate(`/casino/${name}/${id}`);
+      } else {
+        setGameInfo({ gameName: "", gameId: "" });
+        setGameInfo({ gameName: name, gameId: id });
+        setShowWarning(true);
+      }
+    } else {
+      toast.error("Please login to access the game");
+    }
+  };
   return (
     <div>
+      {showWarning && (
+        <WarningCondition gameInfo={gameInfo} setShowWarning={setShowWarning} />
+      )}
       <aside id="sidebar" className="sidebar">
         <div className="mobile-menu">
           <ul id="sidebar-nav" className="sidebar-nav">
@@ -43,7 +69,10 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link final-link hightlight-smenu">
+              <Link
+                to="/casino"
+                className="nav-link final-link hightlight-smenu"
+              >
                 <img
                   alt=""
                   className="menu-icon"
@@ -53,20 +82,23 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="javascript:void(0)" className="nav-link final-link">
+              <a
+                onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
+                className="nav-link final-link"
+              >
                 <img
                   alt=""
                   className="menu-icon"
                   src="assets/img/icon/99991.png"
                 />
                 <span>Sports book</span>
-              </Link>
+              </a>
             </li>
             <li className="nav-item">
               <Link
                 data-bs-toggle="collapse"
                 className="nav-link"
-                to="#collapse5"
+                to="/?eventTypeId=7"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/7.png" />
                 <span>Horse Racing</span>
@@ -78,7 +110,7 @@ const Sidebar = () => {
               <Link
                 data-bs-toggle="collapse"
                 className="nav-link"
-                to="#collapse6"
+                to="/?eventTypeId=4339"
               >
                 <img
                   alt=""

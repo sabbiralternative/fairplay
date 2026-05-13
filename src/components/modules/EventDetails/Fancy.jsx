@@ -9,6 +9,8 @@ import {
 } from "../../../redux/features/events/eventSlice";
 import toast from "react-hot-toast";
 import DesktopBetSlip from "./DesktopBetSlip";
+import Ladder from "../../modals/Ladder/Ladder";
+import images from "../../../assets/images";
 
 const Fancy = ({ data }) => {
   const fancyData = data?.filter(
@@ -17,7 +19,7 @@ const Fancy = ({ data }) => {
       fancy.tabGroupName === "Normal" &&
       fancy?.visible == true,
   );
-  const [marketName, setMarketName] = useState("");
+
   const [ladderData, setLadderData] = useState([]);
   const { eventId } = useParams();
 
@@ -116,11 +118,11 @@ const Fancy = ({ data }) => {
     pnlBySelection = Object?.values(obj);
   }
 
-  const handleGetLadder = async (pnl, marketName) => {
+  const handleGetLadder = async (pnl) => {
     if (!pnl?.MarketId) {
       return;
     }
-    setMarketName(marketName);
+
     const res = await getLadder({ marketId: pnl?.MarketId }).unwrap();
 
     if (res.success) {
@@ -129,6 +131,9 @@ const Fancy = ({ data }) => {
   };
   return (
     <Fragment>
+      {ladderData?.length > 0 && (
+        <Ladder ladderData={ladderData} setLadderData={setLadderData} />
+      )}
       {fancyData?.length > 0 && (
         <div className="newtab_collect tab-container">
           <div className="tab-content">
@@ -194,14 +199,41 @@ const Fancy = ({ data }) => {
                                                       <span className="multi-pin"></span>
                                                     </span>
                                                   </a>
-                                                  <a
-                                                    href="javascript:void(0);"
-                                                    className="add-pin"
-                                                  >
-                                                    <i className="mdi mdi-star-outline" />
-                                                  </a>
+                                                  <a className="add-pin"></a>
                                                   {game?.name}
-                                                  <span className="runpls"></span>
+                                                  <span className="runpls">
+                                                    {pnl && (
+                                                      <span
+                                                        className={`${
+                                                          pnl?.pnl > 0
+                                                            ? "text-success"
+                                                            : "text-danger"
+                                                        }`}
+                                                      >
+                                                        {pnl?.pnl}
+                                                      </span>
+                                                    )}
+                                                    {pnl?.pnl && (
+                                                      <span
+                                                        style={{
+                                                          cursor: "pointer",
+                                                          marginLeft: "10px",
+                                                        }}
+                                                        onClick={() =>
+                                                          handleGetLadder(pnl)
+                                                        }
+                                                        className="sucess-simbal"
+                                                      >
+                                                        <img
+                                                          style={{
+                                                            height: "14px",
+                                                          }}
+                                                          src={images.ladder}
+                                                          alt=""
+                                                        />
+                                                      </span>
+                                                    )}
+                                                  </span>
                                                 </div>
                                                 <div className="col-md-6 col-5">
                                                   <div className="row g-0 position-relative">

@@ -15,6 +15,7 @@ const initialState = {
   windowWidth: window.innerWidth,
   closePopupForForever: false,
   showChangePasswordModal: false,
+  showRulesModal: false,
 };
 
 const stateSlice = createSlice({
@@ -63,6 +64,9 @@ const stateSlice = createSlice({
     setClosePopUpForForever: (state, action) => {
       state.closePopupForForever = action.payload;
     },
+    setShowRulesModal: (state, action) => {
+      state.showRulesModal = action.payload;
+    },
   },
 });
 
@@ -81,6 +85,7 @@ export const {
   setShowAPKModal,
   setClosePopUpForForever,
   setShowChangePasswordModal,
+  setShowRulesModal,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;

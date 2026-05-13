@@ -5,9 +5,6 @@ const Authorized = ({ setShowDropdown }) => {
   const { data } = useBalance();
   return (
     <Fragment>
-      <li className="nav-item pe-xl-1 pe-1 d-none d-md-block">
-        <a className="v-btn top-btn"> Open Bets</a>
-      </li>
       <li
         onClick={() => setShowDropdown(true)}
         className="nav-item dropdown pe-xl-3 pe-1"

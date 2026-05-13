@@ -7,6 +7,7 @@ const useBannerImage = () => {
     queryKey: ["bannerImage"],
     queryFn: async () => {
       const { data } = await AxiosSecure.post(API.banner);
+      console.log(data?.result?.homepage);
       if (data?.success) {
         return data?.result?.homepage;
       }
