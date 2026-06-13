@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Settings } from "../../../api";
 import { useState } from "react";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
+import { latestEvent } from "../../../static/latest-event";
 
 const QuickLinks = () => {
   const location = useLocation();
@@ -73,6 +74,29 @@ const QuickLinks = () => {
               Inplay
             </Link>
           </li>
+          {latestEvent
+            ?.filter((item) => item?.show)
+            .map((item) => (
+              <li
+                key={item?.eventName}
+                role="presentation"
+                className="nav-item"
+              >
+                <Link
+                  to={item?.pathname}
+                  className={`nav-link  ${eventTypeId === item?.pathname ? "active" : ""}`}
+                >
+                  <div className="menu-icon">
+                    <img
+                      alt=""
+                      className="me-2"
+                      src="/assets/img/icon/Inplay.png"
+                    />
+                  </div>
+                  {item.eventName}
+                </Link>
+              </li>
+            ))}
           <li role="presentation" className="nav-item">
             <Link
               to="/?eventTypeId=4"
