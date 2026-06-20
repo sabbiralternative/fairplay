@@ -731,3 +731,28 @@ html * {
 .bg-bg_transactionFailedBg {
   background-image: linear-gradient(89deg, #eb244f, #a90f31 89.28%);
 }
+.minmax_value span.match-name {
+  display: flex;
+  width: 100% !important;
+  column-gap: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}
+.minmax_value span.match-name span.light-text {
+  width: auto;
+  overflow: inherit;
+  text-overflow: unset;
+  color: #404040 !important;
+  white-space: normal;
+}
+
+.light-text {
+  font-size: 10px;
+  font-weight: 500;
+  font-family: roboto;
+  color: #000 !important;
+}
+.minmax_value img {
+  max-height: 12px;
+}

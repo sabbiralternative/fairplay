@@ -239,8 +239,11 @@ const Bookmaker = ({ data }) => {
           <div key={game?.id} className="events-col gradient">
             <div>
               <div className="bet-table-header">
-                <div className="row d-flex align-items-center">
-                  <div className="col-md-5 col-6">
+                <div
+                  className="row d-flex align-items-center game-title-box"
+                  style={{ marginRight: "0px" }}
+                >
+                  <div className="col-md-6 col-6">
                     <div className="game-title-box">
                       <span className="multi-pin">
                         <a href="javascript:void(0);" className="add-pin">
@@ -253,7 +256,67 @@ const Bookmaker = ({ data }) => {
                       </a>
                     </div>
                   </div>
-                  <div className="col-md-1 d-none d-lg-block px-0">
+                  <div className="col-6 d-flex justify-content-end">
+                    {Settings.cashout &&
+                      game?.runners?.length !== 3 &&
+                      game?.status === "OPEN" &&
+                      !speedCashOut && (
+                        <button
+                          onClick={() =>
+                            handleCashOutPlaceBet(
+                              game,
+                              "lay",
+                              dispatch,
+                              pnlBySelection,
+                              token,
+                              teamProfitForGame,
+                            )
+                          }
+                          style={{
+                            width: "100px",
+                            cursor: `${
+                              !teamProfitForGame ? "not-allowed" : "pointer"
+                            }`,
+                            opacity: `${!teamProfitForGame ? "0.6" : "1"}`,
+                            backgroundColor: "green",
+                            color: "white",
+                          }}
+                          className="btn btn_cashout"
+                        >
+                          {" "}
+                          Cashout{" "}
+                          {teamProfitForGame?.profit &&
+                            `(${teamProfitForGame.profit.toFixed(0)})`}
+                        </button>
+                      )}
+                    {Settings.cashout &&
+                      game?.runners?.length !== 3 &&
+                      game?.status === "OPEN" &&
+                      game?.name !== "toss" &&
+                      speedCashOut && (
+                        <button
+                          style={{
+                            width: "100px",
+
+                            backgroundColor: "green",
+                            color: "white",
+                          }}
+                          onClick={() =>
+                            setSpeedCashOut({
+                              ...speedCashOut,
+                              market_name: game?.name,
+                              event_name: game?.eventName,
+                            })
+                          }
+                          disabled={isGameSuspended(game)}
+                          className="btn btn_losscut"
+                        >
+                          {" "}
+                          Speed Cashout
+                        </button>
+                      )}
+                  </div>
+                  {/* <div className="col-md-1 d-none d-lg-block px-0">
                     <div className="d-flex align-items-center">
                       <span className="detail_min_max">
                         {" "}
@@ -261,8 +324,8 @@ const Bookmaker = ({ data }) => {
                         {game?.maxLiabilityPerBet}{" "}
                       </span>
                     </div>
-                  </div>
-                  <div className="col-md-6 col-6 text-center ms-auto game-title-box-right">
+                  </div> */}
+                  {/* <div className="col-md-6 col-6 text-center ms-auto game-title-box-right">
                     <div className="row no-gutters">
                       <div className="text-center col-md-4 text-white caption d-none d-md-block" />
                       <div className="text-center col-md-4 col-12 text-white caption">
@@ -271,61 +334,10 @@ const Bookmaker = ({ data }) => {
                       </div>
                       <div className="text-center col-md-4 text-white caption d-none d-md-block" />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="bet-table-body">
-                <div className="d-flex bg-light">
-                  {Settings.cashout &&
-                    game?.runners?.length !== 3 &&
-                    game?.status === "OPEN" &&
-                    !speedCashOut && (
-                      <button
-                        onClick={() =>
-                          handleCashOutPlaceBet(
-                            game,
-                            "lay",
-                            dispatch,
-                            pnlBySelection,
-                            token,
-                            teamProfitForGame,
-                          )
-                        }
-                        style={{
-                          cursor: `${
-                            !teamProfitForGame ? "not-allowed" : "pointer"
-                          }`,
-                          opacity: `${!teamProfitForGame ? "0.6" : "1"}`,
-                        }}
-                        className="btn btn_cashout"
-                      >
-                        {" "}
-                        Cashout{" "}
-                        {teamProfitForGame?.profit &&
-                          `(${teamProfitForGame.profit.toFixed(0)})`}
-                      </button>
-                    )}
-                  {Settings.cashout &&
-                    game?.runners?.length !== 3 &&
-                    game?.status === "OPEN" &&
-                    game?.name !== "toss" &&
-                    speedCashOut && (
-                      <button
-                        onClick={() =>
-                          setSpeedCashOut({
-                            ...speedCashOut,
-                            market_name: game?.name,
-                            event_name: game?.eventName,
-                          })
-                        }
-                        disabled={isGameSuspended(game)}
-                        className="btn btn_losscut"
-                      >
-                        {" "}
-                        Speed Cashout
-                      </button>
-                    )}
-                </div>
                 {game?.runners?.map((runner) => {
                   const pnl = pnlBySelection?.find(
                     (pnl) => pnl?.RunnerId === runner?.id,

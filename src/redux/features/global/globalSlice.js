@@ -16,6 +16,7 @@ const initialState = {
   closePopupForForever: false,
   showChangePasswordModal: false,
   showRulesModal: false,
+  showMobileSidebar: false,
 };
 
 const stateSlice = createSlice({
@@ -67,6 +68,9 @@ const stateSlice = createSlice({
     setShowRulesModal: (state, action) => {
       state.showRulesModal = action.payload;
     },
+    setShowMobileSidebar: (state, action) => {
+      state.showMobileSidebar = action.payload;
+    },
   },
 });
 
@@ -86,6 +90,7 @@ export const {
   setClosePopUpForForever,
   setShowChangePasswordModal,
   setShowRulesModal,
+  setShowMobileSidebar,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;

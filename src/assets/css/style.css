@@ -1,14 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
-:root {
-  --dark-bg: #121212;
-  --theme-bg: #f26c20;
-  --theme-gradient: linear-gradient(180deg, #f26c20 0, #f26c20);
-}
 
 body {
   font-family: "Lato", sans-serif;
-  background: #121212;
+  background: var(--dark-bg);
   color: #444444;
   font-size: 16px;
   overflow-y: auto;
@@ -267,7 +262,7 @@ p.no-fancy-message {
 }
 .login_modal .modal-content {
   border: thin solid hsla(0, 0%, 100%, 0.12);
-  background-color: #1e1e1e;
+  background-color: var(--dark-bg);
   color: #fff;
   margin: 0;
   border-radius: 0;
@@ -278,7 +273,7 @@ p.no-fancy-message {
   position: absolute;
   right: 12px;
   top: 10px;
-  color: #fff;
+  color: var(--primary-text-color);
   display: none;
 }
 /*.login_modal form label{
@@ -437,7 +432,7 @@ p.no-fancy-message {
 }
 .login_modal .modal-body form {
   padding: 1.5rem 1rem;
-  background: rgba(0, 0, 0, 0.75) !important;
+  background: var(--auth-bg) !important;
   border-radius: 4px;
   /* box-shadow: 0 4px 30px rgba(0,0,0,.1); */
   backdrop-filter: blur(5px);
@@ -641,7 +636,7 @@ ul.fancy-nav {
 .casino__new__tab.container ul li a {
   padding: 10px 25px;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--primary-text-color);
   font-size: 13px;
   font-weight: 400;
   line-height: normal;
@@ -783,7 +778,7 @@ body.detail-screen #main {
   text-align: center !important;
   font-size: 15px !important;
   padding: 10px 25px !important;
-  color: #fff !important;
+  color: var(--primary-text-color) !important;
   /*  background-image: var(--theme-gradient);*/
   background: url(https://d1p45eoi1yern1.cloudfront.net/loyalty/left-blue.webp) !important;
 }
@@ -1083,15 +1078,15 @@ body.detail-screen #main {
   z-index: 997;
   height: 55px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #000;
-  padding-left: 20px;
+  background-color: var(--dark-bg);
+  /* padding-left: 20px; */
 }
 
 .header .toggle-sidebar-btn {
   font-size: 18px;
   padding: 0 5px;
   cursor: pointer;
-  color: #fff;
+  color: var(--primary-text-color);
 }
 
 .header .search-bar {
@@ -1363,7 +1358,7 @@ body.detail-screen #main {
   width: 100%;
   z-index: 9;
   padding: 6px 0;
-  background-color: #212121;
+  background-color: var(--navbar-bg);
 }
 
 .navbar-content {
@@ -1862,8 +1857,6 @@ span.multi-pin a i.mdi-star {
 
 .calendar-space {
   color: #ff0000;
-  width: 100%;
-  display: block;
   text-align: left;
   white-space: normal;
   font-size: 0.65rem;
@@ -1976,7 +1969,7 @@ body.detail-screen .sidebar {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: var(--primary-text-color);
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -1999,8 +1992,8 @@ body.detail-screen .sidebar {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
-  background: #f6f9ff;
+  color: var(--primary-text-color);
+  /* background: #f6f9ff; */
 }
 
 .sidebar-nav .nav-link:hover i {
@@ -2670,12 +2663,12 @@ body.detail-screen .sidebar {
 }
 .sidenav .dropdown-menu li {
   border-bottom: none;
-  background: #000 !important;
+  background: var(--dark-bg) !important;
   border-left: 0.5px groove var(--theme-bg);
 }
 .sidenav .dropdown-menu li a {
   border-bottom: none;
-  color: #fff;
+  color: var(--primary-text-color);
   font-weight: 600;
   border-top: 1px solid gray;
   display: flex;
@@ -2761,7 +2754,7 @@ li.logout-li a:hover {
 .balance-row {
   display: flex;
   align-items: center;
-  color: #fff;
+  color: var(--primary-text-color);
   font-size: 14px;
   font-weight: bold;
   line-height: 32px;
@@ -2774,7 +2767,7 @@ li.logout-li a:hover {
   font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1rem;
-  color: #fff;
+  color: var(--primary-text-color);
 }
 .balance-text-left small {
   font-size: 10px;
@@ -3785,7 +3778,7 @@ ul.live_virtual {
   display: flex;
   align-items: center;
   float: right;
-  margin: 0 0 0 55%;
+  margin: 0 0 0 75%;
 }
 ul.live_virtual li {
   display: inline;
@@ -4186,9 +4179,9 @@ ul.live_virtual li input[type="checkbox"] {
   .mobile_odds_section .row {
     display: contents;
   }
-  .mobile_odds_section .row .col-4 {
+  /* .mobile_odds_section .row .col-4 {
     width: auto;
-  }
+  } */
   .mobile_odds_section .row .col-4 .btn-block .back,
   .mobile_odds_section .btn-block .lay {
     width: 57px;

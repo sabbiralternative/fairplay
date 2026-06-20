@@ -1,20 +1,26 @@
-import { useSelector } from "react-redux";
-import { Settings } from "../../api";
+// import { useSelector } from "react-redux";
+// import { Settings } from "../../api";
 import Banner from "../../components/modules/Home/Banner";
 import EventTableSection from "../../components/modules/Home/EventTableSection";
-import LiveCards from "../../components/modules/Home/LiveCards";
+// import LiveCards from "../../components/modules/Home/LiveCards";
 import NewCasinoThumbnails from "../../components/modules/Home/NewCasinoThumbnails";
-import PopularGames from "../../components/modules/Home/PopularGames";
+// import HighLight from "../../components/modules/Home/HighLight";
+import { useIndexQuery } from "../../hooks";
 
 const Home = () => {
-  const { token } = useSelector((state) => state.auth);
-  const navigateWhatsApp = () => {
-    if (token && Settings?.branchWhatsapplink) {
-      window.open(Settings?.branchWhatsapplink, "_blank");
-    } else {
-      window.open(Settings?.whatsapplink, "_blank");
-    }
-  };
+  const { data } = useIndexQuery({
+    type: "99_casino_dashboard",
+  });
+  // const { token } = useSelector((state) => state.auth);
+  // const navigateWhatsApp = () => {
+  //   if (token && Settings?.branchWhatsapplink) {
+  //     window.open(Settings?.branchWhatsapplink, "_blank");
+  //   } else {
+  //     window.open(Settings?.whatsapplink, "_blank");
+  //   }
+  // };
+
+  console.log(data);
   return (
     <main id="main" className="main">
       <div className="tab-content-main">
@@ -28,8 +34,10 @@ const Home = () => {
             >
               <div className="tab-content-innter">
                 <Banner />
-                <NewCasinoThumbnails />
-                {(Settings.branchWhatsapplink || Settings.whatsapplink) && (
+                <NewCasinoThumbnails
+                  highlight_casino={data?.highlight_casino}
+                />
+                {/* {(Settings.branchWhatsapplink || Settings.whatsapplink) && (
                   <div onClick={navigateWhatsApp} className="row ex_slide mx-0">
                     <div className="col-md-12 px-1">
                       <a target="_blank" className="dontaccount">
@@ -80,12 +88,12 @@ const Home = () => {
                       </a>
                     </div>
                   </div>
-                )}
+                )} */}
 
                 <div className="inplay-main">
                   <EventTableSection />
-                  <PopularGames />
-                  <LiveCards />
+                  {/* <HighLight highlight_casino={data?.highlight_casino} /> */}
+                  {/* <LiveCards /> */}
                 </div>
               </div>
             </div>

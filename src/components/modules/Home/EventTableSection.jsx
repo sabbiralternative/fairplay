@@ -60,7 +60,7 @@ const EventTableSection = () => {
                     <div key={category} className="events-col gradient mb-3">
                       <div className="bet-table-header">
                         <div className="row d-flex align-items-center">
-                          <div className="col-md-8 col-12">
+                          <div className=" col-12">
                             <div className="game-title-box">
                               <img
                                 className="game-icon-img"
@@ -104,7 +104,7 @@ const EventTableSection = () => {
                               </ul>
                             </div>
                           </div>
-                          <div className="col-md-4 text-center ms-auto game-title-box-right d-none d-lg-block">
+                          {/* <div className="col-md-4 text-center ms-auto game-title-box-right d-none d-lg-block">
                             <div className="row no-gutters">
                               <div className="text-center col-4 text-white caption">
                                 1
@@ -116,7 +116,7 @@ const EventTableSection = () => {
                                 2
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                       <div className="bet-table-body">
@@ -130,52 +130,51 @@ const EventTableSection = () => {
                               className="bet-table-row bg-light pt-1 pb-1 item-odds event_inplay"
                             >
                               <div className="row d-flex align-items-center">
-                                <div className="col-md-4 col-4 d-flex">
-                                  {/* <span className="multi-pin">
+                                <div className="d-flex">
+                                  {" "}
+                                  <div className="col-md-6 col-6 d-flex">
+                                    {/* <span className="multi-pin">
                                   <a className="add-pin">
                                     <i className="mdi mdi-star-outline" />
                                   </a>
                                 </span> */}
-                                  <a>
-                                    <div className="d-flex flex-column ps-2">
-                                      <div className="calendar-space">
-                                        {value?.date}
+                                    <a>
+                                      <div className="d-flex flex-column ps-2">
+                                        <span className="manage-overflow match-name fw-semibold">
+                                          {value?.player1}
+                                        </span>
+                                        <span className="manage-overflow match-name fw-semibold leaguename">
+                                          {value?.player2}
+                                        </span>
                                       </div>
+                                    </a>
+                                  </div>
+                                  <div className="col-md-6 col-6 d-flex justify-content-end">
+                                    <div className="itbfc">
+                                      {value?.inPlay === 1 && (
+                                        <span title="INPLAY">
+                                          <i className="green-text mdi mdi-play" />
+                                        </span>
+                                      )}
 
-                                      <span className="manage-overflow match-name fw-semibold">
-                                        {value?.player1}
-                                      </span>
-                                      <span className="manage-overflow match-name fw-semibold leaguename">
-                                        {value?.player2}
-                                      </span>
+                                      {value?.isTv === 1 && (
+                                        <span title="TV">
+                                          <i className="green-text mdi mdi-television" />
+                                        </span>
+                                      )}
+
+                                      {value.isBookmaker === 1 && (
+                                        <span title="BM">BM</span>
+                                      )}
+
+                                      {value?.isFancy === 1 && (
+                                        <span title="F">F</span>
+                                      )}
                                     </div>
-                                  </a>
-                                </div>
-                                <div className="col-md-4 col-2">
-                                  <div className="itbfc">
-                                    {value?.inPlay === 1 && (
-                                      <span title="INPLAY">
-                                        <i className="green-text mdi mdi-play" />
-                                      </span>
-                                    )}
-
-                                    {value?.isTv === 1 && (
-                                      <span title="TV">
-                                        <i className="green-text mdi mdi-television" />
-                                      </span>
-                                    )}
-
-                                    {value.isBookmaker === 1 && (
-                                      <span title="BM">BM</span>
-                                    )}
-
-                                    {value?.isFancy === 1 && (
-                                      <span title="F">F</span>
-                                    )}
                                   </div>
                                 </div>
-                                <div className="col-md-4 col-6 mobile_odds_section">
-                                  <div className="row g-0 d-none d-md-flex">
+                                <div className="col-md-12 col-12 mobile_odds_section">
+                                  <div className="row g-0  d-flex">
                                     <div className="col-md-4 col-4">
                                       <div className="btn-block">
                                         <div className="back">
@@ -274,7 +273,7 @@ const EventTableSection = () => {
                                     </div>
                                   </div>
 
-                                  <div className="row d-block d-md-none odds_xs_scroll">
+                                  {/* <div className="row d-block d-md-none odds_xs_scroll">
                                     <div className="col-12 d-flex inplay-item__back-inner-left new_odds_mobile">
                                       <div className="back">
                                         <div className="odd-button__price">
@@ -363,7 +362,27 @@ const EventTableSection = () => {
                                         </div>
                                       </div>
                                     </div>
+                                  </div> */}
+                                </div>
+                                <div className="d-flex">
+                                  <div className="calendar-space col-6 ">
+                                    {value?.date}
                                   </div>
+                                  {/* <div className="col-6 minmax_value d-flex justify-content-end">
+                                    <span className="match-name">
+                                      <span className="light-text">
+                                        Min : {value?.minLiabilityPerBet}
+                                      </span>
+                                      <img
+                                        loading="lazy"
+                                        src="/assets/min-max-icon-BIsl0oNE.svg"
+                                        alt="min-max-icon"
+                                      />
+                                      <span className="light-text">
+                                        Max : 5000
+                                      </span>
+                                    </span>
+                                  </div> */}
                                 </div>
                               </div>
                             </div>

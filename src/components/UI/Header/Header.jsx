@@ -8,6 +8,8 @@ import {
   setShowAPKModal,
   setShowAppPopUp,
   setShowLoginModal,
+  setShowMobileSidebar,
+  setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import Error from "../../modals/Error/Error";
 import QuickLinks from "./QuickLinks";
@@ -16,7 +18,7 @@ import Authorized from "./Authorized";
 import Dropdown from "./Dropdown";
 import Search from "./Search";
 import AppPopup from "./AppPopUp";
-import Notification from "./Notification";
+// import Notification from "./Notification"
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 
@@ -102,13 +104,16 @@ const Header = () => {
           id="header"
           className="header fixed-top d-flex align-items-center"
         >
-          <Notification />
+          {/* <Notification /> */}
           {Settings.apk_link && showAppPopUp && windowWidth < 1040 && (
             <AppPopup />
           )}
           <div className="d-flex align-items-center justify-content-between">
-            <i className="mdi mdi-menu toggle-sidebar-btn d-md-none" />
-            <Link href="/" className="logo d-flex align-items-center">
+            <i
+              onClick={() => dispatch(setShowMobileSidebar(true))}
+              className="mdi mdi-menu toggle-sidebar-btn d-md-none"
+            />
+            <Link to="/" className="logo d-flex align-items-center">
               <img
                 alt=""
                 className="img-fluid"
@@ -132,12 +137,20 @@ const Header = () => {
               {token ? (
                 <Authorized setShowDropdown={setShowDropdown} />
               ) : (
-                <li
-                  onClick={() => dispatch(setShowLoginModal(true))}
-                  className="nav-item pe-xl-1 pe-1"
-                >
-                  <a className="v-btn top-btn">Login</a>
-                </li>
+                <Fragment>
+                  <li
+                    onClick={() => dispatch(setShowLoginModal(true))}
+                    className="nav-item pe-xl-1 pe-1"
+                  >
+                    <a className="v-btn top-btn">Login</a>
+                  </li>
+                  <li
+                    onClick={() => dispatch(setShowRegisterModal(true))}
+                    className="nav-item pe-xl-1 pe-1"
+                  >
+                    <a className="v-btn top-btn">Register</a>
+                  </li>
+                </Fragment>
               )}
 
               <li className="nav-item pe-xl-1 pe-1"></li>

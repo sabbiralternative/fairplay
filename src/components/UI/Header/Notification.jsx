@@ -1,12 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useGetNotification from "../../../hooks/useGetNotification";
+import Marquee from "react-fast-marquee";
 
-const Notification = ({
-  showNotification,
-  setShowNotification,
-  filteredNotification,
-  setFilteredNotification,
-}) => {
+const Notification = () => {
+  const [filteredNotification, setFilteredNotification] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
   const { notification, isFetchingNotification, isFetched } =
     useGetNotification();
 
@@ -64,14 +62,16 @@ const Notification = ({
       {showNotification && filteredNotification?.length > 0 && (
         <div>
           <div className="commentary_main marquee">
-            {filteredNotification?.map((item) => (
-              <p
-                key={item?.id}
-                style={{ marginRight: "100vw", color: "white" }}
-              >
-                {item?.text}
-              </p>
-            ))}
+            <Marquee>
+              {filteredNotification?.map((item) => (
+                <p
+                  key={item?.id}
+                  style={{ marginRight: "100vw", color: "white" }}
+                >
+                  {item?.text}
+                </p>
+              ))}
+            </Marquee>
             <button onClick={closeNotification}>
               <i className="mdi mdi-close" />
             </button>

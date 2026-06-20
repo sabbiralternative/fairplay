@@ -19,6 +19,8 @@ const MainLayout = () => {
     showForgotPasswordModal,
     showChangePasswordModal,
     showRulesModal,
+    showMobileSidebar,
+    windowWidth,
   } = useSelector((state) => state.global);
   const location = useLocation();
   const ref = useRef();
@@ -45,7 +47,7 @@ const MainLayout = () => {
       }
     }
   }, [stored_build_version]);
-
+  console.log(showMobileSidebar);
   return (
     <div>
       {showRulesModal && <Rules />}
@@ -53,8 +55,17 @@ const MainLayout = () => {
       {showRegisterModal && <Register />}{" "}
       {showForgotPasswordModal && <ForgotPassword />}{" "}
       <div>
+        {showMobileSidebar && windowWidth < 1199 && (
+          <div
+            style={{ position: "fixed", top: "0px", left: "0px", zIndex: 9999 }}
+          >
+            <Sidebar />
+          </div>
+        )}
+
         <Header />
-        <Sidebar />
+        {windowWidth >= 1199 && <Sidebar />}
+
         <Outlet />
         <Footer />
       </div>

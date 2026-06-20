@@ -37,7 +37,7 @@ const QuickLinks = () => {
       )}
       <div className="navbar-content">
         <ul id="pills-tab" role="tablist" className="nav nav-tabs nav-pills">
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               className="nav-link blinker theme-color"
               to="/event-details/4/28127348"
@@ -52,7 +52,7 @@ const QuickLinks = () => {
               </div>
               IPL 2026
             </Link>
-          </li>
+          </li> */}
           <li role="presentation" className="nav-item">
             <Link
               to="/?eventTypeId=0"

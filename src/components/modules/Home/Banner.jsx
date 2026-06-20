@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 const Banner = () => {
   const { data: bannerImage } = useBannerImage();
+  if (bannerImage?.banner?.length === 0) return null;
 
   return (
     <div className="a23_css banner-ctn">

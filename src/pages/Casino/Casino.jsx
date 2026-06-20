@@ -108,6 +108,7 @@ const Casino = () => {
                     <div className="casino-searchbar">
                       <div className="input-group">
                         <input
+                          onChange={(e) => setSearch(e.target.value)}
                           type="text"
                           placeholder="Search game"
                           className="ng-untouched ng-pristine ng-valid"

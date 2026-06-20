@@ -28,7 +28,7 @@ const DepositModal = ({ setShowModal, setPaymentMethods, amount }) => {
       );
     }
   }, [amount, depositBreakdown]);
-  console.log(depositBreakdown);
+
   return (
     <>
       {amount >= depositBreakdown?.minimumDeposit && (
