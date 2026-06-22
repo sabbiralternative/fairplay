@@ -2,8 +2,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useGroupQuery } from "../../../redux/features/events/events";
 import { useEffect, useState } from "react";
 import HorseGreyhound from "./HorseGreyhound";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const EventTableSection = () => {
+  const { valueByLanguage } = useLanguage();
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,7 +17,13 @@ const EventTableSection = () => {
     { sportsType: Number(eventTypeId) || 0 },
     { pollingInterval: 10000 },
   );
-  const eventName = { 4: "Cricket", 2: "Tennis", 1: "Football" };
+  const eventName = {
+    4: languageValue(valueByLanguage, LanguageKey.CRICKET),
+    2: languageValue(valueByLanguage, LanguageKey.TENNIS),
+    1: languageValue(valueByLanguage, LanguageKey.FOOTBALL),
+    7: languageValue(valueByLanguage, LanguageKey.HORSE),
+    4339: languageValue(valueByLanguage, LanguageKey.GREYHOUND),
+  };
 
   useEffect(() => {
     if (data) {

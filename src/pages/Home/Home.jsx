@@ -20,7 +20,6 @@ const Home = () => {
   //   }
   // };
 
-  console.log(data);
   return (
     <main id="main" className="main">
       <div className="tab-content-main">

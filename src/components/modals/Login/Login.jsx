@@ -13,8 +13,12 @@ import {
   setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const Login = () => {
+  const { valueByLanguage } = useLanguage();
   const { closePopupForForever } = useSelector((state) => state.global);
   const { logo } = useLogo();
   const dispatch = useDispatch();
@@ -239,7 +243,7 @@ const Login = () => {
                     </div>
                     <div className="btn-group">
                       <button type="submit" className="v-btn">
-                        login
+                        {languageValue(valueByLanguage, LanguageKey.LOGIN)}
                       </button>
                       <button
                         onClick={loginWithDemo}
@@ -258,7 +262,7 @@ const Login = () => {
                         }}
                         style={{ textDecoration: "underline" }}
                       >
-                        Register
+                        {languageValue(valueByLanguage, LanguageKey.REGISTER)}
                       </a>
                     </div>
                     <div className="whatsapp_ids_section">

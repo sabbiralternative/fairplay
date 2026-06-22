@@ -6,8 +6,12 @@ import toast from "react-hot-toast";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { setShowMobileSidebar } from "../../../redux/features/global/globalSlice";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const Sidebar = () => {
+  const { valueByLanguage } = useLanguage();
   const dispatch = useDispatch();
   const ref = useRef();
   const { token } = useSelector((state) => state.auth);
@@ -70,7 +74,10 @@ const Sidebar = () => {
                 to="/?eventTypeId=4"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/4.png" />
-                <span>Cricket</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.CRICKET)}
+                </span>
 
                 {/* <i className="bi bi-chevron-down ms-auto" /> */}
               </Link>
@@ -83,7 +90,10 @@ const Sidebar = () => {
                 to="/?eventTypeId=1"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/1.png" />
-                <span>Football</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
+                </span>
 
                 {/* <i className="bi bi-chevron-down ms-auto" /> */}
               </Link>
@@ -96,7 +106,10 @@ const Sidebar = () => {
                 to="/?eventTypeId=2"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/2.png" />
-                <span>Tennis</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.TENNIS)}
+                </span>
 
                 {/* <i className="bi bi-chevron-down ms-auto" /> */}
               </Link>
@@ -136,7 +149,10 @@ const Sidebar = () => {
                 to="/?eventTypeId=7"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/7.png" />
-                <span>Horse Racing</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.HORSE)}
+                </span>
 
                 {/* <i className="bi bi-chevron-down ms-auto" /> */}
               </Link>
@@ -153,7 +169,10 @@ const Sidebar = () => {
                   className="menu-icon"
                   src="assets/img/icon/4339.png"
                 />
-                <span>Greyhound Racing</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
+                </span>
 
                 {/* <i className="bi bi-chevron-down ms-auto" /> */}
               </Link>
@@ -171,7 +190,10 @@ const Sidebar = () => {
                   className="menu-icon"
                   src="assets/img/icon/99994.png"
                 />
-                <span>Kabaddi</span>
+                <span>
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.KABADDI)}
+                </span>
 
                 {/* <i className="bi bi-chevron-down ms-auto" /> */}
               </Link>

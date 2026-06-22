@@ -14,8 +14,12 @@ import {
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
 import { useLogo } from "../../../context/ApiProvider";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const Register = () => {
+  const { valueByLanguage } = useLanguage();
   const { logo } = useLogo();
   const [getOTP] = useGetOtpMutation();
   const [timer, setTimer] = useState(null);
@@ -296,7 +300,7 @@ const Register = () => {
 
                     <div className="btn-group">
                       <button type="submit" className="v-btn">
-                        Register
+                        {languageValue(valueByLanguage, LanguageKey.REGISTER)}
                       </button>
                     </div>
                     <div style={{ textAlign: "center", fontSize: "12px" }}>
@@ -308,7 +312,7 @@ const Register = () => {
                         }}
                         style={{ textDecoration: "underline" }}
                       >
-                        Login
+                        {languageValue(valueByLanguage, LanguageKey.LOGIN)}
                       </a>
                     </div>
                     <div className="whatsapp_ids_section">

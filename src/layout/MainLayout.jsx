@@ -9,8 +9,10 @@ import Register from "../components/modals/Register/Register";
 import ForgotPassword from "../components/modals/ForgotPassword/ForgotPassword";
 import ChangePassword from "../components/modals/ChangePassword/ChangePassword";
 import Rules from "../components/modals/Rules/Rules";
+import { useLanguage } from "../context/LanguageProvider";
 
 const MainLayout = () => {
+  const { setLanguage } = useLanguage();
   const [, setShowBuildVersion] = useState(false);
   const stored_build_version = localStorage.getItem("build_version");
   const {
@@ -47,7 +49,9 @@ const MainLayout = () => {
       }
     }
   }, [stored_build_version]);
-  console.log(showMobileSidebar);
+  useEffect(() => {
+    setLanguage(localStorage.getItem("language") || "english");
+  }, [setLanguage]);
   return (
     <div>
       {showRulesModal && <Rules />}

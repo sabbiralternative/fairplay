@@ -9,8 +9,12 @@ import {
   setShowRulesModal,
 } from "../../../redux/features/global/globalSlice";
 import { Settings } from "../../../api";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const Dropdown = ({ setShowDropdown }) => {
+  const { valueByLanguage } = useLanguage();
   const { data } = useBalance();
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -81,7 +85,7 @@ const Dropdown = ({ setShowDropdown }) => {
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-google-analytics" />
-            <span>Deposit</span>
+            <span> {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}</span>
           </Link>
         </li>
 
@@ -92,7 +96,7 @@ const Dropdown = ({ setShowDropdown }) => {
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-google-analytics" />
-            <span>Withdraw</span>
+            <span> {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}</span>
           </Link>
         </li>
         <li>
@@ -122,7 +126,10 @@ const Dropdown = ({ setShowDropdown }) => {
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-google-analytics" />
-            <span>My Bank Details</span>
+            <span>
+              {" "}
+              {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
+            </span>
           </Link>
         </li>
         <li>
@@ -132,7 +139,10 @@ const Dropdown = ({ setShowDropdown }) => {
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-google-analytics" />
-            <span>Bonus Statement</span>
+            <span>
+              {" "}
+              {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
+            </span>
           </Link>
         </li>
         {Settings?.referral && (
@@ -216,7 +226,7 @@ const Dropdown = ({ setShowDropdown }) => {
         </li>
         <li className="logout-li">
           <Link onClick={handleLogout}>
-            <span>Logout</span>
+            <span> {languageValue(valueByLanguage, LanguageKey.LOGOUT)}</span>
           </Link>
         </li>
       </ul>

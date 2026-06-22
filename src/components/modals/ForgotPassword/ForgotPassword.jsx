@@ -12,8 +12,12 @@ import {
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
 import { useLogo } from "../../../context/ApiProvider";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const ForgotPassword = () => {
+  const { valueByLanguage } = useLanguage();
   const { logo } = useLogo();
   const [getOTP] = useGetOtpMutation();
   const [timer, setTimer] = useState(null);
@@ -247,7 +251,10 @@ const ForgotPassword = () => {
 
                     <div className="btn-group">
                       <button type="submit" className="v-btn">
-                        Change Password
+                        {languageValue(
+                          valueByLanguage,
+                          LanguageKey.CHANGE_PASSWORD,
+                        )}
                       </button>
                     </div>
 

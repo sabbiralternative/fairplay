@@ -21,8 +21,13 @@ import AppPopup from "./AppPopUp";
 // import Notification from "./Notification"
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
+import Language from "./Language";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const Header = () => {
+  const { valueByLanguage } = useLanguage();
   const stored_build_version = localStorage.getItem("build_version");
   const [showBuildVersion, setShowBuildVersion] = useState(false);
   const location = useLocation();
@@ -132,7 +137,7 @@ const Header = () => {
                   <i className="bi bi-search" />
                 </a>
               </li>
-
+              <Language />
               <Search />
               {token ? (
                 <Authorized setShowDropdown={setShowDropdown} />
@@ -142,13 +147,19 @@ const Header = () => {
                     onClick={() => dispatch(setShowLoginModal(true))}
                     className="nav-item pe-xl-1 pe-1"
                   >
-                    <a className="v-btn top-btn">Login</a>
+                    <a style={{ minWidth: "65px" }} className="v-btn top-btn">
+                      {" "}
+                      {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+                    </a>
                   </li>
                   <li
                     onClick={() => dispatch(setShowRegisterModal(true))}
                     className="nav-item pe-xl-1 pe-1"
                   >
-                    <a className="v-btn top-btn">Register</a>
+                    <a className="v-btn top-btn">
+                      {" "}
+                      {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                    </a>
                   </li>
                 </Fragment>
               )}
