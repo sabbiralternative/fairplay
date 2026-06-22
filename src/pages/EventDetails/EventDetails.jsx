@@ -11,12 +11,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setPredictOdd } from "../../redux/features/events/eventSlice";
 import { Settings } from "../../api";
+import OpenBets from "../../components/modules/EventDetails/OpenBets";
 
 const EventDetails = () => {
   const navigate = useNavigate();
   const [sportsVideo, { data: iframe }] = useVideoMutation();
   const [showScore, setShowScore] = useState(true);
-  const [showVideo, setShowVideo] = useState(true);
+  const [tab, setTab] = useState("market");
   const { eventTypeId, eventId } = useParams();
   const [profit, setProfit] = useState(0);
   const dispatch = useDispatch();
@@ -189,9 +190,9 @@ const EventDetails = () => {
                         >
                           <li className="active nav-item">
                             <a
-                              href="javascript:void(0);"
+                              onClick={() => setTab("market")}
                               role="tab"
-                              className="nav-link active"
+                              className={`nav-link  ${tab === "market" ? "active" : ""}`}
                               aria-controls
                               aria-selected="true"
                               id
@@ -210,9 +211,9 @@ const EventDetails = () => {
                           </li>
                           <li className="nav-item">
                             <a
-                              href="javascript:void(0);"
+                              onClick={() => setTab("open-bets")}
                               role="tab"
-                              className="nav-link"
+                              className={`nav-link  ${tab === "open-bets" ? "active" : ""}`}
                               aria-controls
                               aria-selected="false"
                               id
@@ -244,29 +245,34 @@ const EventDetails = () => {
                             >
                               <div className="sr-widget-1" />
                             </div>
-                            <div>
-                              {matchOdds?.length > 0 && (
-                                <MatchOdds data={matchOdds} />
-                              )}
+                            {tab === "market" && (
+                              <div>
+                                {matchOdds?.length > 0 && (
+                                  <MatchOdds data={matchOdds} />
+                                )}
 
-                              <div className="empty-div">
-                                {bookmaker?.length > 0 && (
-                                  <Bookmaker data={bookmaker} />
+                                <div className="empty-div">
+                                  {bookmaker?.length > 0 && (
+                                    <Bookmaker data={bookmaker} />
+                                  )}
+                                </div>
+
+                                {data?.result?.length > 0 && (
+                                  <Fancy data={data?.result} />
+                                )}
+                                {tiedMatch?.length > 0 && (
+                                  <MatchOdds data={tiedMatch} />
                                 )}
                               </div>
-
-                              {data?.result?.length > 0 && (
-                                <Fancy data={data?.result} />
-                              )}
-                              {tiedMatch?.length > 0 && (
-                                <MatchOdds data={tiedMatch} />
-                              )}
-                            </div>
+                            )}
+                            {tab === "open-bets" && (
+                              <OpenBets sportsBook={data?.sportsbook?.Result} />
+                            )}
                           </tab>
                         </div>
                       </div>
                     </div>
-                    <RightSidebar />
+                    <RightSidebar sportsBook={data?.sportsbook?.Result} />
                   </div>
                 </div>
               </div>

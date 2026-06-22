@@ -4285,7 +4285,7 @@ ul.live_virtual li input[type="checkbox"] {
     font-size: 6px;
   }
   .game-title-box {
-    padding: 0.562rem 0.2rem !important;
+    /* padding: 0.562rem 0.2rem !important; */
   }
   .detail-page .match-name {
     display: flex;

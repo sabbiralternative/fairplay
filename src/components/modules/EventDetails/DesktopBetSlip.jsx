@@ -211,7 +211,6 @@ const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
       dispatch(setStake(buttonValue + prevStake));
     }
   };
-  console.log(placeBetValues);
 
   return (
     <div>

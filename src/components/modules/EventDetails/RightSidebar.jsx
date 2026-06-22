@@ -1,7 +1,9 @@
+import { useState } from "react";
 import DesktopBetSlip from "./DesktopBetSlip";
 import OpenBets from "./OpenBets";
 
-const RightSidebar = () => {
+const RightSidebar = ({ sportsBook }) => {
+  const [tab, setTab] = useState(0);
   return (
     <div
       id="betslip-section-id"
@@ -24,9 +26,9 @@ const RightSidebar = () => {
           <ul role="tablist" className="nav nav-pills" aria-label="Tabs">
             <li className="active nav-item">
               <a
-                href="javascript:void(0);"
+                onClick={() => setTab(0)}
                 role="tab"
-                className="nav-link active"
+                className={`nav-link  ${tab === 0 ? "active" : ""}`}
                 aria-controls
                 aria-selected="true"
                 id
@@ -37,9 +39,9 @@ const RightSidebar = () => {
             </li>
             <li className="nav-item">
               <a
-                href="javascript:void(0);"
+                onClick={() => setTab(1)}
                 role="tab"
-                className="nav-link"
+                className={`nav-link  ${tab === 1 ? "active" : ""}`}
                 aria-controls
                 aria-selected="false"
                 id
@@ -50,12 +52,20 @@ const RightSidebar = () => {
             </li>
           </ul>
           <div className="tab-content">
-            <div role="tabpanel" aria-labelledby className="tab-pane active">
+            <div
+              role="tabpanel"
+              aria-labelledby
+              className={`tab-pane ${tab === 0 ? "active" : ""}`}
+            >
               <DesktopBetSlip />
             </div>
 
-            <div role="tabpanel" aria-labelledby className="tab-pane">
-              <OpenBets />
+            <div
+              role="tabpanel"
+              aria-labelledby
+              className={`tab-pane ${tab === 1 ? "active" : ""}`}
+            >
+              <OpenBets sportsBook={sportsBook} />
             </div>
           </div>
         </div>

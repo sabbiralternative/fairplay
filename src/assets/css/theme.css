@@ -1,17 +1,16 @@
-/* :root {
+:root {
   --auth-bg: rgba(0, 0, 0, 0.75);
   --primary-text-color: #fff;
   --dark-bg: #121212;
   --navbar-bg: #212121;
   --theme-bg: #f26c20;
   --theme-gradient: linear-gradient(180deg, #f26c20 0, #f26c20);
- 
-} */
-:root {
+}
+/* :root {
   --auth-bg: rgba(0, 0, 0, 0.75);
   --primary-text-color: #000;
   --dark-bg: #fff;
   --navbar-bg: #212121;
   --theme-bg: #f26c20;
   --theme-gradient: linear-gradient(180deg, #f26c20 0, #f26c20);
-}
+} */
