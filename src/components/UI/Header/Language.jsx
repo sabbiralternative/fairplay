@@ -18,7 +18,7 @@ const Language = () => {
       value={language}
       onChange={handleSetLanguage}
       data-v-5247495a=""
-      className="form-select language"
+      className="form-select language sm-d-none"
     >
       {languages &&
         Object.keys(languages)?.map((item, idx) => {

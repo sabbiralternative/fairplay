@@ -57,7 +57,7 @@ const MainLayout = () => {
       {showRulesModal && <Rules />}
       {showChangePasswordModal && <ChangePassword />}
       {showRegisterModal && <Register />}{" "}
-      {showForgotPasswordModal && <ForgotPassword />}{" "}
+      {showForgotPasswordModal && <ForgotPassword />}
       <div>
         {showMobileSidebar && windowWidth < 1199 && (
           <div

@@ -9,13 +9,19 @@ import { setShowMobileSidebar } from "../../../redux/features/global/globalSlice
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import images from "../../../assets/images";
+import LanguageModal from "../../modals/MobileLanguageModal/LanguageModal";
 
 const Sidebar = () => {
-  const { valueByLanguage } = useLanguage();
+  const [showLanguageModal, setShowLanguageModal] = useState(false);
+  const { language, valueByLanguage } = useLanguage();
   const dispatch = useDispatch();
   const ref = useRef();
   const { token } = useSelector((state) => state.auth);
-  const { showMobileSidebar } = useSelector((state) => state.global);
+  const { showMobileSidebar, windowWidth } = useSelector(
+    (state) => state.global,
+  );
   const navigate = useNavigate();
   const [showWarning, setShowWarning] = useState(false);
   const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
@@ -40,6 +46,24 @@ const Sidebar = () => {
     }
   };
 
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const fileUrl = Settings.apk_link;
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.setAttribute("download", "site.apk");
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  };
+
+  const navigateWhatsApp = () => {
+    if (token && Settings?.branchWhatsapplink) {
+      window.open(Settings?.branchWhatsapplink, "_blank");
+    } else {
+      window.open(Settings?.whatsapplink, "_blank");
+    }
+  };
   return (
     <div>
       {showMobileSidebar && (
@@ -64,6 +88,9 @@ const Sidebar = () => {
         className="sidebar"
         style={{ left: "0px" }}
       >
+        {showLanguageModal && (
+          <LanguageModal onClose={() => setShowLanguageModal(false)} />
+        )}
         <div className="mobile-menu">
           <ul id="sidebar-nav" className="sidebar-nav">
             <li className="nav-item">
@@ -79,7 +106,7 @@ const Sidebar = () => {
                   {languageValue(valueByLanguage, LanguageKey.CRICKET)}
                 </span>
 
-                {/* <i className="bi bi-chevron-down ms-auto" /> */}
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
             <li className="nav-item">
@@ -95,7 +122,7 @@ const Sidebar = () => {
                   {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
                 </span>
 
-                {/* <i className="bi bi-chevron-down ms-auto" /> */}
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
             <li className="nav-item">
@@ -110,8 +137,7 @@ const Sidebar = () => {
                   {" "}
                   {languageValue(valueByLanguage, LanguageKey.TENNIS)}
                 </span>
-
-                {/* <i className="bi bi-chevron-down ms-auto" /> */}
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
             <li className="nav-item">
@@ -126,6 +152,7 @@ const Sidebar = () => {
                   src="assets/img/icon/99998.png"
                 />
                 <span>Casino</span>
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
             <li className="nav-item">
@@ -139,6 +166,7 @@ const Sidebar = () => {
                   src="assets/img/icon/99991.png"
                 />
                 <span>Sports book</span>
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </a>
             </li>
             <li className="nav-item">
@@ -153,7 +181,7 @@ const Sidebar = () => {
                   {" "}
                   {languageValue(valueByLanguage, LanguageKey.HORSE)}
                 </span>
-
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
                 {/* <i className="bi bi-chevron-down ms-auto" /> */}
               </Link>
             </li>
@@ -174,7 +202,7 @@ const Sidebar = () => {
                   {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
                 </span>
 
-                {/* <i className="bi bi-chevron-down ms-auto" /> */}
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
 
@@ -195,7 +223,7 @@ const Sidebar = () => {
                   {languageValue(valueByLanguage, LanguageKey.KABADDI)}
                 </span>
 
-                {/* <i className="bi bi-chevron-down ms-auto" /> */}
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
             <li className="nav-item">
@@ -212,9 +240,119 @@ const Sidebar = () => {
                 />
                 <span>Politics</span>
 
-                {/* <i className="bi bi-chevron-down ms-auto" /> */}
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
+            {windowWidth < 500 && (
+              <li className="nav-item">
+                <a
+                  onClick={() => setShowLanguageModal(true)}
+                  data-bs-toggle="collapse"
+                  className="nav-link"
+                >
+                  <img
+                    alt=""
+                    className="menu-icon"
+                    src="/assets/world-BcbIijKx.webp"
+                  />
+                  <span>{language}</span>
+
+                  <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
+                </a>
+              </li>
+            )}
+
+            <li className="nav-item">
+              <Link
+                onClick={() => dispatch(setShowMobileSidebar(false))}
+                data-bs-toggle="collapse"
+                className="nav-link"
+                to="/blog"
+              >
+                <img
+                  alt=""
+                  className="menu-icon"
+                  src="assets/img/icon/2378961.png"
+                />
+                <span>Blog</span>
+
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
+              </Link>
+            </li>
+            {Settings.apk_link && (
+              <li className="nav-item">
+                <div className="online-betting-app-btn download_app_btn">
+                  <a
+                    style={{ width: "130px", color: "#fff" }}
+                    onClick={handleDownload}
+                  >
+                    <div className="down-app-btn">
+                      <span>Download App</span>
+                    </div>
+                  </a>
+                </div>
+              </li>
+            )}
+            {(Settings?.instagramLink ||
+              Settings?.branchWhatsapplink ||
+              Settings?.whatsapplink ||
+              Settings?.telegramLink) && (
+              <li className="nav-item">
+                <div className="remove-padding">
+                  <div className="socail-link">
+                    <h4> Social Link </h4>
+                    <ul>
+                      {(Settings?.whatsapplink ||
+                        Settings?.branchWhatsapplink) && (
+                        <li style={{ borderBottom: "none" }}>
+                          <a onClick={navigateWhatsApp}>
+                            <img
+                              loading="lazy"
+                              src={images.whatsApp}
+                              alt="telegram"
+                              title="telegram"
+                            />
+                          </a>
+                        </li>
+                      )}
+
+                      {Settings?.telegramLink && (
+                        <li style={{ borderBottom: "none" }}>
+                          <a
+                            onClick={() =>
+                              window.open(Settings?.telegramLink, "_blank")
+                            }
+                          >
+                            <img
+                              loading="lazy"
+                              src={images.telegram}
+                              alt="telegram"
+                              title="telegram"
+                            />
+                          </a>
+                        </li>
+                      )}
+                      {Settings?.instagramLink && (
+                        <li style={{ borderBottom: "none" }}>
+                          <a
+                            onClick={() =>
+                              window.open(Settings?.instagramLink, "_blank")
+                            }
+                          >
+                            <img
+                              loading="lazy"
+                              src={images.instagram}
+                              alt="telegram"
+                              title="telegram"
+                            />
+                          </a>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            )}
           </ul>
         </div>
       </aside>

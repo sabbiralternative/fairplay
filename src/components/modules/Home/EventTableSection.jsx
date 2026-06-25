@@ -151,11 +151,11 @@ const EventTableSection = () => {
                                     <a>
                                       <div className="d-flex flex-column ps-2">
                                         <span className="manage-overflow match-name fw-semibold">
-                                          {value?.player1}
+                                          {value?.player1} {value?.player2}
                                         </span>
-                                        <span className="manage-overflow match-name fw-semibold leaguename">
+                                        {/* <span className="manage-overflow match-name fw-semibold leaguename">
                                           {value?.player2}
-                                        </span>
+                                        </span> */}
                                       </div>
                                     </a>
                                   </div>

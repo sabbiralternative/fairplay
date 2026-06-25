@@ -1,0 +1,314 @@
+.home-game-content {
+  background-color: #474747;
+}
+.home-game-content {
+  color: #fff;
+  padding: 5px 10px 10px;
+  border: 1px solid;
+  border-radius: 8px;
+  margin: 5px 5px 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.home-game-content h1 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+}
+.home-game-content p {
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.home-game-content a {
+  display: inline-block;
+  padding: 5px 5px;
+  border-radius: 4px;
+  background: var(--theme-bg);
+  margin: 8px 5px 8px 0px;
+  line-height: 20px;
+  font-size: 14px;
+  height: 30px;
+  color: #fff;
+}
+.home-game-content h2 {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.home-game-content h3 {
+  font-size: 14px;
+  margin: 0px 0px 8px 0px;
+  font-weight: 600;
+}
+.download-app-sec {
+  background-color: var(--theme-bg);
+  position: relative;
+  margin-top: 0;
+  overflow-x: hidden;
+  padding: 20px 10px;
+}
+.download-row-wrapper {
+  display: flex;
+  width: 100%;
+  column-gap: 10px;
+}
+.download-row-wrapper .download {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.download {
+  text-align: center;
+}
+@media screen and (max-width: 1199px) {
+  .download {
+    text-align: center;
+  }
+}
+.download img {
+  width: 275px;
+}
+@media screen and (max-width: 1199px) {
+  .download img {
+    width: 275px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .download img {
+    width: 120px;
+  }
+}
+.download-fair-ply {
+  width: 60%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.club-title-name h2,
+.club-title-name .para-two {
+  font-family: Lato, sans-serif;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--bo-gray);
+  text-transform: uppercase;
+  line-height: 2rem;
+}
+.download-text span {
+  color: white;
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  display: block;
+}
+.down-load-btn-text {
+  margin: 5px 0;
+}
+.download-text a {
+  border: none;
+  background-color: white;
+  text-transform: uppercase;
+  border-radius: 30px;
+  font-size: 11px;
+  color: #000;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.85px;
+  padding: 5px 10px;
+}
+.ply-text {
+  color: white;
+  font-size: 14px;
+}
+.payment-mnethod-sec {
+  /* padding: 20px; */
+}
+.remove-padding {
+  overflow: hidden;
+  height: 100%;
+}
+.payment-mnethod-sec .cmn-head-3 {
+  margin: 0;
+}
+.cmn-head-3 h3,
+.cmn-head-3 .para-three {
+  margin: 10px 0;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 36px;
+  line-height: 60px;
+  text-align: center;
+}
+@media (min-width: 992px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm {
+    max-width: 960px;
+  }
+}
+.payment-app-name ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.payment-app-name ul {
+  text-align: center;
+  width: 100%;
+}
+.payment-app-name ul li {
+  list-style-type: none;
+  padding: 8px;
+  display: inline-block;
+}
+.payment-app-border {
+  box-shadow:
+    0 3px 1px -2px #0003,
+    0 2px 2px #00000024,
+    0 1px 5px #0000001f;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  width: 150px;
+}
+@media screen and (max-width: 479px) {
+  .payment-app-border {
+    min-height: 30px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .payment-app-border {
+    height: 32px;
+    width: 50px;
+  }
+}
+.payment-app-border img {
+  width: 90px;
+  height: 45px;
+}
+@media screen and (max-width: 479px) {
+  .payment-app-border img {
+    width: 30px;
+    height: auto;
+  }
+}
+.cmn-tooltops-btn {
+  height: 20px;
+  padding: 16px;
+  border-radius: 100px;
+  color: white;
+  border: 1px solid var(--theme-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+}
+
+/* .cmn-tooltops-btn a:hover,
+.cmn-tooltops-btn a:focus,
+.cmn-tooltops-btn a:active {
+  text-decoration: none;
+  outline: none;
+}
+.cmn-tooltops-btn:hover:before {
+  opacity: 1 !important;
+  background-color: var(--theme-bg);
+  animation: grow-y 0.4s ease-in-out;
+}
+
+.cmn-tooltops-btn:hover {
+  color: white;
+}
+
+@keyframes grow-y {
+  0% {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.cmn-tooltops-btn:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  margin: 0 auto;
+  border-radius: inherit;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+} */
+.cmn-tooltops-btn i,
+.cmn-tooltops-btn img {
+  height: 14px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+}
+.online-betting-app-btn.download_app_btn {
+  padding: 10px 0;
+}
+
+.online-betting-app-btn {
+  margin-top: 0;
+  text-align: center;
+}
+
+.online-betting-app-btn a {
+  background-color: var(--theme-bg);
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: 5px !important;
+  display: inline-block;
+}
+.socail-link {
+  margin: 0;
+  padding: 6px 10px;
+  border-top: solid 1px #ccc;
+}
+.socail-link h4,
+.socail-link .para-four {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 10px;
+  color: #fff;
+}
+.socail-link ul {
+  display: flex;
+  column-gap: 8px;
+  margin-bottom: 10px;
+}
+.socail-link li {
+  padding: 0;
+}
+
+.socail-link ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 4px;
+}

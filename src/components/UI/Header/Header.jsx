@@ -105,68 +105,87 @@ const Header = () => {
         />
       )}
       <div>
-        <header
-          id="header"
-          className="header fixed-top d-flex align-items-center"
-        >
+        <header id="header" className="header fixed-top ">
           {/* <Notification /> */}
           {Settings.apk_link && showAppPopUp && windowWidth < 1040 && (
             <AppPopup />
           )}
-          <div className="d-flex align-items-center justify-content-between">
-            <i
-              onClick={() => dispatch(setShowMobileSidebar(true))}
-              className="mdi mdi-menu toggle-sidebar-btn d-md-none"
-            />
-            <Link to="/" className="logo d-flex align-items-center">
-              <img
-                alt=""
-                className="img-fluid"
-                style={{
-                  height: Settings.logo_height,
-                  width: Settings.logo_width,
-                }}
-                src={logo}
-              />
-            </Link>
-          </div>
-          <nav className="header-nav ms-auto">
-            <ul className="d-flex align-items-center">
-              <li className="nav-item d-block d-lg-none">
-                <a href="javascript:void(0);" className="m-refresh-icon">
-                  <i className="bi bi-search" />
-                </a>
-              </li>
-              <Language />
-              <Search />
-              {token ? (
-                <Authorized setShowDropdown={setShowDropdown} />
-              ) : (
-                <Fragment>
-                  <li
-                    onClick={() => dispatch(setShowLoginModal(true))}
-                    className="nav-item pe-xl-1 pe-1"
-                  >
-                    <a style={{ minWidth: "65px" }} className="v-btn top-btn">
-                      {" "}
-                      {languageValue(valueByLanguage, LanguageKey.LOGIN)}
-                    </a>
-                  </li>
-                  <li
-                    onClick={() => dispatch(setShowRegisterModal(true))}
-                    className="nav-item pe-xl-1 pe-1"
-                  >
-                    <a className="v-btn top-btn">
-                      {" "}
-                      {languageValue(valueByLanguage, LanguageKey.REGISTER)}
-                    </a>
-                  </li>
-                </Fragment>
-              )}
 
-              <li className="nav-item pe-xl-1 pe-1"></li>
-            </ul>
-          </nav>
+          <div className="d-flex align-items-center" style={{ height: "100%" }}>
+            <div className="d-flex align-items-center justify-content-between">
+              <i
+                onClick={() => dispatch(setShowMobileSidebar(true))}
+                className="mdi mdi-menu toggle-sidebar-btn d-md-none"
+              />
+              <Link to="/" className="logo d-flex align-items-center">
+                <img
+                  alt=""
+                  className="img-fluid"
+                  style={{
+                    height: Settings.logo_height,
+                    width: Settings.logo_width,
+                  }}
+                  src={logo}
+                />
+              </Link>
+
+              <Link
+                data-v-5247495a=""
+                to="/blog"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Blogs"
+                className="cmn-tooltops-btn sm-d-none"
+              >
+                <img
+                  data-v-5247495a=""
+                  src="/assets/news-D4x4CLBw.svg"
+                  alt="Blogs"
+                />
+                <div data-v-5247495a="" className="news">
+                  <span data-v-5247495a="">Blogs</span>
+                </div>
+              </Link>
+            </div>
+            <nav className="header-nav ms-auto">
+              <ul className="d-flex align-items-center">
+                <Language />
+                <Search />
+                {token ? (
+                  <Authorized setShowDropdown={setShowDropdown} />
+                ) : (
+                  <Fragment>
+                    <li
+                      onClick={() => dispatch(setShowLoginModal(true))}
+                      className="nav-item pe-xl-1 pe-1"
+                    >
+                      <a style={{ minWidth: "65px" }} className="v-btn top-btn">
+                        {" "}
+                        {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+                      </a>
+                    </li>
+                    <li
+                      onClick={() => dispatch(setShowRegisterModal(true))}
+                      className="nav-item pe-xl-1 pe-1"
+                    >
+                      <a
+                        style={{
+                          background: "var(--bg-secondary)",
+                          border: "var(--bg-secondary) 1px solid",
+                        }}
+                        className="v-btn top-btn"
+                      >
+                        {" "}
+                        {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                      </a>
+                    </li>
+                  </Fragment>
+                )}
+
+                <li className="nav-item pe-xl-1 pe-1"></li>
+              </ul>
+            </nav>
+          </div>
         </header>
 
         <QuickLinks />

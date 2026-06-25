@@ -41,7 +41,7 @@ const Search = () => {
   };
 
   return (
-    <div className="search-bar">
+    <div className="search-bar sm-d-none">
       <div className="search-form d-flex align-items-center ng-untouched ng-pristine ng-valid">
         <button type="submit" title="Search">
           <i className="bi bi-search" />

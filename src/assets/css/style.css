@@ -4212,7 +4212,7 @@ ul.live_virtual li input[type="checkbox"] {
   }
   .header {
     padding-left: 0;
-    height: 50px;
+    height: auto;
     position: inherit;
   }
   .navbar-main {

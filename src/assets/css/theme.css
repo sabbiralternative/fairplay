@@ -4,6 +4,7 @@
   --dark-bg: #121212;
   --navbar-bg: #212121;
   --theme-bg: #f26c20;
+  --bg-secondary: #4caf50;
   --theme-gradient: linear-gradient(180deg, #f26c20 0, #f26c20);
 }
 /* :root {

@@ -1,13 +1,21 @@
 // import { useSelector } from "react-redux";
 // import { Settings } from "../../api";
+import { useLocation } from "react-router-dom";
+import About from "../../components/modules/Home/About";
 import Banner from "../../components/modules/Home/Banner";
+import DownloadAPKSection from "../../components/modules/Home/DownloadAPKSection";
 import EventTableSection from "../../components/modules/Home/EventTableSection";
+import Footer from "../../components/modules/Home/Footer";
 // import LiveCards from "../../components/modules/Home/LiveCards";
 import NewCasinoThumbnails from "../../components/modules/Home/NewCasinoThumbnails";
+import PaymentMethods from "../../components/modules/Home/PaymentMethods";
 // import HighLight from "../../components/modules/Home/HighLight";
 import { useIndexQuery } from "../../hooks";
 
 const Home = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const eventTypeId = params.get("eventTypeId");
   const { data } = useIndexQuery({
     type: "99_casino_dashboard",
   });
@@ -32,10 +40,13 @@ const Home = () => {
               className="tab-pane fade show active"
             >
               <div className="tab-content-innter">
-                <Banner />
-                <NewCasinoThumbnails
-                  highlight_casino={data?.highlight_casino}
-                />
+                {!eventTypeId && <Banner />}
+                {!eventTypeId && (
+                  <NewCasinoThumbnails
+                    highlight_casino={data?.highlight_casino}
+                  />
+                )}
+
                 {/* {(Settings.branchWhatsapplink || Settings.whatsapplink) && (
                   <div onClick={navigateWhatsApp} className="row ex_slide mx-0">
                     <div className="col-md-12 px-1">
@@ -93,6 +104,10 @@ const Home = () => {
                   <EventTableSection />
                   {/* <HighLight highlight_casino={data?.highlight_casino} /> */}
                   {/* <LiveCards /> */}
+                  <About />
+                  <DownloadAPKSection />
+                  <PaymentMethods />
+                  <Footer />
                 </div>
               </div>
             </div>
