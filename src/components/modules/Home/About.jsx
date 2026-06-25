@@ -18,9 +18,9 @@ const About = () => {
         actions such as login, registration, and platform access while keeping
         the content visible, clear, and easy to read.
       </p>
-      <a href="/login">Fairplay Login</a>
-      <a href="/sign-up">Get Fairplay ID</a>
-      <h2>Why Users Search for Fairplay</h2>
+      <a href="/login">{Settings.site_name} Login</a>
+      <a href="/sign-up">Get {Settings.site_name} ID</a>
+      <h2>Why Users Search for {Settings.site_name}</h2>
       <p>
         Users searching for {Settings.site_name}, {Settings.site_name} com, or{" "}
         {Settings.site_name} login usually want quick access to the official
@@ -33,28 +33,28 @@ const About = () => {
         JavaScript-heavy websites because it helps reinforce what the page is
         about beyond banners and app-rendered elements.
       </p>
-      <h2>Fairplay Access and Platform Support</h2>
-      <h3>Fast Fairplay Login</h3>
+      <h2>{Settings.site_name} Access and Platform Support</h2>
+      <h3>Fast {Settings.site_name} Login</h3>
       <p>
         Returning users can use the {Settings.site_name} login page for direct
         account access and a smoother sign-in experience.
       </p>
-      <h3>Quick Fairplay ID Access</h3>
+      <h3>Quick {Settings.site_name} ID Access</h3>
       <p>
         New users looking for a {Settings.site_name} ID or {Settings.site_name}{" "}
         online ID can move to registration and complete the process quickly.
       </p>
-      <h3>Fairplay Betting ID Support</h3>
+      <h3>{Settings.site_name} Betting ID Support</h3>
       <p>
         Users searching for a {Settings.site_name} betting ID should be able to
         find clear navigation toward account setup and platform entry.
       </p>
-      <h2>Fairplay Online Access</h2>
+      <h2>{Settings.site_name} Online Access</h2>
       <p>
-        Fairplay online access should be simple across both desktop and mobile
-        devices. The homepage should support the brand keyword while also
-        helping users reach the most important sections, including login, ID
-        support, and the main platform pages.
+        {Settings.site_name} online access should be simple across both desktop
+        and mobile devices. The homepage should support the brand keyword while
+        also helping users reach the most important sections, including login,
+        ID support, and the main platform pages.
       </p>
       <p>
         This improves user flow and makes the homepage more useful for searches
@@ -78,8 +78,8 @@ const About = () => {
         ID can complete the registration flow through the sign-up section.
       </p>
       <h2>Related Pages</h2>
-      <a href="/login">Fairplay Login</a>
-      <a href="/sign-up">Fairplay ID</a>
+      <a href="/login">{Settings.site_name} Login</a>
+      <a href="/sign-up">{Settings.site_name} ID</a>
       <a href="/sports/cricket/4">Sports</a>
       <a href="/games/live-casino">Casino</a>
     </div>

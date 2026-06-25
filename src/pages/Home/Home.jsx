@@ -11,6 +11,7 @@ import NewCasinoThumbnails from "../../components/modules/Home/NewCasinoThumbnai
 import PaymentMethods from "../../components/modules/Home/PaymentMethods";
 // import HighLight from "../../components/modules/Home/HighLight";
 import { useIndexQuery } from "../../hooks";
+import { Settings } from "../../api";
 
 const Home = () => {
   const location = useLocation();
@@ -105,7 +106,7 @@ const Home = () => {
                   {/* <HighLight highlight_casino={data?.highlight_casino} /> */}
                   {/* <LiveCards /> */}
                   <About />
-                  <DownloadAPKSection />
+                  {Settings.apk_link && <DownloadAPKSection />}
                   <PaymentMethods />
                   <Footer />
                 </div>

@@ -1,6 +1,16 @@
 import { Settings } from "../../../api";
 
 const DownloadAPKSection = () => {
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const fileUrl = Settings.apk_link;
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.setAttribute("download", "site.apk");
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  };
   return (
     <section data-v-3c6bc75a className="download-app-sec" loading="lazy">
       <div data-v-3c6bc75a className="download-row-wrapper">
@@ -28,7 +38,7 @@ const DownloadAPKSection = () => {
               quicker access to your winnings!
             </span>
             <div data-v-3c6bc75a className="down-load-btn-text">
-              <a data-v-3c6bc75a href="empty.apk" download>
+              <a data-v-3c6bc75a onClick={handleDownload}>
                 Download App
               </a>
             </div>
