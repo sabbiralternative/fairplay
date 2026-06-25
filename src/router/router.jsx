@@ -17,6 +17,8 @@ import Affiliate from "../pages/Affiliate/Affiliate";
 import Promotions from "../pages/Promotions/Promotions";
 import LossBackBonus from "../pages/LossBackBonus/LossBackBonus";
 import AppOnlyBonus from "../pages/AppOnlyBonus/AppOnlyBonus";
+import BlogsPage from "../pages/Blog/Blog";
+import OpenBets from "../pages/OpenBets/OpenBets";
 
 export const router = createBrowserRouter(
   [
@@ -90,10 +92,18 @@ export const router = createBrowserRouter(
           element: <LossBackBonus />,
         },
         {
+          path: "/open-bets",
+          element: <OpenBets />,
+        },
+        {
           path: "/app-only-bonus",
           element: <AppOnlyBonus />,
         },
       ],
+    },
+    {
+      path: "/blog",
+      element: <BlogsPage />,
     },
   ],
   {

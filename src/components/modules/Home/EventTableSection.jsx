@@ -89,7 +89,7 @@ const EventTableSection = () => {
                                     LIVE
                                   </label>
                                 </li>
-                                <li>
+                                {/* <li>
                                   <input
                                     type="checkbox"
                                     defaultValue="Order Two"
@@ -99,7 +99,7 @@ const EventTableSection = () => {
                                   <label htmlFor="checkboxTwoin_play--inplay--4">
                                     VIRTUAL
                                   </label>
-                                </li>
+                                </li> */}
                                 <li>
                                   <input
                                     type="checkbox"

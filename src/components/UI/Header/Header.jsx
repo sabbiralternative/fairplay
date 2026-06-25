@@ -111,7 +111,10 @@ const Header = () => {
             <AppPopup />
           )}
 
-          <div className="d-flex align-items-center" style={{ height: "100%" }}>
+          <div
+            className="d-flex align-items-center mobile-padding"
+            style={{ height: "100%" }}
+          >
             <div className="d-flex align-items-center justify-content-between">
               <i
                 onClick={() => dispatch(setShowMobileSidebar(true))}

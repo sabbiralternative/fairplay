@@ -153,7 +153,10 @@ const Fancy = ({ data }) => {
                         <div className="fancy-market">
                           <div className="empty-div">
                             <div className="empty-div">
-                              <div className="events-col gradient mb-3 fancy__data">
+                              <div
+                                className="events-col gradient mb-3 fancy__data"
+                                style={{ background: "var(--theme-bg)" }}
+                              >
                                 <div className="bet-table-header">
                                   <div className="row d-flex align-items-center">
                                     <div className="col-md-5 col-6">

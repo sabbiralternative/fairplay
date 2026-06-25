@@ -236,11 +236,15 @@ const Bookmaker = ({ data }) => {
           (profit) => profit?.gameId === game?.id && profit?.speedCashOut,
         );
         return (
-          <div key={game?.id} className="events-col gradient">
+          <div
+            key={game?.id}
+            className="events-col gradient"
+            style={{ background: "var(--theme-bg)" }}
+          >
             <div>
               <div className="bet-table-header">
                 <div
-                  className="row d-flex align-items-center game-title-box"
+                  className="row d-flex align-items-center "
                   style={{ marginRight: "0px" }}
                 >
                   <div className="col-md-6 col-6">

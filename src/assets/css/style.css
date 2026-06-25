@@ -727,7 +727,7 @@ body.detail-screen #main {
 }
 
 #main {
-  margin-top: 133px;
+  margin-top: 110px;
   padding: 8px 10px;
   transition: all 0.3s;
 }
@@ -808,6 +808,15 @@ body.detail-screen #main {
   font-size: 24px;
   line-height: 0;
   color: var(--theme-bg);
+}
+.dropdown-menu .dropdown-item img {
+  margin-right: 25px;
+  font-size: 24px;
+  line-height: 0;
+  color: var(--theme-bg);
+  filter: brightness(0) saturate(100%) invert(72%) sepia(77%) saturate(5300%)
+    hue-rotate(347deg) brightness(98%) contrast(95%);
+  height: 24px;
 }
 .depositbg {
   background: green;
@@ -1882,7 +1891,7 @@ body.detail-screen .sidebar {
 }
 .sidebar {
   position: fixed;
-  top: 133px;
+  top: 108px;
   left: 0;
   bottom: 0;
   width: 238px;
@@ -2673,7 +2682,7 @@ body.detail-screen .sidebar {
   border-top: 1px solid gray;
   display: flex;
   align-items: center;
-  padding: 12px 15px;
+  /* padding: 12px 15px; */
 }
 
 li.ab_rae_btns {
@@ -4215,6 +4224,9 @@ ul.live_virtual li input[type="checkbox"] {
     height: auto;
     position: inherit;
   }
+  .mobile-padding {
+    padding: 12px 0px;
+  }
   .navbar-main {
     position: inherit;
     padding: 0;
@@ -4285,7 +4297,7 @@ ul.live_virtual li input[type="checkbox"] {
     font-size: 6px;
   }
   .game-title-box {
-    /* padding: 0.562rem 0.2rem !important; */
+    padding: 17px 0.2rem !important;
   }
   .detail-page .match-name {
     display: flex;

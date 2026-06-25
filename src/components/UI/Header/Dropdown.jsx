@@ -17,6 +17,7 @@ const Dropdown = ({ setShowDropdown }) => {
   const { valueByLanguage } = useLanguage();
   const { data } = useBalance();
   const { user } = useSelector((state) => state.auth);
+  const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
   const ref = useRef();
   useCloseModalClickOutside(ref, () => setShowDropdown(false));
@@ -60,14 +61,14 @@ const Dropdown = ({ setShowDropdown }) => {
             <div className="balance-text-left">Net Exposure</div>
             <div className="balance-price"> {data?.deductedExposure}</div>
           </div>
-          <div className="balance-row">
+          {/* <div className="balance-row">
             <div className="balance-text-left">Bonus</div>
             <div className="balance-price">0.00</div>
           </div>
           <div className="balance-row">
             <div className="balance-text-left">Available Withdrawal</div>
             <div className="balance-price">{data?.availBalance}</div>
-          </div>
+          </div> */}
         </li>
         {/* <li className="ab_rae_btns">
           <button className="ab_btns" tabIndex={0}>
@@ -78,35 +79,59 @@ const Dropdown = ({ setShowDropdown }) => {
           </button>
         </li> */}
 
-        <li>
-          <Link
-            onClick={() => setShowDropdown(false)}
-            to="/deposit"
-            className="dropdown-item d-flex align-items-center"
-          >
-            <i className="mdi mdi-google-analytics" />
-            <span> {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}</span>
-          </Link>
+        <li
+          style={{ padding: "0px" }}
+          className="dropdown-item d-flex align-items-center"
+          data-v-0a7cbcb0=""
+        >
+          <div data-v-0a7cbcb0="" className="user-deposit-and-withdrawal-btn">
+            <div data-v-0a7cbcb0="" className="deposit-v-btn">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                to="/deposit"
+                data-v-0a7cbcb0=""
+                href="Javascript:void(0);"
+              >
+                {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+              </Link>
+            </div>
+            <div data-v-0a7cbcb0="" className="deposit-v-btn">
+              <Link
+                onClick={() => setShowDropdown(false)}
+                to="/withdraw"
+                data-v-0a7cbcb0=""
+                className="text-white"
+              >
+                {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
+              </Link>
+            </div>
+          </div>
         </li>
 
-        <li>
-          <Link
-            onClick={() => setShowDropdown(false)}
-            to="/withdraw"
-            className="dropdown-item d-flex align-items-center"
-          >
-            <i className="mdi mdi-google-analytics" />
-            <span> {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}</span>
-          </Link>
-        </li>
         <li>
           <Link
             onClick={() => setShowDropdown(false)}
             to="/deposit-withdraw-report"
             className="dropdown-item d-flex align-items-center"
           >
-            <i className="mdi mdi-google-analytics" />
+            <img
+              src="/assets/dw_report.webp"
+              className="mdi mdi-google-analytics"
+            />
             <span>Deposit Withdraw Report</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => setShowDropdown(false)}
+            to="/open-bets"
+            className="dropdown-item d-flex align-items-center"
+          >
+            <img
+              src="/assets/open_bets.webp"
+              className="mdi mdi-google-analytics"
+            />
+            <span>Open Bets</span>
           </Link>
         </li>
         <li>
@@ -115,7 +140,11 @@ const Dropdown = ({ setShowDropdown }) => {
             to="/betting-profit-loss"
             className="dropdown-item d-flex align-items-center"
           >
-            <i className="mdi mdi-google-analytics" />
+            <img
+              src="/assets/pnl.webp"
+              className="mdi mdi-google-analytics"
+              style={{ height: "18px" }}
+            />
             <span>Betting Profit & Loss</span>
           </Link>
         </li>
@@ -138,7 +167,10 @@ const Dropdown = ({ setShowDropdown }) => {
             to="/bonus-statement"
             className="dropdown-item d-flex align-items-center"
           >
-            <i className="mdi mdi-google-analytics" />
+            <img
+              src="/assets/statements.svg"
+              className="mdi mdi-google-analytics"
+            />
             <span>
               {" "}
               {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
@@ -152,7 +184,10 @@ const Dropdown = ({ setShowDropdown }) => {
               to="/affiliate"
               className="dropdown-item d-flex align-items-center"
             >
-              <i className="mdi mdi-google-analytics" />
+              <img
+                src="/assets/affiliate.svg"
+                className="mdi mdi-google-analytics"
+              />
               <span>Affiliate</span>
             </Link>
           </li>
@@ -178,16 +213,18 @@ const Dropdown = ({ setShowDropdown }) => {
             <span> Lossback Bonus</span>
           </Link>
         </li>
-        <li>
-          <Link
-            onClick={() => setShowDropdown(false)}
-            to="/app-only-bonus"
-            className="dropdown-item d-flex align-items-center"
-          >
-            <i className="mdi mdi-text-box-outline" />
-            <span> App Only Bonus</span>
-          </Link>
-        </li>
+        {closePopupForForever && (
+          <li>
+            <Link
+              onClick={() => setShowDropdown(false)}
+              to="/app-only-bonus"
+              className="dropdown-item d-flex align-items-center"
+            >
+              <i className="mdi mdi-text-box-outline" />
+              <span> App Only Bonus</span>
+            </Link>
+          </li>
+        )}
 
         <li>
           <Link
@@ -197,7 +234,10 @@ const Dropdown = ({ setShowDropdown }) => {
             }}
             className="dropdown-item d-flex align-items-center"
           >
-            <i className="mdi mdi-lock" />
+            <img
+              src="/assets/reset_password.webp"
+              className="mdi mdi-google-analytics"
+            />
             <span>Reset Password</span>
           </Link>
         </li>
@@ -207,7 +247,10 @@ const Dropdown = ({ setShowDropdown }) => {
             to="/stake-settings"
             className="dropdown-item"
           >
-            <i className="mdi mdi-tune" />
+            <img
+              src="/assets/settings.webp"
+              className="mdi mdi-google-analytics"
+            />
             <span>Settings</span>
           </Link>
         </li>
@@ -220,7 +263,10 @@ const Dropdown = ({ setShowDropdown }) => {
             }}
             className="dropdown-item d-flex align-items-center"
           >
-            <i className="mdi mdi-text-box-outline" />
+            <img
+              src="/assets/rules.webp"
+              className="mdi mdi-google-analytics"
+            />
             <span>Rules &amp; Regulations</span>
           </a>
         </li>

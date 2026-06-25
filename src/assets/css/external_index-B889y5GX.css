@@ -312,3 +312,38 @@
   display: inline-block;
   padding: 4px;
 }
+.user-deposit-and-withdrawal-btn {
+  display: flex;
+  margin: 10px;
+  gap: 5px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.deposit-v-btn {
+  width: 50%;
+}
+ul.acc-open-menu li a {
+  color: #fff;
+}
+
+.deposit-v-btn a {
+  white-space: nowrap;
+
+  font-size: 12px;
+
+  width: 100%;
+  text-align: center;
+}
+.deposit-v-btn a {
+  display: flex;
+  justify-content: center;
+}
+
+.deposit-v-btn a {
+  background: var(--theme-bg);
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 25px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
