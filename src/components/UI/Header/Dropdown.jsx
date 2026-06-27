@@ -38,13 +38,13 @@ const Dropdown = ({ setShowDropdown }) => {
           <h6>
             <span>Hi,</span> &nbsp; {user}
           </h6>
-          <Link
+          <a
             onClick={() => setShowDropdown(false)}
             id="account-menu-hide-button"
             className="closebtn"
           >
             <i className="mdi mdi-close" />
-          </Link>
+          </a>
         </li>
         <li className="balance-information">
           <div className="balance-title text-white">

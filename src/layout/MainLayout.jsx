@@ -68,10 +68,12 @@ const MainLayout = () => {
         )}
 
         <Header />
-        {windowWidth >= 1199 && <Sidebar />}
+        {windowWidth >= 1199 && !location.pathname.includes("/casino/") && (
+          <Sidebar />
+        )}
 
         <Outlet />
-        <Footer />
+        {!location.pathname.includes("/casino/") && <Footer />}
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import PaymentMethods from "../../components/modules/Home/PaymentMethods";
 // import HighLight from "../../components/modules/Home/HighLight";
 import { useIndexQuery } from "../../hooks";
 import { Settings } from "../../api";
+import { Fragment } from "react";
 
 const Home = () => {
   const location = useLocation();
@@ -105,10 +106,14 @@ const Home = () => {
                   <EventTableSection />
                   {/* <HighLight highlight_casino={data?.highlight_casino} /> */}
                   {/* <LiveCards /> */}
-                  <About />
-                  {Settings.apk_link && <DownloadAPKSection />}
-                  <PaymentMethods />
-                  <Footer />
+                  {!eventTypeId && (
+                    <Fragment>
+                      <About />
+                      {Settings.apk_link && <DownloadAPKSection />}
+                      <PaymentMethods />
+                      <Footer />
+                    </Fragment>
+                  )}
                 </div>
               </div>
             </div>

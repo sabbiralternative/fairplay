@@ -54,7 +54,11 @@ const IFrame = () => {
   }
 
   return (
-    <main id="main" className="main">
+    <main
+      id="main"
+      className="main"
+      style={{ marginLeft: "0px", marginTop: "55px" }}
+    >
       <div className="tab-content-main">
         <div>
           <div id="casino-frm" className="casino__details">

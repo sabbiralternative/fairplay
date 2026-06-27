@@ -190,8 +190,7 @@ const Header = () => {
             </nav>
           </div>
         </header>
-
-        <QuickLinks />
+        {!location.pathname.includes("/casino/") && <QuickLinks />}
       </div>
     </Fragment>
   );

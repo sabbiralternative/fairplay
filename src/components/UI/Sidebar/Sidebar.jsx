@@ -34,6 +34,9 @@ const Sidebar = () => {
 
   const handleNavigateToIFrame = (name, id) => {
     if (token) {
+      if (showMobileSidebar) {
+        dispatch(setShowMobileSidebar(false));
+      }
       if (Settings.casino_currency !== "AED") {
         navigate(`/casino/${name}/${id}`);
       } else {
@@ -143,7 +146,7 @@ const Sidebar = () => {
             <li className="nav-item">
               <Link
                 onClick={() => dispatch(setShowMobileSidebar(false))}
-                to="/casino"
+                to="/casino?product=All&category=All"
                 className="nav-link final-link hightlight-smenu"
               >
                 <img

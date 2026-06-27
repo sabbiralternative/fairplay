@@ -58,7 +58,6 @@ const TopFiveLossUser = () => {
                     textAnchor="end"
                     dominantBaseline="auto"
                     fontSize="11px"
-                    fontFamily="Helvetica, Arial, sans-serif"
                     fontWeight={400}
                     fill="#373d3f"
                     className="apexcharts-text apexcharts-yaxis-label "
@@ -73,7 +72,6 @@ const TopFiveLossUser = () => {
                     textAnchor="end"
                     dominantBaseline="auto"
                     fontSize="11px"
-                    fontFamily="Helvetica, Arial, sans-serif"
                     fontWeight={400}
                     fill="#373d3f"
                     className="apexcharts-text apexcharts-yaxis-label "
@@ -88,7 +86,6 @@ const TopFiveLossUser = () => {
                     textAnchor="end"
                     dominantBaseline="auto"
                     fontSize="11px"
-                    fontFamily="Helvetica, Arial, sans-serif"
                     fontWeight={400}
                     fill="#373d3f"
                     className="apexcharts-text apexcharts-yaxis-label "
@@ -103,7 +100,6 @@ const TopFiveLossUser = () => {
                     textAnchor="end"
                     dominantBaseline="auto"
                     fontSize="11px"
-                    fontFamily="Helvetica, Arial, sans-serif"
                     fontWeight={400}
                     fill="#373d3f"
                     className="apexcharts-text apexcharts-yaxis-label "
@@ -118,7 +114,6 @@ const TopFiveLossUser = () => {
                     textAnchor="end"
                     dominantBaseline="auto"
                     fontSize="11px"
-                    fontFamily="Helvetica, Arial, sans-serif"
                     fontWeight={400}
                     fill="#373d3f"
                     className="apexcharts-text apexcharts-yaxis-label "
@@ -133,7 +128,6 @@ const TopFiveLossUser = () => {
                     textAnchor="end"
                     dominantBaseline="auto"
                     fontSize="11px"
-                    fontFamily="Helvetica, Arial, sans-serif"
                     fontWeight={400}
                     fill="#373d3f"
                     className="apexcharts-text apexcharts-yaxis-label "
@@ -148,7 +142,6 @@ const TopFiveLossUser = () => {
                     textAnchor="end"
                     dominantBaseline="auto"
                     fontSize="11px"
-                    fontFamily="Helvetica, Arial, sans-serif"
                     fontWeight={400}
                     fill="#373d3f"
                     className="apexcharts-text apexcharts-yaxis-label "
@@ -508,7 +501,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -523,7 +515,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -538,7 +529,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -553,7 +543,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -568,7 +557,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -583,7 +571,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -598,7 +585,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -613,7 +599,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -628,7 +613,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -643,7 +627,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "
@@ -658,7 +641,6 @@ const TopFiveLossUser = () => {
                       textAnchor="middle"
                       dominantBaseline="auto"
                       fontSize="12px"
-                      fontFamily="Helvetica, Arial, sans-serif"
                       fontWeight={400}
                       fill="#373d3f"
                       className="apexcharts-text apexcharts-xaxis-label "

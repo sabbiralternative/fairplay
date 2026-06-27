@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 
 body {
-  font-family: "Lato", sans-serif;
   background: var(--dark-bg);
   color: #444444;
   font-size: 16px;
@@ -10,7 +9,6 @@ body {
 }
 
 .Lato {
-  font-family: "Lato", sans-serif;
 }
 .theme-color {
   color: var(--theme-bg);
@@ -93,7 +91,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lato", sans-serif;
 }
 p.no-fancy-message {
   margin: 0;
@@ -1343,7 +1340,7 @@ body.detail-screen #main {
   font-size: 13px;
   padding: 15px 15px;
   transition: 0.3s;
-  font-family: "Lato", sans-serif;
+
   color: #fff;
 }
 
@@ -1609,7 +1606,7 @@ body.detail-screen #main {
   align-items: center;
   color: #fff;
   font-weight: 700;
-  font-family: "Lato", sans-serif;
+
   line-height: 1.5;
   font-size: 13px;
 }
@@ -1676,7 +1673,7 @@ span.multi-pin a i.mdi-star {
   padding: 0 0.5rem !important;
   background: var(--theme-bg);
   border-top-left-radius: 1rem !important;
-  font-family: "Lato", sans-serif;
+
   color: #fff;
   text-transform: uppercase;
   font-size: 13px;
@@ -2616,7 +2613,6 @@ body.detail-screen .sidebar {
 }
 
 .balance-information {
-  font-family: "Lato", sans-serif;
   border-bottom: gray 1px solid !important;
   padding-bottom: 3px;
   padding-top: 3px;
