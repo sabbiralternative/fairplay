@@ -11,6 +11,7 @@ const IFrame = () => {
   const [iFrame, setIFrame] = useState("");
   const { gameId } = useParams();
   const { token } = useSelector((state) => state.auth);
+  const { windowWidth } = useSelector((state) => state.global);
 
   /* get iframe url */
   useEffect(() => {
@@ -57,7 +58,10 @@ const IFrame = () => {
     <main
       id="main"
       className="main"
-      style={{ marginLeft: "0px", marginTop: "55px" }}
+      style={{
+        marginLeft: "0px",
+        marginTop: windowWidth > 767 ? "55px" : "0px",
+      }}
     >
       <div className="tab-content-main">
         <div>

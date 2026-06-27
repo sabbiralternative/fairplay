@@ -12,11 +12,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPredictOdd } from "../../redux/features/events/eventSlice";
 import { Settings } from "../../api";
 import OpenBets from "../../components/modules/EventDetails/OpenBets";
+import Score from "../../components/modules/EventDetails/Score";
+import TennisScore from "../../components/modules/EventDetails/TennisScore";
+import FootballScore from "../../components/modules/EventDetails/FootballScore";
 
 const EventDetails = () => {
   const navigate = useNavigate();
   const [sportsVideo, { data: iframe }] = useVideoMutation();
-  const [showScore, setShowScore] = useState(true);
   const [tab, setTab] = useState("market");
   const { eventTypeId, eventId } = useParams();
   const [profit, setProfit] = useState(0);
@@ -247,6 +249,56 @@ const EventDetails = () => {
                             </div>
                             {tab === "market" && (
                               <div>
+                                {eventTypeId == 2 && data?.score && (
+                                  <TennisScore
+                                    eventTypeId={eventTypeId}
+                                    score={data?.score}
+                                  />
+                                )}
+                                {eventTypeId == 1 && data?.score && (
+                                  <FootballScore score={data?.score} />
+                                )}
+
+                                {data?.score?.tracker && (
+                                  <div
+                                    style={{
+                                      width: "100%",
+                                      height: "125px",
+                                      overflow: "hidden",
+                                    }}
+                                  >
+                                    {" "}
+                                    <iframe
+                                      style={{
+                                        width: "100%",
+                                      }}
+                                      // className="premium-iframe"
+                                      src={data?.score?.tracker}
+                                    ></iframe>
+                                  </div>
+                                )}
+                                {iframe?.result?.url &&
+                                  data?.score?.hasVideo && (
+                                    <div
+                                      style={{
+                                        marginTop: "10px",
+                                        width: "100%",
+
+                                        overflow: "hidden",
+                                        padding: "0px 8px",
+                                      }}
+                                      className="embed-responsive embed-responsive-16by9 ng-star-inserted"
+                                    >
+                                      <iframe
+                                        id="tvStr"
+                                        className="embed-responsive-item w-100"
+                                        src={iframe?.result?.url}
+                                      ></iframe>
+                                    </div>
+                                  )}
+                                {eventTypeId == 4 && data?.iscore && (
+                                  <Score iscore={data?.iscore} />
+                                )}
                                 {matchOdds?.length > 0 && (
                                   <MatchOdds data={matchOdds} />
                                 )}
