@@ -196,8 +196,15 @@ const Fancy = ({ data }) => {
                                           <div className="ex__div">
                                             <div className="bet-table-row bg-light pt-1 pb-1 item-odds">
                                               <div className="row d-flex align-items-center">
-                                                <div className="col-md-6 col-7">
-                                                  <a href="Javascript:void(0)">
+                                                <div
+                                                  className="col-md-6 col-7"
+                                                  style={{
+                                                    fontSize: "11px",
+
+                                                    fontWeight: "600",
+                                                  }}
+                                                >
+                                                  <a>
                                                     <span className="match-name">
                                                       <span className="multi-pin"></span>
                                                     </span>
@@ -307,6 +314,12 @@ const Fancy = ({ data }) => {
                                                           </div>
                                                         </div>
                                                       </div>
+                                                      {game?.status ===
+                                                        "SUSPENDED" && (
+                                                        <span className="suspended__div">
+                                                          <b>SUSPENDED</b>
+                                                        </span>
+                                                      )}
                                                     </div>
 
                                                     <div className="col-md-4 col-4 d-none d-md-block text-center">

@@ -219,8 +219,21 @@ const QuickLinks = () => {
             </li>
           </ul>
         ) : (
-          <ul id="pills-tab" role="tablist" className="nav nav-tabs nav-pills">
-            <li role="presentation" className="nav-item">
+          <ul
+            id="pills-tab"
+            role="tablist"
+            className="nav nav-tabs nav-pills"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <li
+              role="presentation"
+              className="nav-item"
+              style={{ width: "100%" }}
+            >
               <Link
                 style={{ padding: "0px 8px" }}
                 to="/?eventTypeId=0"
@@ -243,7 +256,11 @@ const QuickLinks = () => {
               </Link>
             </li>
 
-            <li role="presentation" className="nav-item">
+            <li
+              style={{ width: "100%" }}
+              role="presentation"
+              className="nav-item"
+            >
               <a
                 style={{ padding: "0px 8px" }}
                 onClick={() => {
@@ -262,7 +279,11 @@ const QuickLinks = () => {
                 Sports Exch{" "}
               </a>
             </li>
-            <li role="presentation" className="nav-item">
+            <li
+              style={{ width: "100%" }}
+              role="presentation"
+              className="nav-item"
+            >
               <a
                 style={{ padding: "0px 8px" }}
                 onClick={() => {
@@ -281,7 +302,11 @@ const QuickLinks = () => {
                 Sportsbook{" "}
               </a>
             </li>
-            <li role="presentation" className="nav-item">
+            <li
+              style={{ width: "100%" }}
+              role="presentation"
+              className="nav-item"
+            >
               <a
                 style={{ padding: "0px 8px" }}
                 onClick={() => {

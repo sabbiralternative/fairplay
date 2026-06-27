@@ -215,7 +215,9 @@ const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
   return (
     <div>
       {placeBetValues ? (
-        <div className="betslip__div back-border">
+        <div
+          className={`betslip__div  ${placeBetValues?.back ? "back-border" : "lay-border"}`}
+        >
           <div id="goto-1.257456606-42821394" />
           <div className="ruuner_names">
             {" "}
@@ -309,7 +311,12 @@ const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
                 onClick={() =>
                   dispatch(
                     setStake(
-                      parseButtonValues?.[parseButtonValues?.length - 1]?.value,
+                      Number(
+                        placeBetValues?.maxLiabilityPerBet?.replace(
+                          /k$/i,
+                          "000",
+                        ),
+                      ),
                     ),
                   )
                 }

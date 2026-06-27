@@ -26,7 +26,12 @@ createRoot(document.getElementById("root")).render(
             <LanguageProvider>
               <RouterProvider router={router} />
             </LanguageProvider>
-            <Toaster containerStyle={{ zIndex: 9999999 }} />
+            <Toaster
+              containerStyle={{ zIndex: 9999999 }}
+              toastOptions={{
+                duration: 1500,
+              }}
+            />
           </SettingsWrapper>
         </ApiProvider>
       </QueryClientProvider>

@@ -508,6 +508,11 @@ const MatchOdds = ({ data }) => {
                                   </div>
                                 </div>
                               </div>
+                              {runner?.status === "SUSPENDED" && (
+                                <span className="suspended__div">
+                                  <b>SUSPENDED</b>
+                                </span>
+                              )}
                             </div>
                           </div>
                           {runner?.id === runnerId && (

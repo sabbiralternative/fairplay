@@ -24,7 +24,7 @@ const resourceLinks = [`${Settings.site_name} News`, "Sportsbook Betting"];
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" style={{ padding: "10px 15px" }}>
       <div className="footer__top">
         {/* Brand */}
         <div className="footer__brand">
@@ -41,7 +41,7 @@ export default function Footer() {
         </div>
 
         {/* Game Column */}
-        <nav>
+        <nav className="sm-d-none">
           <h4 className="footer__col-title">Game</h4>
           <ul style={{ paddingLeft: "0px" }} className="footer__links">
             {gameLinks.map((link) => (
@@ -53,7 +53,7 @@ export default function Footer() {
         </nav>
 
         {/* Company Column */}
-        <nav>
+        <nav className="sm-d-none">
           <h4 className="footer__col-title">Company</h4>
           <ul style={{ paddingLeft: "0px" }} className="footer__links">
             {companyLinks.map((link) => (
@@ -63,6 +63,35 @@ export default function Footer() {
             ))}
           </ul>
         </nav>
+
+        <div
+          className="d-flex d-md-none"
+          style={{ gap: "10px", justifyContent: "space-between" }}
+        >
+          {" "}
+          {/* Game Column */}
+          <nav>
+            <h4 className="footer__col-title">Game</h4>
+            <ul style={{ paddingLeft: "0px" }} className="footer__links">
+              {gameLinks.map((link) => (
+                <li key={link}>
+                  <a href="#">{link}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          {/* Company Column */}
+          <nav>
+            <h4 className="footer__col-title">Company</h4>
+            <ul style={{ paddingLeft: "0px" }} className="footer__links">
+              {companyLinks.map((link) => (
+                <li key={link}>
+                  <a href="#">{link}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
 
         {/* Resources Column */}
         <nav>
