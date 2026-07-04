@@ -68,9 +68,12 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
             <div className="diposit_form ">
               <div className="w-100 deposit_form_input ">
                 <div className="w-100 deposit_form_input ">
-                  <div style={{ background: "white" }} className="inputBox2 ">
+                  <div
+                    // style={{ background: "#b7b7b736" }}
+                    className="inputBox2 "
+                  >
                     <input
-                      style={{ background: "white" }}
+                      // style={{ background: "#ebedf4" }}
                       onChange={(e) => setAmount(e.target.value)}
                       id="depositamount"
                       name="depositamount"

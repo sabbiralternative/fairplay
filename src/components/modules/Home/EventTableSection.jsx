@@ -5,8 +5,10 @@ import HorseGreyhound from "./HorseGreyhound";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import { useSelector } from "react-redux";
 
 const EventTableSection = () => {
+  const { token } = useSelector((state) => state.auth);
   const { valueByLanguage } = useLanguage();
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
@@ -52,6 +54,12 @@ const EventTableSection = () => {
           <div
             data-v-3c6bc75a=""
             className="inply-heading-with-logo sports-icons-head upcoming-sports-title"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "5px 0px",
+            }}
           >
             <li
               data-v-3c6bc75a=""
@@ -78,6 +86,24 @@ const EventTableSection = () => {
                 Inplay
               </span>
             </li>
+            {token && (
+              <div data-v-3c6bc75a="" className="inplay_wallat_btn">
+                <button
+                  onClick={() => navigate("/deposit")}
+                  data-v-3c6bc75a=""
+                  className="btn deposit_btn_inplay green_btn"
+                >
+                  Deposit
+                </button>
+                <button
+                  onClick={() => navigate("/withdraw")}
+                  data-v-3c6bc75a=""
+                  className="btn deposit_btn_inplay red_btn"
+                >
+                  Withdraw
+                </button>
+              </div>
+            )}
           </div>
           <div>
             {(eventTypeId == 7 || eventTypeId == 4339) && data?.length > 0 && (

@@ -1509,3 +1509,30 @@ html * {
   }
 }
 /* Horse banner */
+.inplay_wallat_btn {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+button.btn.deposit_btn_inplay {
+  height: 28px;
+  padding: 0 6px;
+  min-width: 90px;
+  line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  border-radius: 40px;
+}
+.green_btn {
+  background: linear-gradient(180deg, #1bd600, #0a4b00) !important;
+  border: none !important;
+  color: #fff !important;
+}
+.red_btn {
+  background: linear-gradient(180deg, #ff2e2e, #530202);
+  border: none;
+  color: #fff !important;
+}
