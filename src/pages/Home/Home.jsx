@@ -14,6 +14,7 @@ import { useIndexQuery } from "../../hooks";
 import { Settings } from "../../api";
 import { Fragment } from "react";
 import Upcoming from "../../components/modules/Home/Upcoming";
+import GameLobby from "../../components/modules/Home/Gamelobby";
 
 const Home = () => {
   const location = useLocation();
@@ -105,6 +106,7 @@ const Home = () => {
 
                 <div className="inplay-main">
                   <EventTableSection />
+                  <GameLobby />
                   <Upcoming />
                   {/* <HighLight highlight_casino={data?.highlight_casino} /> */}
                   {/* <LiveCards /> */}

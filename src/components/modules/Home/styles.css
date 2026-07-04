@@ -1,0 +1,197 @@
+/* ===== Casino Game Lobby Styles ===== */
+
+.lobby-wrapper {
+  background-color: #0b0b12;
+  padding: 16px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.lobby-wrapper * {
+  box-sizing: border-box;
+}
+
+.panels-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.game-panel {
+  flex: 1 1;
+  background: #14121f;
+  border-radius: 10px;
+  padding: 16px 18px 18px;
+  min-width: 300px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.panel-header h2 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.accent-orange {
+  color: #f2994a;
+}
+
+.more-link {
+  color: #f2994a;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.more-link:hover {
+  text-decoration: underline;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.game-pill {
+  background: #191531;
+  color: #ffffff;
+  border-radius: 22px;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.pill-purple {
+  border: 1.5px solid #8b5cf6;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.55);
+}
+
+.pill-orange {
+  border: 1.5px solid #f2673c;
+  box-shadow: 0 0 8px rgba(242, 103, 60, 0.55);
+}
+
+.game-pill:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== Promo Banner ===== */
+
+.promo-banner {
+  position: relative;
+  margin-top: 16px;
+  background: linear-gradient(90deg, #0d0d14 0%, #14131f 55%, #1a1a2a 100%);
+  border-radius: 10px;
+  /* min-height: 200px; */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.promo-women {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  height: 100%;
+  background: radial-gradient(
+    circle at 30% 60%,
+    rgba(120, 40, 90, 0.35),
+    transparent 70%
+  );
+}
+
+.promo-wheel {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #c9a24b 0%, #8a6a2c 40%, transparent 70%);
+  opacity: 0.6;
+}
+
+.promo-content {
+  position: relative;
+  z-index: 2;
+  margin-left: 340px;
+  color: #ffffff;
+}
+
+.promo-title {
+  font-size: 56px;
+  font-weight: 900;
+  font-style: italic;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+}
+
+.promo-subtitle {
+  font-size: 20px;
+  font-weight: 700;
+  font-style: italic;
+  margin: 4px 0 18px;
+  color: #f0f0f0;
+}
+
+.promo-cta {
+  background: #f2673c;
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.promo-cta:hover {
+  background: #e0562b;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 900px) {
+  .panels-row {
+    flex-direction: column;
+  }
+  .promo-content {
+    margin-left: 20px;
+  }
+  .promo-wheel {
+    opacity: 0.25;
+  }
+}
+
+@media (max-width: 520px) {
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .promo-title {
+    font-size: 36px;
+  }
+  .promo-subtitle {
+    font-size: 15px;
+  }
+}
