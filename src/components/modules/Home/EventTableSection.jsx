@@ -49,6 +49,36 @@ const EventTableSection = () => {
     <div>
       <div className="events-table-section">
         <div>
+          <div
+            data-v-3c6bc75a=""
+            className="inply-heading-with-logo sports-icons-head upcoming-sports-title"
+          >
+            <li
+              data-v-3c6bc75a=""
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                color: "#fff",
+                padding: "5px 5px",
+              }}
+            >
+              <img
+                style={{ height: "20px", width: "20px" }}
+                data-v-3c6bc75a=""
+                loading="lazy"
+                src="/assets/inplayico.40798d4-AajJC3tM.webp"
+                alt="inplay"
+                title="inplay"
+              />{" "}
+              <span
+                style={{ textTransform: "uppercase", fontSize: "13px" }}
+                data-v-3c6bc75a=""
+              >
+                Inplay
+              </span>
+            </li>
+          </div>
           <div>
             {(eventTypeId == 7 || eventTypeId == 4339) && data?.length > 0 && (
               <HorseGreyhound data={data} eventTypeId={eventTypeId} />

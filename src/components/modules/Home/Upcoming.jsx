@@ -1,0 +1,435 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
+import { useGroupQuery } from "../../../hooks/group";
+
+const Upcoming = () => {
+  const { valueByLanguage } = useLanguage();
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
+
+  const { data } = useGroupQuery({ sportsType: 0 });
+  const eventName = {
+    4: languageValue(valueByLanguage, LanguageKey.CRICKET),
+    2: languageValue(valueByLanguage, LanguageKey.TENNIS),
+    1: languageValue(valueByLanguage, LanguageKey.FOOTBALL),
+    7: languageValue(valueByLanguage, LanguageKey.HORSE),
+    4339: languageValue(valueByLanguage, LanguageKey.GREYHOUND),
+  };
+
+  useEffect(() => {
+    if (data) {
+      const categories = Array.from(
+        new Set(
+          Object.values(data)
+            .filter((item) => item.visible && item?.inPlay === 0)
+            .map((item) => item.eventTypeId),
+        ),
+      );
+      const sortedCategories = categories.sort((a, b) => {
+        const order = { 4: 0, 1: 1, 2: 2 };
+        return order[a] - order[b];
+      });
+      setCategories(sortedCategories);
+    }
+  }, [data]);
+  const navigateGameList = (eventTypeId, keys) => {
+    navigate(`/event-details/${eventTypeId}/${keys}`);
+  };
+
+  return (
+    <div>
+      <div className="events-table-section">
+        <div>
+          <div
+            data-v-3c6bc75a=""
+            className="inply-heading-with-logo sports-icons-head upcoming-sports-title"
+          >
+            <li
+              data-v-3c6bc75a=""
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                color: "#fff",
+                padding: "5px 5px",
+              }}
+            >
+              <img
+                style={{ height: "20px", width: "20px" }}
+                data-v-3c6bc75a=""
+                loading="lazy"
+                src="/assets/upcoming-BjzesQyb.webp"
+                alt="upcoming"
+                title="upcoming"
+              />{" "}
+              <span
+                style={{ textTransform: "uppercase", fontSize: "13px" }}
+                data-v-3c6bc75a=""
+              >
+                Upcoming
+              </span>
+            </li>
+          </div>
+          <div>
+            <div>
+              {data &&
+                categories?.map((category) => {
+                  const groupedData = Object.entries(data)
+                    .filter(
+                      ([, value]) =>
+                        value.visible === true &&
+                        value.eventTypeId === category &&
+                        value.inPlay === 0,
+                    )
+                    .sort(([, a], [, b]) => {
+                      return b.inPlay - a.inPlay;
+                    });
+
+                  return (
+                    <div key={category} className="events-col gradient mb-3">
+                      <div className="bet-table-header">
+                        <div className="row d-flex align-items-center">
+                          <div className=" col-12">
+                            <div className="game-title-box">
+                              <img
+                                className="game-icon-img"
+                                src={`/assets/img/icon/${category}.png`}
+                              />
+                              {eventName[category]}
+                              <ul className="live_virtual">
+                                <li>
+                                  <input
+                                    type="checkbox"
+                                    defaultValue="Order one"
+                                    id="checkboxOnein_play-inplay-4"
+                                    className="ng-untouched ng-pristine ng-valid"
+                                  />
+                                  <label htmlFor="checkboxOnein_play-inplay-4">
+                                    LIVE
+                                  </label>
+                                </li>
+                                {/* <li>
+                                  <input
+                                    type="checkbox"
+                                    defaultValue="Order Two"
+                                    id="checkboxTwoin_play--inplay--4"
+                                    className="ng-untouched ng-pristine ng-valid"
+                                  />
+                                  <label htmlFor="checkboxTwoin_play--inplay--4">
+                                    VIRTUAL
+                                  </label>
+                                </li> */}
+                                <li>
+                                  <input
+                                    type="checkbox"
+                                    defaultValue="Order Two"
+                                    id="checkboxThreein_play--inplay--4"
+                                    className="ng-untouched ng-pristine ng-valid"
+                                  />
+                                  <label htmlFor="checkboxThreein_play--inplay--4">
+                                    PREMIUM
+                                  </label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          {/* <div className="col-md-4 text-center ms-auto game-title-box-right d-none d-lg-block">
+                            <div className="row no-gutters">
+                              <div className="text-center col-4 text-white caption">
+                                1
+                              </div>
+                              <div className="text-center col-4 text-white caption">
+                                X
+                              </div>
+                              <div className="text-center col-4 text-white caption">
+                                2
+                              </div>
+                            </div>
+                          </div> */}
+                        </div>
+                      </div>
+                      <div className="bet-table-body">
+                        {groupedData.map(([key, value]) => {
+                          return (
+                            <div
+                              onClick={() =>
+                                navigateGameList(value?.eventTypeId, key)
+                              }
+                              key={key}
+                              className="bet-table-row bg-light pt-1 pb-1 item-odds event_inplay"
+                            >
+                              <div className="row d-flex align-items-center">
+                                <div className="d-flex">
+                                  {" "}
+                                  <div className="col-md-6 col-6 d-flex">
+                                    {/* <span className="multi-pin">
+                                  <a className="add-pin">
+                                    <i className="mdi mdi-star-outline" />
+                                  </a>
+                                </span> */}
+                                    <a>
+                                      <div className="d-flex flex-column ps-2">
+                                        <span className="manage-overflow match-name fw-semibold">
+                                          {value?.eventName}
+                                        </span>
+                                        {/* <span className="manage-overflow match-name fw-semibold leaguename">
+                                          {value?.player2}
+                                        </span> */}
+                                      </div>
+                                    </a>
+                                  </div>
+                                  <div className="col-md-6 col-6 d-flex justify-content-end">
+                                    <div className="itbfc">
+                                      {value?.inPlay === 1 && (
+                                        <span title="INPLAY">
+                                          <i className="green-text mdi mdi-play" />
+                                        </span>
+                                      )}
+
+                                      {value?.isTv === 1 && (
+                                        <span title="TV">
+                                          <i className="green-text mdi mdi-television" />
+                                        </span>
+                                      )}
+
+                                      {value.isBookmaker === 1 && (
+                                        <span title="BM">BM</span>
+                                      )}
+
+                                      {value?.isFancy === 1 && (
+                                        <span title="F">F</span>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-md-12 col-12 mobile_odds_section">
+                                  <div className="row g-0  d-flex">
+                                    <div className="col-md-4 col-4">
+                                      <div className="btn-block">
+                                        <div className="back">
+                                          <div className="odd-button__price">
+                                            {
+                                              value?.[0]?.ex
+                                                ?.availableToBack?.[0]?.price
+                                            }
+                                          </div>
+                                          <div className="odd-button__volume">
+                                            {
+                                              value?.[0]?.ex
+                                                ?.availableToBack?.[0]?.size
+                                            }
+                                          </div>
+                                        </div>
+                                        <div className="lay">
+                                          <div className="odd-button__price">
+                                            {
+                                              value?.[0]?.ex
+                                                ?.availableToLay?.[0]?.price
+                                            }
+                                          </div>
+                                          <div className="odd-button__volume">
+                                            {
+                                              value?.[0]?.ex
+                                                ?.availableToLay?.[0]?.size
+                                            }
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="col-md-4 col-4">
+                                      <div className="btn-block">
+                                        <div className="back">
+                                          <div className="odd-button__price">
+                                            {
+                                              value?.[2]?.ex
+                                                ?.availableToBack?.[0]?.price
+                                            }
+                                          </div>
+                                          <div className="odd-button__volume">
+                                            {
+                                              value?.[2]?.ex
+                                                ?.availableToBack?.[0]?.size
+                                            }
+                                          </div>
+                                        </div>
+                                        <div className="lay">
+                                          <div className="odd-button__price">
+                                            {
+                                              value?.[2]?.ex
+                                                ?.availableToLay?.[0]?.price
+                                            }
+                                          </div>
+                                          <div className="odd-button__volume">
+                                            {
+                                              value?.[2]?.ex
+                                                ?.availableToLay?.[0]?.size
+                                            }
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="col-md-4 col-4">
+                                      <div className="btn-block">
+                                        <div className="back">
+                                          <div className="odd-button__price">
+                                            {
+                                              value?.[1]?.ex
+                                                ?.availableToBack?.[0]?.price
+                                            }
+                                          </div>
+                                          <div className="odd-button__volume">
+                                            {
+                                              value?.[1]?.ex
+                                                ?.availableToBack?.[0]?.size
+                                            }
+                                          </div>
+                                        </div>
+                                        <div className="last lay">
+                                          <div className="odd-button__price">
+                                            {
+                                              value?.[1]?.ex
+                                                ?.availableToLay?.[0]?.price
+                                            }
+                                          </div>
+                                          <div className="odd-button__volume">
+                                            {
+                                              value?.[1]?.ex
+                                                ?.availableToLay?.[0]?.size
+                                            }
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {/* <div className="row d-block d-md-none odds_xs_scroll">
+                                    <div className="col-12 d-flex inplay-item__back-inner-left new_odds_mobile">
+                                      <div className="back">
+                                        <div className="odd-button__price">
+                                          {
+                                            value?.[0]?.ex?.availableToBack?.[0]
+                                              ?.price
+                                          }
+                                        </div>
+                                        <div className="odd-button__volume">
+                                          {
+                                            value?.[0]?.ex?.availableToBack?.[0]
+                                              ?.size
+                                          }
+                                        </div>
+                                      </div>
+                                      <div className="back">
+                                        <div className="odd-button__price">
+                                          {" "}
+                                          {
+                                            value?.[2]?.ex?.availableToBack?.[0]
+                                              ?.price
+                                          }
+                                        </div>
+                                        <div className="odd-button__volume">
+                                          {
+                                            value?.[2]?.ex?.availableToBack?.[0]
+                                              ?.size
+                                          }
+                                        </div>
+                                      </div>
+                                      <div className="back">
+                                        <div className="odd-button__price">
+                                          {
+                                            value?.[1]?.ex?.availableToBack?.[0]
+                                              ?.price
+                                          }
+                                        </div>
+                                        <div className="odd-button__volume">
+                                          {
+                                            value?.[1]?.ex?.availableToBack?.[0]
+                                              ?.size
+                                          }
+                                        </div>
+                                      </div>
+                                      <div className="lay">
+                                        <div className="odd-button__price">
+                                          {
+                                            value?.[0]?.ex?.availableToLay?.[0]
+                                              ?.price
+                                          }
+                                        </div>
+                                        <div className="odd-button__volume">
+                                          {
+                                            value?.[0]?.ex?.availableToLay?.[0]
+                                              ?.size
+                                          }
+                                        </div>
+                                      </div>
+                                      <div className="lay">
+                                        <div className="odd-button__price">
+                                          {" "}
+                                          {
+                                            value?.[2]?.ex?.availableToLay?.[0]
+                                              ?.price
+                                          }
+                                        </div>
+                                        <div className="odd-button__volume">
+                                          {
+                                            value?.[2]?.ex?.availableToLay?.[0]
+                                              ?.size
+                                          }
+                                        </div>
+                                      </div>
+                                      <div className="last lay">
+                                        <div className="odd-button__price">
+                                          {
+                                            value?.[1]?.ex?.availableToLay?.[0]
+                                              ?.price
+                                          }
+                                        </div>
+                                        <div className="odd-button__volume">
+                                          {
+                                            value?.[1]?.ex?.availableToLay?.[0]
+                                              ?.size
+                                          }
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div> */}
+                                </div>
+                                <div className="d-flex">
+                                  <div className="calendar-space col-6 ">
+                                    {value?.date}
+                                  </div>
+                                  {/* <div className="col-6 minmax_value d-flex justify-content-end">
+                                    <span className="match-name">
+                                      <span className="light-text">
+                                        Min : {value?.minLiabilityPerBet}
+                                      </span>
+                                      <img
+                                        loading="lazy"
+                                        src="/assets/min-max-icon-BIsl0oNE.svg"
+                                        alt="min-max-icon"
+                                      />
+                                      <span className="light-text">
+                                        Max : 5000
+                                      </span>
+                                    </span>
+                                  </div> */}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Upcoming;

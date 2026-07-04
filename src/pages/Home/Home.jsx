@@ -13,6 +13,7 @@ import PaymentMethods from "../../components/modules/Home/PaymentMethods";
 import { useIndexQuery } from "../../hooks";
 import { Settings } from "../../api";
 import { Fragment } from "react";
+import Upcoming from "../../components/modules/Home/Upcoming";
 
 const Home = () => {
   const location = useLocation();
@@ -104,6 +105,7 @@ const Home = () => {
 
                 <div className="inplay-main">
                   <EventTableSection />
+                  <Upcoming />
                   {/* <HighLight highlight_casino={data?.highlight_casino} /> */}
                   {/* <LiveCards /> */}
                   {!eventTypeId && (
