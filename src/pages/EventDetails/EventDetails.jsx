@@ -15,6 +15,7 @@ import OpenBets from "../../components/modules/EventDetails/OpenBets";
 import Score from "../../components/modules/EventDetails/Score";
 import TennisScore from "../../components/modules/EventDetails/TennisScore";
 import FootballScore from "../../components/modules/EventDetails/FootballScore";
+import Premium from "../../components/modules/EventDetails/Premium";
 
 const EventDetails = () => {
   const navigate = useNavigate();
@@ -249,12 +250,14 @@ const EventDetails = () => {
                             </div>
                             {tab === "market" && (
                               <div>
-                                {eventTypeId == 2 && data?.score && (
-                                  <TennisScore
-                                    eventTypeId={eventTypeId}
-                                    score={data?.score}
-                                  />
-                                )}
+                                {eventTypeId == 2 &&
+                                  data?.score &&
+                                  Object.keys(data?.score).length > 1 && (
+                                    <TennisScore
+                                      eventTypeId={eventTypeId}
+                                      score={data?.score}
+                                    />
+                                  )}
                                 {eventTypeId == 1 && data?.score && (
                                   <FootballScore score={data?.score} />
                                 )}
@@ -302,7 +305,9 @@ const EventDetails = () => {
                                 {matchOdds?.length > 0 && (
                                   <MatchOdds data={matchOdds} />
                                 )}
-
+                                {data?.premium && data?.premium?.eventId && (
+                                  <Premium premium={data?.premium} />
+                                )}
                                 <div className="empty-div">
                                   {bookmaker?.length > 0 && (
                                     <Bookmaker data={bookmaker} />
