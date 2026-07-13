@@ -10,6 +10,7 @@ import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import SportModal from "../../modals/SportsModal/SportsModal";
 import SportsTabSlider from "./SportsSlider";
+import { eventNameList } from "../../../static/event-name-list";
 
 const QuickLinks = () => {
   const [showSportsModal, setShowSportsModal] = useState(false);
@@ -217,6 +218,21 @@ const QuickLinks = () => {
                 Politics{" "}
               </Link>
             </li>
+            {eventNameList.map((item) => {
+              return (
+                <li key={item.id} role="presentation" className="nav-item">
+                  <Link
+                    to={`/?eventTypeId=${item.id}`}
+                    className={`nav-link  ${eventTypeId === item.id ? "active" : ""}`}
+                  >
+                    <div className="menu-icon">
+                      <img alt="" className="me-2" src={item.image} />
+                    </div>
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <ul

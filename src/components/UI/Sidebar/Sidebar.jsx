@@ -12,6 +12,7 @@ import { LanguageKey } from "../../../const";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import images from "../../../assets/images";
 import LanguageModal from "../../modals/MobileLanguageModal/LanguageModal";
+import { eventNameList } from "../../../static/event-name-list";
 
 const Sidebar = () => {
   const [showLanguageModal, setShowLanguageModal] = useState(false);
@@ -246,6 +247,26 @@ const Sidebar = () => {
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
+
+            {eventNameList.map((item) => {
+              return (
+                <li key={item.id} className="nav-item">
+                  <Link
+                    onClick={() => dispatch(setShowMobileSidebar(false))}
+                    data-bs-toggle="collapse"
+                    className="nav-link"
+                    to={`/?eventTypeId=${item.id}`}
+                  >
+                    <img alt="" className="menu-icon" src={item.image} />
+                    <span> {item.name}</span>
+                    <MdOutlineKeyboardArrowRight
+                      className="ms-auto"
+                      size={24}
+                    />
+                  </Link>
+                </li>
+              );
+            })}
             {windowWidth < 500 && (
               <li className="nav-item">
                 <a
