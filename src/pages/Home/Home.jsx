@@ -15,6 +15,7 @@ import { Settings } from "../../api";
 import { Fragment } from "react";
 import Upcoming from "../../components/modules/Home/Upcoming";
 import GameLobby from "../../components/modules/Home/Gamelobby";
+import WhatsApp from "../../components/modules/Home/WhatsApp";
 
 const Home = () => {
   const location = useLocation();
@@ -34,6 +35,7 @@ const Home = () => {
 
   return (
     <main id="main" className="main">
+      <WhatsApp />
       <div className="tab-content-main">
         <div>
           <div id="pills-tabContent" className="tab-content">
