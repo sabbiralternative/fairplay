@@ -79,7 +79,7 @@ const DepositWithdrawReport = () => {
             paddingRight: "0.625rem",
             paddingTop: "0.25rem", // py-1
             paddingBottom: "0.25rem",
-            color: "white",
+            color: "black",
             borderRadius: "0.25rem", // rounded
             fontSize: "12px", // text-[12px]
             boxShadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)", // shadow-sm
