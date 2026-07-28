@@ -18,6 +18,7 @@ import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 
 const Login = () => {
+  const [tab, setTab] = useState("mobile");
   const { valueByLanguage } = useLanguage();
   const { closePopupForForever } = useSelector((state) => state.global);
   const { logo } = useLogo();
@@ -158,7 +159,7 @@ const Login = () => {
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   noValidate
-                  className="col-md-4 col-12 ng-untouched ng-pristine ng-invalid"
+                  className="col-md-4 col-12 ng-untouched ng-pristine ng-invalid a23_css"
                 >
                   <img
                     className="img-fluid"
@@ -169,11 +170,49 @@ const Login = () => {
                       width: Settings.logo_width,
                     }}
                   />
+
+                  <div className="deposit-withdraw-btns  ">
+                    <div className="btns-animation " style={{ width: "100%" }}>
+                      <div className="btnBox " style={{ width: "100%" }}>
+                        <button
+                          style={{ width: "100%" }}
+                          type="button"
+                          onClick={() => setTab("mobile")}
+                          className={`btn-inactive `}
+                        >
+                          <span className={`text-white`}>Mobile Number</span>
+                        </button>
+                        <button
+                          style={{ width: "100%" }}
+                          type="button"
+                          onClick={() => setTab("username")}
+                          className="btn-inactive "
+                        >
+                          <span className={`text-white`}>Usrename</span>
+                        </button>
+                      </div>
+                      <div
+                        style={{ width: "45%" }}
+                        className={` ${
+                          tab === "mobile"
+                            ? "animation-div-1"
+                            : "animation-div-2"
+                        }`}
+                      ></div>
+                    </div>
+                  </div>
                   <div className="my-3">
                     <div className="form-group input-group">
                       <div className="input-group-prepend">
                         <span className="input-group-text">
-                          <i className="mdi mdi-account" />
+                          {tab === "mobile" ? (
+                            <span>
+                              {" "}
+                              <i className="mdi mdi-phone" />
+                            </span>
+                          ) : (
+                            <i className="mdi mdi-account" />
+                          )}
                         </span>
                       </div>
                       <input
@@ -181,7 +220,11 @@ const Login = () => {
                         {...register("username", { required: true })}
                         className="form-control ng-untouched ng-pristine ng-invalid"
                       />
-                      <label className="floating-label">Enter Username</label>
+                      <label className="floating-label">
+                        {tab == "mobile"
+                          ? "Enter Mobile Number"
+                          : "Enter Username"}
+                      </label>
                     </div>
                     <div
                       style={{ marginBottom: "0px" }}
