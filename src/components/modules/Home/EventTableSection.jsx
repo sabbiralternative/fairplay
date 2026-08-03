@@ -8,6 +8,8 @@ import { LanguageKey } from "../../../const";
 import { useSelector } from "react-redux";
 
 const EventTableSection = () => {
+  const [liveVirtual, setLiveVirtual] = useState([]);
+
   const { token } = useSelector((state) => state.auth);
   const { valueByLanguage } = useLanguage();
   const [categories, setCategories] = useState([]);
@@ -32,7 +34,9 @@ const EventTableSection = () => {
       const categories = Array.from(
         new Set(
           Object.values(data)
-            .filter((item) => item.visible)
+            .filter((item) => {
+              return item.visible === true;
+            })
             .map((item) => item.eventTypeId),
         ),
       );
@@ -45,6 +49,27 @@ const EventTableSection = () => {
   }, [data]);
   const navigateGameList = (eventTypeId, keys) => {
     navigate(`/event-details/${eventTypeId}/${keys}`);
+  };
+
+  const onChangeLiveVirtual = (type, eventTypeId, isChecked) => {
+    const obj = { type, eventTypeId, isChecked };
+
+    setLiveVirtual((prev) => {
+      const index = prev.findIndex(
+        (item) => item.eventTypeId === eventTypeId && item.type === type,
+      );
+
+      if (index !== -1) {
+        const updated = [...prev];
+        updated[index] = {
+          ...updated[index],
+          isChecked,
+        };
+        return updated;
+      }
+
+      return [...prev, obj];
+    });
   };
 
   return (
@@ -113,15 +138,38 @@ const EventTableSection = () => {
               <div>
                 {data &&
                   categories?.map((category) => {
+                    const categorySettings = liveVirtual.filter(
+                      (item) => item.eventTypeId === category,
+                    );
+
+                    const live =
+                      categorySettings.find((item) => item.type === "live")
+                        ?.isChecked ?? false;
+
+                    const virtual =
+                      categorySettings.find((item) => item.type === "virtual")
+                        ?.isChecked ?? false;
+
                     const groupedData = Object.entries(data)
-                      .filter(
-                        ([, value]) =>
-                          value.visible === true &&
-                          value.eventTypeId === category,
-                      )
-                      .sort(([, a], [, b]) => {
-                        return b.inPlay - a.inPlay;
-                      });
+                      .filter(([, value]) => {
+                        if (value.eventTypeId !== category) return false;
+
+                        const isSRL =
+                          value.eventName?.toLowerCase().includes("srl") ??
+                          false;
+
+                        // both checked OR both unchecked => show all
+                        if (live === virtual) return true;
+
+                        // live only
+                        if (live) return !isSRL;
+
+                        // virtual only
+                        return isSRL;
+                      })
+                      .sort(([, a], [, b]) => b.inPlay - a.inPlay);
+
+                    // ...
 
                     return (
                       <div key={category} className="events-col gradient mb-3">
@@ -137,27 +185,45 @@ const EventTableSection = () => {
                                 <ul className="live_virtual">
                                   <li>
                                     <input
+                                      onChange={(e) =>
+                                        onChangeLiveVirtual(
+                                          "live",
+                                          category,
+                                          e.target?.checked,
+                                        )
+                                      }
                                       type="checkbox"
                                       defaultValue="Order one"
-                                      id="checkboxOnein_play-inplay-4"
+                                      id={`checkboxOnein_play-inplay-4-${category}`}
                                       className="ng-untouched ng-pristine ng-valid"
                                     />
-                                    <label htmlFor="checkboxOnein_play-inplay-4">
+                                    <label
+                                      htmlFor={`checkboxOnein_play-inplay-4-${category}`}
+                                    >
                                       LIVE
                                     </label>
                                   </li>
-                                  {/* <li>
-                                  <input
-                                    type="checkbox"
-                                    defaultValue="Order Two"
-                                    id="checkboxTwoin_play--inplay--4"
-                                    className="ng-untouched ng-pristine ng-valid"
-                                  />
-                                  <label htmlFor="checkboxTwoin_play--inplay--4">
-                                    VIRTUAL
-                                  </label>
-                                </li> */}
                                   <li>
+                                    <input
+                                      onChange={(e) =>
+                                        onChangeLiveVirtual(
+                                          "virtual",
+                                          category,
+                                          e.target?.checked,
+                                        )
+                                      }
+                                      type="checkbox"
+                                      defaultValue="Order Two"
+                                      id={`checkboxTwoin_play--inplay--4-${category}`}
+                                      className="ng-untouched ng-pristine ng-valid"
+                                    />
+                                    <label
+                                      htmlFor={`checkboxTwoin_play--inplay--4-${category}`}
+                                    >
+                                      VIRTUAL
+                                    </label>
+                                  </li>
+                                  {/* <li>
                                     <input
                                       type="checkbox"
                                       defaultValue="Order Two"
@@ -167,7 +233,7 @@ const EventTableSection = () => {
                                     <label htmlFor="checkboxThreein_play--inplay--4">
                                       PREMIUM
                                     </label>
-                                  </li>
+                                  </li> */}
                                 </ul>
                               </div>
                             </div>
