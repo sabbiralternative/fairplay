@@ -169,8 +169,6 @@ const EventTableSection = () => {
                       })
                       .sort(([, a], [, b]) => b.inPlay - a.inPlay);
 
-                    // ...
-
                     return (
                       <div key={category} className="events-col gradient mb-3">
                         <div className="bet-table-header">

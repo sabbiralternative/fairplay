@@ -14571,13 +14571,10 @@ p,
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
-  background: var(
-    --gradient-03,
-    linear-gradient(133deg, #36e2fa 0%, #ebffbf 100%)
-  );
+  background: var(--theme-bg);
   padding: 0.4375rem 1.5rem;
   cursor: pointer;
-  color: var(--greyscale-900, #111827);
+  color: #fff;
   font-size: 0.8125rem;
   font-style: normal;
   font-weight: 600;

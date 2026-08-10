@@ -142,12 +142,12 @@ const UploadTransaction = ({ paymentId, amount, tabs }) => {
                             className="ng-tns-c159-0"
                           >
                             <stop
-                              stopColor="#36E2FA"
+                              stopColor="var(--theme-bg)"
                               className="ng-tns-c159-0"
                             ></stop>
                             <stop
                               offset="1"
-                              stopColor="#EBFFBF"
+                              stopColor="var(--theme-bg)"
                               className="ng-tns-c159-0"
                             ></stop>
                           </linearGradient>

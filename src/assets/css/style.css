@@ -345,6 +345,18 @@ p.no-fancy-message {
   padding: 2px 10px;
   color: rgba(255, 255, 255, 0.7);
 }
+
+.login_modal input:focus ~ .floating-label,
+.login_modal input:not(:placeholder-shown) ~ .floating-label {
+  top: -20px;
+  left: 25px;
+  font-size: 11px;
+  opacity: 1;
+  background: none;
+  border-radius: 5px;
+  padding: 2px 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
 .login_modal input:focus ~ a {
   color: var(--theme-bg);
 }
