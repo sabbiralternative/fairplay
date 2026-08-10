@@ -127,7 +127,8 @@ const Upcoming = ({ eventTypeId }) => {
                       // virtual only
                       return isSRL;
                     })
-                    .sort(([, a], [, b]) => b.inPlay - a.inPlay);
+                    .sort(([, a], [, b]) => b.inPlay - a.inPlay)
+                    .sort(([, a], [, b]) => a.sort - b.sort);
 
                   return (
                     <div key={category} className="events-col gradient mb-3">
