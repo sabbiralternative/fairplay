@@ -5,13 +5,13 @@ import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import { useGroupQuery } from "../../../hooks/group";
 
-const Upcoming = () => {
+const Upcoming = ({ eventTypeId }) => {
   const [liveVirtual, setLiveVirtual] = useState([]);
   const { valueByLanguage } = useLanguage();
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
-  const { data } = useGroupQuery({ sportsType: 0 });
+  const { data } = useGroupQuery({ sportsType: eventTypeId ? eventTypeId : 0 });
   const eventName = {
     4: languageValue(valueByLanguage, LanguageKey.CRICKET),
     2: languageValue(valueByLanguage, LanguageKey.TENNIS),

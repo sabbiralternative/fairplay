@@ -154,6 +154,7 @@ const EventTableSection = () => {
                       .filter(([, value]) => {
                         if (value.eventTypeId !== category) return false;
                         if (!value.visible) return false;
+                        if (value.inPlay !== 1) return false;
                         const isSRL =
                           value.eventName?.toLowerCase().includes("srl") ??
                           false;

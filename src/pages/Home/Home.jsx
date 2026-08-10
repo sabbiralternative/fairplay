@@ -108,8 +108,9 @@ const Home = () => {
 
                 <div className="inplay-main">
                   <EventTableSection />
-                  <GameLobby />
-                  <Upcoming />
+                  {!eventTypeId && <GameLobby />}
+
+                  <Upcoming eventTypeId={Number(eventTypeId)} />
                   {/* <HighLight highlight_casino={data?.highlight_casino} /> */}
                   {/* <LiveCards /> */}
                   {!eventTypeId && (
