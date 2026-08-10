@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 
 const EventTableSection = () => {
   const [liveVirtual, setLiveVirtual] = useState([]);
-
   const { token } = useSelector((state) => state.auth);
   const { valueByLanguage } = useLanguage();
   const [categories, setCategories] = useState([]);
@@ -35,7 +34,7 @@ const EventTableSection = () => {
         new Set(
           Object.values(data)
             .filter((item) => {
-              return item.visible === true;
+              return item.visible === true && item?.inPlay === 1;
             })
             .map((item) => item.eventTypeId),
         ),
@@ -86,31 +85,34 @@ const EventTableSection = () => {
               padding: "5px 0px",
             }}
           >
-            <li
-              data-v-3c6bc75a=""
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "20px",
-                color: "#fff",
-                padding: "5px 5px",
-              }}
-            >
-              <img
-                style={{ height: "20px", width: "20px" }}
+            {categories?.length > 0 && (
+              <li
                 data-v-3c6bc75a=""
-                loading="lazy"
-                src="/assets/inplayico.40798d4-AajJC3tM.webp"
-                alt="inplay"
-                title="inplay"
-              />{" "}
-              <span
-                style={{ textTransform: "uppercase", fontSize: "13px" }}
-                data-v-3c6bc75a=""
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  color: "#fff",
+                  padding: "5px 5px",
+                }}
               >
-                Inplay
-              </span>
-            </li>
+                <img
+                  style={{ height: "20px", width: "20px" }}
+                  data-v-3c6bc75a=""
+                  loading="lazy"
+                  src="/assets/inplayico.40798d4-AajJC3tM.webp"
+                  alt="inplay"
+                  title="inplay"
+                />{" "}
+                <span
+                  style={{ textTransform: "uppercase", fontSize: "13px" }}
+                  data-v-3c6bc75a=""
+                >
+                  Inplay
+                </span>
+              </li>
+            )}
+
             {token && (
               <div data-v-3c6bc75a="" className="inplay_wallat_btn">
                 <button

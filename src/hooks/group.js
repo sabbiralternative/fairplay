@@ -53,6 +53,7 @@ export const useGroupQuery = (payload) => {
         }
       }
     },
+    refetchInterval: 1000,
   });
 
   return { data, ...rest };
