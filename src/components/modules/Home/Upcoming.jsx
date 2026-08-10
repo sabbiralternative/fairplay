@@ -114,7 +114,7 @@ const Upcoming = () => {
                     .filter(([, value]) => {
                       if (value.eventTypeId !== category) return false;
                       if (value.inPlay !== 0) return false;
-
+                      if (!value.visible) return false;
                       const isSRL =
                         value.eventName?.toLowerCase().includes("srl") ?? false;
 

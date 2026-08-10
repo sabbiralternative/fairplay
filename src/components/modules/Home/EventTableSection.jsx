@@ -153,7 +153,7 @@ const EventTableSection = () => {
                     const groupedData = Object.entries(data)
                       .filter(([, value]) => {
                         if (value.eventTypeId !== category) return false;
-
+                        if (!value.visible) return false;
                         const isSRL =
                           value.eventName?.toLowerCase().includes("srl") ??
                           false;
