@@ -17,8 +17,11 @@ import TennisScore from "../../components/modules/EventDetails/TennisScore";
 import FootballScore from "../../components/modules/EventDetails/FootballScore";
 import Premium from "../../components/modules/EventDetails/Premium";
 import ToggleButtons from "../../components/modules/EventDetails/ToggleButtons";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const EventDetails = () => {
+  const { getLanguage } = useLanguage();
   const [fancyPremiumTab, setFancyPremiumTab] = useState("");
   const navigate = useNavigate();
   const [sportsVideo, { data: iframe }] = useVideoMutation();
@@ -215,7 +218,7 @@ const EventDetails = () => {
                                     className="img-fluid"
                                   />
                                 </i>{" "}
-                                Markets{" "}
+                                {getLanguage(LanguageKey.MARKET)}{" "}
                               </button>
                             </a>
                           </li>
@@ -236,7 +239,7 @@ const EventDetails = () => {
                                     className="img-fluid"
                                   />
                                 </i>{" "}
-                                openbet{" "}
+                                {getLanguage(LanguageKey.OPEN_BETS)}{" "}
                               </button>
                             </a>
                           </li>

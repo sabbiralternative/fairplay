@@ -9,12 +9,11 @@ import {
   setShowRulesModal,
 } from "../../../redux/features/global/globalSlice";
 import { Settings } from "../../../api";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 const Dropdown = ({ setShowDropdown }) => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const { data } = useBalance();
   const { user } = useSelector((state) => state.auth);
   const { closePopupForForever } = useSelector((state) => state.global);
@@ -49,16 +48,19 @@ const Dropdown = ({ setShowDropdown }) => {
         <li className="balance-information">
           <div className="balance-title text-white">
             <i aria-hidden="true" className="mdi mdi-bank theme-color" />{" "}
-            Balance Information{" "}
+            {getLanguage(LanguageKey.BALANCE_INFORMATION)}{" "}
           </div>
           <div className="balance-row">
             <div className="balance-text-left">
-              Wallet Amount <small>(Inclusive bonus)</small>
+              {getLanguage(LanguageKey.WALLET_AMOUNT)}{" "}
+              <small>(Inclusive bonus)</small>
             </div>
             <div className="balance-price"> {data?.availBalance}</div>
           </div>
           <div className="balance-row">
-            <div className="balance-text-left">Net Exposure</div>
+            <div className="balance-text-left">
+              {getLanguage(LanguageKey.EXPOSURE)}
+            </div>
             <div className="balance-price"> {data?.deductedExposure}</div>
           </div>
           {/* <div className="balance-row">
@@ -92,7 +94,7 @@ const Dropdown = ({ setShowDropdown }) => {
                 data-v-0a7cbcb0=""
                 href="Javascript:void(0);"
               >
-                {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+                {getLanguage(LanguageKey.DEPOSIT)}
               </Link>
             </div>
             <div data-v-0a7cbcb0="" className="deposit-v-btn">
@@ -102,7 +104,7 @@ const Dropdown = ({ setShowDropdown }) => {
                 data-v-0a7cbcb0=""
                 className="text-white"
               >
-                {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
+                {getLanguage(LanguageKey.WITHDRAW)}
               </Link>
             </div>
           </div>
@@ -118,7 +120,7 @@ const Dropdown = ({ setShowDropdown }) => {
               src="/assets/dw_report.webp"
               className="mdi mdi-google-analytics"
             />
-            <span>Deposit Withdraw Report</span>
+            <span>{getLanguage(LanguageKey.DEPOSIT_WITHDRAW_REPORT)}</span>
           </Link>
         </li>
         <li>
@@ -131,7 +133,7 @@ const Dropdown = ({ setShowDropdown }) => {
               src="/assets/open_bets.webp"
               className="mdi mdi-google-analytics"
             />
-            <span>Open Bets</span>
+            <span>{getLanguage(LanguageKey.OPEN_BETS)}</span>
           </Link>
         </li>
         <li>
@@ -145,7 +147,7 @@ const Dropdown = ({ setShowDropdown }) => {
               className="mdi mdi-google-analytics"
               style={{ height: "18px" }}
             />
-            <span>Betting Profit & Loss</span>
+            <span>{getLanguage(LanguageKey.BETTING_PROFIT_AND_LOSS)}</span>
           </Link>
         </li>
         <li>
@@ -155,10 +157,7 @@ const Dropdown = ({ setShowDropdown }) => {
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-google-analytics" />
-            <span>
-              {" "}
-              {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
-            </span>
+            <span> {getLanguage(LanguageKey.MY_BANK_DETAILS)}</span>
           </Link>
         </li>
         <li>
@@ -171,10 +170,7 @@ const Dropdown = ({ setShowDropdown }) => {
               src="/assets/statements.svg"
               className="mdi mdi-google-analytics"
             />
-            <span>
-              {" "}
-              {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
-            </span>
+            <span> {getLanguage(LanguageKey.BONUS_STATEMENT)}</span>
           </Link>
         </li>
         {Settings?.referral && (
@@ -188,7 +184,7 @@ const Dropdown = ({ setShowDropdown }) => {
                 src="/assets/affiliate.svg"
                 className="mdi mdi-google-analytics"
               />
-              <span>Affiliate</span>
+              <span>{getLanguage(LanguageKey.AFFILIATE)}</span>
             </Link>
           </li>
         )}
@@ -200,7 +196,7 @@ const Dropdown = ({ setShowDropdown }) => {
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-google-analytics" />
-            <span>Promos & Bonus</span>
+            <span>{getLanguage(LanguageKey.PROMOTION_AND_BONUSES)}</span>
           </Link>
         </li>
         <li>
@@ -210,7 +206,7 @@ const Dropdown = ({ setShowDropdown }) => {
             className="dropdown-item d-flex align-items-center"
           >
             <i className="mdi mdi-chart-gantt" />
-            <span> Lossback Bonus</span>
+            <span> {getLanguage(LanguageKey.LOSSBACK_BONUS)}</span>
           </Link>
         </li>
         {closePopupForForever && (
@@ -221,7 +217,7 @@ const Dropdown = ({ setShowDropdown }) => {
               className="dropdown-item d-flex align-items-center"
             >
               <i className="mdi mdi-text-box-outline" />
-              <span> App Only Bonus</span>
+              <span> {getLanguage(LanguageKey.APP_ONLY_BONUS)}</span>
             </Link>
           </li>
         )}
@@ -238,7 +234,7 @@ const Dropdown = ({ setShowDropdown }) => {
               src="/assets/reset_password.webp"
               className="mdi mdi-google-analytics"
             />
-            <span>Reset Password</span>
+            <span>{getLanguage(LanguageKey.CHANGE_PASSWORD)}</span>
           </Link>
         </li>
         <li>
@@ -251,7 +247,7 @@ const Dropdown = ({ setShowDropdown }) => {
               src="/assets/settings.webp"
               className="mdi mdi-google-analytics"
             />
-            <span>Settings</span>
+            <span>{getLanguage(LanguageKey.SETTINGS)}</span>
           </Link>
         </li>
 
@@ -267,12 +263,12 @@ const Dropdown = ({ setShowDropdown }) => {
               src="/assets/rules.webp"
               className="mdi mdi-google-analytics"
             />
-            <span>Rules &amp; Regulations</span>
+            <span>{getLanguage(LanguageKey.RULES_AND_REGULATION)}</span>
           </a>
         </li>
         <li className="logout-li">
           <Link onClick={handleLogout}>
-            <span> {languageValue(valueByLanguage, LanguageKey.LOGOUT)}</span>
+            <span> {getLanguage(LanguageKey.LOGOUT)}</span>
           </Link>
         </li>
       </ul>

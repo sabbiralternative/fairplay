@@ -2,8 +2,11 @@ import toast from "react-hot-toast";
 import { useEditButtonValuesMutation } from "../../redux/features/events/events";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const StakeSettings = () => {
+  const { getLanguage } = useLanguage();
   const navigate = useNavigate();
   const [editButtonValue] = useEditButtonValuesMutation();
   const stakes = JSON.parse(localStorage.getItem("buttonValue"));
@@ -45,21 +48,23 @@ const StakeSettings = () => {
                 <i className="mdi mdi-chevron-left" />
               </a>
 
-              <span className="event___name">Change Button Values</span>
+              <span className="event___name">
+                {getLanguage(LanguageKey.EDIT_STAKE)}
+              </span>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="container my-2">
               <div className="row mb-1">
                 <div className="col-md-3 col-6">
                   <div className="button-title">
                     <span>
-                      <b>Price Label</b>
+                      <b>{getLanguage(LanguageKey.STAKE_LABEL)}</b>
                     </span>
                   </div>
                 </div>
                 <div className="col-md-3 col-6">
                   <div className="button-title">
                     <span>
-                      <b>Price Value</b>
+                      <b>{getLanguage(LanguageKey.STAKE_VALUE)}</b>
                     </span>
                   </div>
                 </div>
@@ -96,7 +101,7 @@ const StakeSettings = () => {
               <div className="row mt-2">
                 <div className="col-12">
                   <button type="submit" className="v-btn demobtn">
-                    Update
+                    {getLanguage(LanguageKey.UPDATE)}
                   </button>
                 </div>
               </div>

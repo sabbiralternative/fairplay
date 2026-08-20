@@ -1,23 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import { useGroupQuery } from "../../../hooks/group";
+import useLanguage from "../../../hooks/use-language";
 
 const Upcoming = ({ eventTypeId }) => {
   const [liveVirtual, setLiveVirtual] = useState([]);
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   const { data } = useGroupQuery({ sportsType: eventTypeId ? eventTypeId : 0 });
   const eventName = {
-    4: languageValue(valueByLanguage, LanguageKey.CRICKET),
-    2: languageValue(valueByLanguage, LanguageKey.TENNIS),
-    1: languageValue(valueByLanguage, LanguageKey.FOOTBALL),
-    7: languageValue(valueByLanguage, LanguageKey.HORSE),
-    4339: languageValue(valueByLanguage, LanguageKey.GREYHOUND),
+    4: getLanguage(LanguageKey.CRICKET),
+    2: getLanguage(LanguageKey.TENNIS),
+    1: getLanguage(LanguageKey.FOOTBALL),
+    7: getLanguage(LanguageKey.HORSE),
+    4339: getLanguage(LanguageKey.GREYHOUND),
   };
 
   useEffect(() => {
@@ -91,7 +90,7 @@ const Upcoming = ({ eventTypeId }) => {
                 style={{ textTransform: "uppercase", fontSize: "13px" }}
                 data-v-3c6bc75a=""
               >
-                Upcoming
+                {getLanguage(LanguageKey.UP_COMING)}
               </span>
             </li>
           </div>
@@ -159,7 +158,7 @@ const Upcoming = ({ eventTypeId }) => {
                                   <label
                                     htmlFor={`checkboxOnein_play-upcoming-4-${category}`}
                                   >
-                                    LIVE
+                                    {getLanguage(LanguageKey.LIVE)}
                                   </label>
                                 </li>
                                 <li>
@@ -179,7 +178,7 @@ const Upcoming = ({ eventTypeId }) => {
                                   <label
                                     htmlFor={`checkboxTwoin_play--upcoming--4-${category}`}
                                   >
-                                    VIRTUAL
+                                    {getLanguage(LanguageKey.VIRTUAL)}
                                   </label>
                                 </li>
                                 {/* <li>

@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const HighLight = ({ highlight_casino }) => {
+  const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -26,7 +29,9 @@ const HighLight = ({ highlight_casino }) => {
           <div className="diamond" />
           <div className="livecard">
             <div>
-              <h3 className="live-text pa-1">Highlight Games</h3>
+              <h3 className="live-text pa-1">
+                {getLanguage(LanguageKey.HIGHLIGHT_GAMES)}
+              </h3>
             </div>
           </div>
           <div className="diamond" />

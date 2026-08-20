@@ -1,4 +1,8 @@
+import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
+
 const PaymentMethods = () => {
+  const { getLanguage } = useLanguage();
   return (
     <section data-v-3c6bc75a className="payment-mnethod-sec" loading="lazy">
       <div data-v-3c6bc75a className="remove-padding">
@@ -12,7 +16,7 @@ const PaymentMethods = () => {
             className="para-three"
             style={{ fontSize: "15px" }}
           >
-            PAYMENT METHODS
+            {getLanguage(LanguageKey.PAYMENT_METHODS)}
           </span>
         </div>
         <div className="payment-app-name container" data-v-3c6bc75a>

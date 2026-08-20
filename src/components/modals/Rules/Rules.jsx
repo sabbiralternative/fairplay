@@ -4,8 +4,11 @@ import { Fragment, useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useDispatch } from "react-redux";
 import { setShowRulesModal } from "../../../redux/features/global/globalSlice";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Rules = () => {
+  const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const ref = useRef();
 
@@ -39,7 +42,7 @@ const Rules = () => {
                       <div className="row mt-3">
                         <div className="col-lg-12">
                           <div className="headerLine">
-                            <h6>Rules</h6>
+                            <h6>{getLanguage(LanguageKey.RULES)}</h6>
                           </div>
                         </div>
                       </div>

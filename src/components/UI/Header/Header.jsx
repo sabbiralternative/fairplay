@@ -22,12 +22,11 @@ import AppPopup from "./AppPopUp";
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 import Language from "./Language";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 const Header = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const stored_build_version = localStorage.getItem("build_version");
   const [showBuildVersion, setShowBuildVersion] = useState(false);
   const location = useLocation();
@@ -146,7 +145,9 @@ const Header = () => {
                   alt="Blogs"
                 />
                 <div data-v-5247495a="" className="news">
-                  <span data-v-5247495a="">Blogs</span>
+                  <span data-v-5247495a="">
+                    {getLanguage(LanguageKey.BLOGS)}
+                  </span>
                 </div>
               </Link>
             </div>
@@ -164,7 +165,7 @@ const Header = () => {
                     >
                       <a style={{ minWidth: "65px" }} className="v-btn top-btn">
                         {" "}
-                        {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+                        {getLanguage(LanguageKey.LOGIN)}
                       </a>
                     </li>
                     <li
@@ -179,7 +180,7 @@ const Header = () => {
                         className="v-btn top-btn"
                       >
                         {" "}
-                        {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                        {getLanguage(LanguageKey.REGISTER)}
                       </a>
                     </li>
                   </Fragment>

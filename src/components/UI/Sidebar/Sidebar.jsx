@@ -6,17 +6,16 @@ import toast from "react-hot-toast";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { setShowMobileSidebar } from "../../../redux/features/global/globalSlice";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import images from "../../../assets/images";
 import LanguageModal from "../../modals/MobileLanguageModal/LanguageModal";
 import { eventNameList } from "../../../static/event-name-list";
+import useLanguage from "../../../hooks/use-language";
 
 const Sidebar = () => {
   const [showLanguageModal, setShowLanguageModal] = useState(false);
-  const { language, valueByLanguage } = useLanguage();
+  const { language, getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const ref = useRef();
   const { token } = useSelector((state) => state.auth);
@@ -105,10 +104,7 @@ const Sidebar = () => {
                 to="/?eventTypeId=4"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/4.png" />
-                <span>
-                  {" "}
-                  {languageValue(valueByLanguage, LanguageKey.CRICKET)}
-                </span>
+                <span> {getLanguage(LanguageKey.CRICKET)}</span>
 
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
@@ -121,10 +117,7 @@ const Sidebar = () => {
                 to="/?eventTypeId=1"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/1.png" />
-                <span>
-                  {" "}
-                  {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
-                </span>
+                <span> {getLanguage(LanguageKey.FOOTBALL)}</span>
 
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
@@ -137,10 +130,7 @@ const Sidebar = () => {
                 to="/?eventTypeId=2"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/2.png" />
-                <span>
-                  {" "}
-                  {languageValue(valueByLanguage, LanguageKey.TENNIS)}
-                </span>
+                <span> {getLanguage(LanguageKey.TENNIS)}</span>
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
@@ -155,7 +145,7 @@ const Sidebar = () => {
                   className="menu-icon"
                   src="assets/img/icon/99998.png"
                 />
-                <span>Casino</span>
+                <span>{getLanguage(LanguageKey.CASINO)}</span>
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
             </li>
@@ -169,7 +159,7 @@ const Sidebar = () => {
                   className="menu-icon"
                   src="assets/img/icon/99991.png"
                 />
-                <span>Sports book</span>
+                <span>{getLanguage(LanguageKey.SPORTSBOOK)}</span>
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </a>
             </li>
@@ -181,10 +171,7 @@ const Sidebar = () => {
                 to="/?eventTypeId=7"
               >
                 <img alt="" className="menu-icon" src="assets/img/icon/7.png" />
-                <span>
-                  {" "}
-                  {languageValue(valueByLanguage, LanguageKey.HORSE)}
-                </span>
+                <span> {getLanguage(LanguageKey.HORSE)}</span>
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
                 {/* <i className="bi bi-chevron-down ms-auto" /> */}
               </Link>
@@ -201,10 +188,7 @@ const Sidebar = () => {
                   className="menu-icon"
                   src="assets/img/icon/4339.png"
                 />
-                <span>
-                  {" "}
-                  {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
-                </span>
+                <span> {getLanguage(LanguageKey.GREYHOUND)}</span>
 
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
@@ -222,10 +206,7 @@ const Sidebar = () => {
                   className="menu-icon"
                   src="assets/img/icon/99994.png"
                 />
-                <span>
-                  {" "}
-                  {languageValue(valueByLanguage, LanguageKey.KABADDI)}
-                </span>
+                <span> {getLanguage(LanguageKey.KABADDI)}</span>
 
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
@@ -242,7 +223,7 @@ const Sidebar = () => {
                   className="menu-icon"
                   src="assets/img/icon/2378961.png"
                 />
-                <span>Politics</span>
+                <span>{getLanguage(LanguageKey.POLITICS)}</span>
 
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
@@ -258,7 +239,7 @@ const Sidebar = () => {
                     to={`/?eventTypeId=${item.id}`}
                   >
                     <img alt="" className="menu-icon" src={item.image} />
-                    <span> {item.name}</span>
+                    <span> {getLanguage(item.name)}</span>
                     <MdOutlineKeyboardArrowRight
                       className="ms-auto"
                       size={24}
@@ -298,7 +279,7 @@ const Sidebar = () => {
                   className="menu-icon"
                   src="assets/img/icon/2378961.png"
                 />
-                <span>Blog</span>
+                <span>{getLanguage(LanguageKey.BLOGS)}</span>
 
                 <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
               </Link>
@@ -311,7 +292,7 @@ const Sidebar = () => {
                     onClick={handleDownload}
                   >
                     <div className="down-app-btn">
-                      <span>Download App</span>
+                      <span>{getLanguage(LanguageKey.DOWNLOAD_APK)}</span>
                     </div>
                   </a>
                 </div>
@@ -324,7 +305,7 @@ const Sidebar = () => {
               <li className="nav-item">
                 <div className="remove-padding">
                   <div className="socail-link">
-                    <h4> Social Link </h4>
+                    <h4> {getLanguage(LanguageKey.SOCIAL_LINK)} </h4>
                     <ul>
                       {(Settings?.whatsapplink ||
                         Settings?.branchWhatsapplink) && (

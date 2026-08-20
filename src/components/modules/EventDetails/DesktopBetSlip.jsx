@@ -19,8 +19,11 @@ import {
   handleDecreasePrice,
   handleIncreasePrice,
 } from "../../../utils/editBetSlipPrice";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
+  const { getLanguage } = useLanguage();
   const { closePopupForForever } = useSelector((state) => state.global);
   const [isCashOut, setIsCashOut] = useState(false);
   const [profit, setProfit] = useState(0);
@@ -227,7 +230,7 @@ const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
           <div className="row mx-0 mt-2">
             <div className="col-6">
               <div className="input-group">
-                <label>odds</label>
+                <label>{getLanguage(LanguageKey.ODDS)}</label>
                 {!placeBetValues?.isWeak && (
                   <div
                     onClick={() => {
@@ -305,7 +308,7 @@ const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
                 onClick={() => dispatch(setStake(parseButtonValues[0]?.value))}
                 className="min-stake"
               >
-                Min Stake
+                {getLanguage(LanguageKey.MIN_STAKE)}
               </button>
               <button
                 onClick={() =>
@@ -322,7 +325,7 @@ const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
                 }
                 className="max-stake"
               >
-                Max Stake
+                {getLanguage(LanguageKey.MAX_STAKE)}
               </button>
 
               <button
@@ -331,19 +334,19 @@ const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
                 }}
                 className="clear-stake"
               >
-                Clear
+                {getLanguage(LanguageKey.CLEAR)}
               </button>
             </div>
           </div>
           <div className="row mx-0">
             <div className="col-6">
               <button onClick={handleCancelBet} className="bs_cancel">
-                cancel
+                {getLanguage(LanguageKey.CANCEL)}
               </button>
             </div>
             <div className="col-6">
               <button onClick={handleOrderBets} type="button" className="bs_pb">
-                placebet
+                {getLanguage(LanguageKey.PLACE_BET)}
               </button>
             </div>
           </div>
@@ -366,7 +369,7 @@ const DesktopBetSlip = ({ currentPlaceBetEvent }) => {
         </div>
       ) : (
         <div className="betslip__div back-border d-none d-md-block">
-          <p>Click on the odds to add selections to the betslip.</p>
+          <p>{getLanguage(LanguageKey.CLICK_ON_THE_ODDS_TO_OPEN_BETSLIP)}.</p>
         </div>
       )}
     </div>

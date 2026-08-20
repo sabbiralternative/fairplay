@@ -2,15 +2,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useGroupQuery } from "../../../redux/features/events/events";
 import { useEffect, useState } from "react";
 import HorseGreyhound from "./HorseGreyhound";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import { useSelector } from "react-redux";
+import useLanguage from "../../../hooks/use-language";
 
 const EventTableSection = () => {
   const [liveVirtual, setLiveVirtual] = useState([]);
   const { token } = useSelector((state) => state.auth);
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,11 +20,11 @@ const EventTableSection = () => {
     { pollingInterval: 10000 },
   );
   const eventName = {
-    4: languageValue(valueByLanguage, LanguageKey.CRICKET),
-    2: languageValue(valueByLanguage, LanguageKey.TENNIS),
-    1: languageValue(valueByLanguage, LanguageKey.FOOTBALL),
-    7: languageValue(valueByLanguage, LanguageKey.HORSE),
-    4339: languageValue(valueByLanguage, LanguageKey.GREYHOUND),
+    4: getLanguage(LanguageKey.CRICKET),
+    2: getLanguage(LanguageKey.TENNIS),
+    1: getLanguage(LanguageKey.FOOTBALL),
+    7: getLanguage(LanguageKey.HORSE),
+    4339: getLanguage(LanguageKey.GREYHOUND),
   };
 
   useEffect(() => {
@@ -108,7 +107,7 @@ const EventTableSection = () => {
                   style={{ textTransform: "uppercase", fontSize: "13px" }}
                   data-v-3c6bc75a=""
                 >
-                  Inplay
+                  {getLanguage(LanguageKey.IN_PLAY)}
                 </span>
               </li>
             )}
@@ -120,14 +119,14 @@ const EventTableSection = () => {
                   data-v-3c6bc75a=""
                   className="btn deposit_btn_inplay green_btn"
                 >
-                  Deposit
+                  {getLanguage(LanguageKey.DEPOSIT)}
                 </button>
                 <button
                   onClick={() => navigate("/withdraw")}
                   data-v-3c6bc75a=""
                   className="btn deposit_btn_inplay red_btn"
                 >
-                  Withdraw
+                  {getLanguage(LanguageKey.WITHDRAW)}
                 </button>
               </div>
             )}

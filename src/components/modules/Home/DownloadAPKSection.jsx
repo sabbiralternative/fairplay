@@ -1,6 +1,9 @@
 import { Settings } from "../../../api";
+import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 const DownloadAPKSection = () => {
+  const { getLanguage } = useLanguage();
   const handleDownload = (e) => {
     e.preventDefault();
     const fileUrl = Settings.apk_link;
@@ -29,7 +32,7 @@ const DownloadAPKSection = () => {
               className="para-two"
               style={{ color: "white" }}
             >
-              DOWNLOAD THE APP
+              {getLanguage(LanguageKey.DOWNLOAD_THE_APP)}
             </span>
           </div>
           <div data-v-3c6bc75a className="download-text">
@@ -39,7 +42,7 @@ const DownloadAPKSection = () => {
             </span>
             <div data-v-3c6bc75a className="down-load-btn-text">
               <a data-v-3c6bc75a onClick={handleDownload}>
-                Download App
+                {getLanguage(LanguageKey.DOWNLOAD_APP)}
               </a>
             </div>
             <p data-v-3c6bc75a className="ply-text">

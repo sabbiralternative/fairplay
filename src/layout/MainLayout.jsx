@@ -9,7 +9,7 @@ import Register from "../components/modals/Register/Register";
 import ForgotPassword from "../components/modals/ForgotPassword/ForgotPassword";
 import ChangePassword from "../components/modals/ChangePassword/ChangePassword";
 import Rules from "../components/modals/Rules/Rules";
-import { useLanguage } from "../context/LanguageProvider";
+import useLanguage from "../hooks/use-language";
 
 const MainLayout = () => {
   const { setLanguage } = useLanguage();
@@ -54,6 +54,8 @@ const MainLayout = () => {
   }, [setLanguage]);
   return (
     <div>
+      <meta name="description" content={Settings.metaDescription} />
+      <meta name="keywords" content={Settings.metaKeywords} />
       {showRulesModal && <Rules />}
       {showChangePasswordModal && <ChangePassword />}
       {showRegisterModal && <Register />}{" "}

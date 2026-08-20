@@ -1,8 +1,11 @@
 import { useState } from "react";
 import DesktopBetSlip from "./DesktopBetSlip";
 import OpenBets from "./OpenBets";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const RightSidebar = ({ sportsBook }) => {
+  const { getLanguage } = useLanguage();
   const [tab, setTab] = useState(0);
   return (
     <div
@@ -34,7 +37,10 @@ const RightSidebar = ({ sportsBook }) => {
                 id
               >
                 <span />
-                <button className="nav-link"> Betslip </button>
+                <button className="nav-link">
+                  {" "}
+                  {getLanguage(LanguageKey.BET_SLIP)}{" "}
+                </button>
               </a>
             </li>
             <li className="nav-item">
@@ -47,7 +53,9 @@ const RightSidebar = ({ sportsBook }) => {
                 id
               >
                 <span />
-                <button className="nav-link"> Open Bet </button>
+                <button className="nav-link">
+                  {getLanguage(LanguageKey.OPEN_BETS)}{" "}
+                </button>
               </a>
             </li>
           </ul>

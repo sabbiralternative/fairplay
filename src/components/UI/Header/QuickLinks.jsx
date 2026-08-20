@@ -5,16 +5,15 @@ import { Settings } from "../../../api";
 import { useState } from "react";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import { latestEvent } from "../../../static/latest-event";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import SportModal from "../../modals/SportsModal/SportsModal";
 import SportsTabSlider from "./SportsSlider";
 import { eventNameList } from "../../../static/event-name-list";
+import useLanguage from "../../../hooks/use-language";
 
 const QuickLinks = () => {
   const [showSportsModal, setShowSportsModal] = useState(false);
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const eventTypeId = params.get("eventTypeId");
@@ -69,7 +68,7 @@ const QuickLinks = () => {
                     className="me-2"
                   />
                 </div>
-                Inplay
+                {getLanguage(LanguageKey.IN_PLAY)}
               </Link>
             </li>
             {latestEvent
@@ -103,7 +102,7 @@ const QuickLinks = () => {
                 <div className="menu-icon">
                   <img alt="" className="me-2" src="/assets/img/icon/4.png" />
                 </div>
-                {languageValue(valueByLanguage, LanguageKey.CRICKET)}{" "}
+                {getLanguage(LanguageKey.CRICKET)}{" "}
               </Link>
             </li>
             <li role="presentation" className="nav-item">
@@ -114,7 +113,7 @@ const QuickLinks = () => {
                 <div className="menu-icon">
                   <img alt="" className="me-2" src="/assets/img/icon/1.png" />
                 </div>
-                {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}{" "}
+                {getLanguage(LanguageKey.FOOTBALL)}{" "}
               </Link>
             </li>
             <li role="presentation" className="nav-item">
@@ -125,7 +124,7 @@ const QuickLinks = () => {
                 <div className="menu-icon">
                   <img alt="" className="me-2" src="/assets/img/icon/2.png" />
                 </div>
-                {languageValue(valueByLanguage, LanguageKey.TENNIS)}{" "}
+                {getLanguage(LanguageKey.TENNIS)}{" "}
               </Link>
             </li>
             <li role="presentation" className="nav-item">
@@ -141,7 +140,7 @@ const QuickLinks = () => {
                     src="/assets/img/icon/99998.png"
                   />
                 </div>
-                Casino{" "}
+                {getLanguage(LanguageKey.CASINO)}{" "}
               </Link>
             </li>
             <li role="presentation" className="nav-item">
@@ -157,7 +156,7 @@ const QuickLinks = () => {
                     src="/assets/img/icon/99991.png"
                   />
                 </div>
-                Sportsbook{" "}
+                {getLanguage(LanguageKey.SPORTSBOOK)}{" "}
               </a>
             </li>
             <li role="presentation" className="nav-item">
@@ -169,7 +168,7 @@ const QuickLinks = () => {
                 <div className="menu-icon">
                   <img alt="" className="me-2" src="/assets/img/icon/7.png" />
                 </div>
-                {languageValue(valueByLanguage, LanguageKey.HORSE)}
+                {getLanguage(LanguageKey.HORSE)}
               </Link>
             </li>
             <li role="presentation" className="nav-item">
@@ -184,7 +183,7 @@ const QuickLinks = () => {
                     src="/assets/img/icon/4339.png"
                   />
                 </div>
-                {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
+                {getLanguage(LanguageKey.GREYHOUND)}
               </Link>
             </li>
 
@@ -200,7 +199,7 @@ const QuickLinks = () => {
                     src="/assets/img/icon/99994.png"
                   />
                 </div>
-                {languageValue(valueByLanguage, LanguageKey.KABADDI)}{" "}
+                {getLanguage(LanguageKey.KABADDI)}{" "}
               </Link>
             </li>
             <li role="presentation" className="nav-item">
@@ -215,7 +214,7 @@ const QuickLinks = () => {
                     src="/assets/img/icon/2378961.png"
                   />
                 </div>
-                Politics{" "}
+                {getLanguage(LanguageKey.POLITICS)}{" "}
               </Link>
             </li>
             {eventNameList.map((item) => {
@@ -228,7 +227,7 @@ const QuickLinks = () => {
                     <div className="menu-icon">
                       <img alt="" className="me-2" src={item.image} />
                     </div>
-                    {item.name}
+                    {getLanguage(item.name)}
                   </Link>
                 </li>
               );
@@ -268,7 +267,7 @@ const QuickLinks = () => {
                     className="me-2"
                   />
                 </div>
-                Inplay
+                {getLanguage(LanguageKey.IN_PLAY)}
               </Link>
             </li>
 
@@ -292,7 +291,7 @@ const QuickLinks = () => {
                     src="/assets/sportexch_icon-5KliwU5u.svg"
                   />
                 </div>
-                Sports Exch{" "}
+                {getLanguage(LanguageKey.SPORTS)}
               </a>
             </li>
             <li
@@ -315,7 +314,7 @@ const QuickLinks = () => {
                     src="/assets/sportbook_icon-CaAh8qoq.svg"
                   />
                 </div>
-                Sportsbook{" "}
+                {getLanguage(LanguageKey.SPORTSBOOK)}{" "}
               </a>
             </li>
             <li
@@ -338,7 +337,7 @@ const QuickLinks = () => {
                     src="/assets/more_icon-CY7hsN93.svg"
                   />
                 </div>
-                More{" "}
+                {getLanguage(LanguageKey.MORE)}{" "}
               </a>
             </li>
           </ul>

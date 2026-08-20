@@ -12,8 +12,11 @@ import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 import { isGameSuspended } from "../../../utils/isOddSuspended";
 import DesktopBetSlip from "./DesktopBetSlip";
 import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const MatchOdds = ({ data }) => {
+  const { getLanguage } = useLanguage();
   const [speedCashOut, setSpeedCashOut] = useState(null);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
@@ -286,7 +289,7 @@ const MatchOdds = ({ data }) => {
                           className="btn btn_cashout"
                         >
                           {" "}
-                          Cashout{" "}
+                          {getLanguage(LanguageKey.CASHOUT)}{" "}
                           {teamProfitForGame?.profit &&
                             `(${teamProfitForGame.profit.toFixed(0)})`}
                         </button>
@@ -314,7 +317,7 @@ const MatchOdds = ({ data }) => {
                           className="btn btn_losscut"
                         >
                           {" "}
-                          Speed Cashout
+                          {getLanguage(LanguageKey.SPEED_CASHOUT)}
                         </button>
                       )}
                   </div>
@@ -510,7 +513,7 @@ const MatchOdds = ({ data }) => {
                               </div>
                               {runner?.status === "SUSPENDED" && (
                                 <span className="suspended__div">
-                                  <b>SUSPENDED</b>
+                                  <b>{getLanguage(LanguageKey.SUSPENDED)}</b>
                                 </span>
                               )}
                             </div>

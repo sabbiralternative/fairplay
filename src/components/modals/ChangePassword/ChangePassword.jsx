@@ -5,8 +5,11 @@ import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { setShowChangePasswordModal } from "../../../redux/features/global/globalSlice";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const ChangePassword = () => {
+  const { getLanguage } = useLanguage();
   const ref = useRef(null);
   const [handleChangePassword] = useChangePasswordMutation();
   const { register, handleSubmit } = useForm();
@@ -66,7 +69,8 @@ const ChangePassword = () => {
                   onSubmit={handleSubmit(onSubmit)}
                   className="change__password__ui ng-pristine ng-invalid ng-touched"
                 >
-                  <h3>Change Password</h3>
+                  <h3>{getLanguage(LanguageKey.CHANGE_PASSWORD)}</h3>
+
                   <div className="input-group">
                     <span className="input-group-text">
                       <i className="mdi mdi-lock" />
@@ -110,7 +114,7 @@ const ChangePassword = () => {
                     className="btn-cp"
                     style={{ color: "#000" }}
                   >
-                    change password &nbsp;
+                    {getLanguage(LanguageKey.CHANGE_PASSWORD)} &nbsp;
                   </button>
                 </form>
               </div>

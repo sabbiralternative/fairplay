@@ -4,8 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Settings } from "../../../api";
 import WarningCondition from "../../shared/WarningCondition/WarningCondition";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Footer = () => {
+  const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showWarning, setShowWarning] = useState(false);
@@ -34,26 +37,26 @@ const Footer = () => {
         <div className="mf_navbar">
           <Link to="/">
             <img src="/assets/home-DRd6byi1.svg" />
-            <span>Home</span>
+            <span>{getLanguage(LanguageKey.HOME)}</span>
           </Link>
         </div>
         <div className="mf_navbar">
           <Link to="casino?product=All&category=All">
             <img src="/assets/img/icon/live-cards.png" />
-            <span>Our Casino</span>
+            <span>{getLanguage(LanguageKey.OUR_CASINO)}</span>
           </Link>
         </div>
 
         <div className="mf_navbar">
           <Link to="/?eventTypeId=0">
             <img src="/assets/img/icon/Inplay.png" />
-            <span>Inplay</span>
+            <span>{getLanguage(LanguageKey.IN_PLAY)}</span>
           </Link>
         </div>
         <div className="mf_navbar">
           <a onClick={() => handleNavigateToIFrame("sportsbook", "550000")}>
             <img src="/assets/img/icon/99991.png" />
-            <span>Sportsbook</span>
+            <span>{getLanguage(LanguageKey.SPORTSBOOK)}</span>
           </a>
         </div>
       </div>

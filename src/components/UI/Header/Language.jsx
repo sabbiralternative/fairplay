@@ -1,5 +1,5 @@
-import { useLanguage } from "../../../context/LanguageProvider";
 import { useGetLanguage } from "../../../hooks/language.hook";
+import useLanguage from "../../../hooks/use-language";
 
 const Language = () => {
   const { setLanguage, language } = useLanguage();

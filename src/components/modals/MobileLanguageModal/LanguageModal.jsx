@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./LanguageModal.css";
 import { useGetLanguage } from "../../../hooks/language.hook";
-import { useLanguage } from "../../../context/LanguageProvider";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 export default function LanguageModal({ onClose }) {
-  const { setLanguage, language } = useLanguage();
+  const { setLanguage, language, getLanguage } = useLanguage();
   const { data } = useGetLanguage();
   const [query, setQuery] = useState("");
 
@@ -24,7 +25,9 @@ export default function LanguageModal({ onClose }) {
   return (
     <div className="overlay">
       <div className="modal-container">
-        <div className="modal-header">Select Language</div>
+        <div className="modal-header">
+          {getLanguage(LanguageKey.SELECT_LANGUAGE)}
+        </div>
         <div className="search-wrap">
           <input
             type="text"
@@ -52,7 +55,7 @@ export default function LanguageModal({ onClose }) {
         </div>
         <div className="modal-footer">
           <button className="close-btn" onClick={onClose}>
-            Close
+            {getLanguage(LanguageKey.CLOSE)}
           </button>
         </div>
       </div>
