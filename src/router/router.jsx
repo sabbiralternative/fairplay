@@ -19,12 +19,14 @@ import LossBackBonus from "../pages/LossBackBonus/LossBackBonus";
 import AppOnlyBonus from "../pages/AppOnlyBonus/AppOnlyBonus";
 import BlogsPage from "../pages/Blog/Blog";
 import OpenBets from "../pages/OpenBets/OpenBets";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter(
   [
     {
       path: "/",
       element: <App />,
+      errorElement: <NotFound />,
 
       children: [
         {
