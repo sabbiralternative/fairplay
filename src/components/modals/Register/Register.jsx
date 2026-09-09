@@ -16,8 +16,12 @@ import toast from "react-hot-toast";
 import { useLogo } from "../../../context/ApiProvider";
 import { LanguageKey } from "../../../const";
 import useLanguage from "../../../hooks/use-language";
+import { FaMobileAlt, FaRegUser } from "react-icons/fa";
 
 const Register = () => {
+  const [tab, setTab] = useState(
+    Settings.registration_mobile ? "mobile" : "username",
+  );
   const { getLanguage } = useLanguage();
   const { logo } = useLogo();
   const [getOTP] = useGetOtpMutation();
@@ -76,7 +80,7 @@ const Register = () => {
   };
   const onSubmit = async (data) => {
     const registerData = {
-      username: "",
+      username: data?.username,
       password: data?.password,
       confirmPassword: data?.confirmPassword,
       mobile: mobile,
@@ -86,6 +90,8 @@ const Register = () => {
       orderId: order.orderId,
       otpMethod: order.otpMethod,
       affnook_token: affnook_token || null,
+      registration_mobile: Settings.registration_mobile,
+      registration_username: Settings.registration_username,
     };
 
     const result = await handleRegister(registerData).unwrap();
@@ -181,62 +187,155 @@ const Register = () => {
                     }}
                   />
                   <div className="my-3">
-                    <div className="form-group input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="mdi mdi-account" />
-                        </span>
-                      </div>
-                      <input
-                        onChange={handleMobileNo}
-                        value={mobile}
-                        type="text"
-                        className="form-control ng-untouched ng-pristine ng-invalid"
-                      />
-                      <label className="floating-label">
-                        {getLanguage(LanguageKey.MOBILE_NUMBER)} *
-                      </label>
-                      <a
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="eye-on-off"
-                        style={{ right: "0px" }}
-                      >
-                        {timer > 0 ? (
-                          <button
-                            style={{ height: "30px", marginBottom: "0px" }}
-                            type="button"
-                            className="v-btn demobtn"
+                    {Settings.registration_mobile &&
+                      Settings.registration_username && (
+                        <div
+                          style={{
+                            width: "100%",
+                            background:
+                              "color-mix(in srgb, var(--theme-bg) 30%, transparent)",
+                            marginBottom: "20px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              position: "relative",
+                              width: "100%",
+                            }}
                           >
-                            {getLanguage(LanguageKey.RESEND_IN)} {timer}s
-                          </button>
-                        ) : (
-                          <button
-                            onClick={handleOTP}
-                            disabled={mobile?.length < 10}
-                            style={{ height: "30px", marginBottom: "0px" }}
-                            type="button"
-                            className="v-btn demobtn"
+                            <div
+                              onClick={() => setTab("mobile")}
+                              style={{
+                                cursor: "pointer",
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                padding: "5px",
+                                width: "100%",
+                                gap: "6px",
+                                color: "white",
+                                background:
+                                  tab === "mobile"
+                                    ? "var(--theme-bg)"
+                                    : undefined,
+                              }}
+                            >
+                              <FaMobileAlt />
+
+                              <span>{getLanguage(LanguageKey.BY_PHONE)}</span>
+                            </div>
+
+                            <div
+                              onClick={() => setTab("username")}
+                              style={{
+                                cursor: "pointer",
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                padding: "5px",
+                                width: "100%",
+                                gap: "6px",
+                                color: "white",
+                                background:
+                                  tab === "username"
+                                    ? "var(--theme-bg)"
+                                    : undefined,
+                              }}
+                            >
+                              <FaRegUser />
+
+                              <span>
+                                {getLanguage(LanguageKey.BY_USERNAME)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    {tab === "mobile" && Settings.registration_mobile && (
+                      <Fragment>
+                        <div className="form-group input-group">
+                          <div className="input-group-prepend">
+                            <span className="input-group-text">
+                              <i className="mdi mdi-account" />
+                            </span>
+                          </div>
+                          <input
+                            onChange={handleMobileNo}
+                            value={mobile}
+                            type="text"
+                            className="form-control ng-untouched ng-pristine ng-invalid"
+                          />
+                          <label className="floating-label">
+                            {getLanguage(LanguageKey.MOBILE_NUMBER)} *
+                          </label>
+                          <a
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="eye-on-off"
+                            style={{ right: "0px" }}
                           >
-                            {getLanguage(LanguageKey.GET_OTP)}
-                          </button>
-                        )}
-                      </a>
-                    </div>
-                    <div className="form-group input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="mdi mdi-account" />
-                        </span>
+                            {timer > 0 ? (
+                              <button
+                                style={{ height: "30px", marginBottom: "0px" }}
+                                type="button"
+                                className="v-btn demobtn"
+                              >
+                                {getLanguage(LanguageKey.RESEND_IN)} {timer}s
+                              </button>
+                            ) : (
+                              <button
+                                onClick={handleOTP}
+                                disabled={mobile?.length < 10}
+                                style={{ height: "30px", marginBottom: "0px" }}
+                                type="button"
+                                className="v-btn demobtn"
+                              >
+                                {getLanguage(LanguageKey.GET_OTP)}
+                              </button>
+                            )}
+                          </a>
+                        </div>
+                        <div className="form-group input-group">
+                          <div className="input-group-prepend">
+                            <span className="input-group-text">
+                              <i className="mdi mdi-account" />
+                            </span>
+                          </div>
+                          <input
+                            {...register("otp", { required: true })}
+                            type="text"
+                            className="form-control ng-untouched ng-pristine ng-invalid"
+                          />
+                          <label className="floating-label">
+                            {getLanguage(LanguageKey.ENTER_OTP)} *
+                          </label>
+                        </div>
+                      </Fragment>
+                    )}
+
+                    {tab === "username" && Settings.registration_username && (
+                      <div className="form-group input-group">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text">
+                            <i className="mdi mdi-account" />
+                          </span>
+                        </div>
+                        <input
+                          {...register("username", { required: true })}
+                          type="text"
+                          className="form-control ng-untouched ng-pristine ng-invalid"
+                        />
+                        <label className="floating-label">
+                          {getLanguage(LanguageKey.USERNAME)} *
+                        </label>
                       </div>
-                      <input
-                        {...register("otp", { required: true })}
-                        type="text"
-                        className="form-control ng-untouched ng-pristine ng-invalid"
-                      />
-                      <label className="floating-label">
-                        {getLanguage(LanguageKey.ENTER_OTP)} *
-                      </label>
-                    </div>
+                    )}
+
                     <div className="form-group input-group">
                       <div className="input-group-prepend">
                         <span className="input-group-text">

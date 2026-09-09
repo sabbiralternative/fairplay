@@ -431,5 +431,7 @@ export const LanguageKey = {
   WALLET_AMOUNT: "WALLET_AMOUNT",
   BLOGS: "BLOGS",
   SOCIAL_LINK: "SOCIAL_LINK",
+  BY_USERNAME: "BY_USERNAME",
+  BY_PHONE: "BY_PHONE",
 };
 export const settingsAPI = "https://api7.live/api/exchange/diamond/settings";
