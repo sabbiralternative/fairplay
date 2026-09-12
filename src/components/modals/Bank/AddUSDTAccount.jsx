@@ -1,67 +1,51 @@
 import { useEffect, useRef, useState } from "react";
-import { API, Settings } from "../../../api";
 import toast from "react-hot-toast";
-import { AxiosSecure } from "../../../lib/AxiosSecure";
 import { jwtDecode } from "jwt-decode";
-import useCloseModalClickOutside from "../../../hooks/closeModal";
-import { useDispatch } from "react-redux";
-import { setAddBank } from "../../../redux/features/global/globalSlice";
 import useLanguage from "../../../hooks/use-language";
+import useCloseModalClickOutside from "../../../hooks/closeModal";
+import { API, Settings } from "../../../api";
+import { AxiosSecure } from "../../../lib/AxiosSecure";
 import { LanguageKey } from "../../../const";
 
-const AddBank = ({ refetchBankData }) => {
+const AddUSDTAccount = ({ setShowUSDTModal, refetchBankData }) => {
   const { getLanguage } = useLanguage();
   /* Handle close modal click outside */
-  const dispatch = useDispatch();
   const [mobile, setMobile] = useState(null);
   const token = localStorage.getItem("token");
   const [orderId, setOrderId] = useState(null);
   const [timer, setTimer] = useState(null);
 
-  const addBankRef = useRef();
-  useCloseModalClickOutside(addBankRef, () => {
-    closeModal();
+  const addUSDTRef = useRef();
+  useCloseModalClickOutside(addUSDTRef, () => {
+    setShowUSDTModal(false);
   });
-
-  const closeModal = () => {
-    dispatch(setAddBank(false));
-  };
   const [isFormValid, setIsFormValid] = useState(false);
-  const [bankDetails, setBankDetails] = useState({
-    accountName: "",
-    ifsc: "",
-    accountNumber: "",
-    confirmAccountNumber: "",
-    upiId: "",
+  const [usdtDetails, setUsdtDetails] = useState({
     otp: "",
+    usdt_type: "",
+    wallet_address: "",
   });
 
   /* Handle add bank function */
-  const handleAddBank = async (e) => {
+  const handleAddUSDTAccount = async (e) => {
     e.preventDefault();
-    if (bankDetails.accountNumber !== bankDetails.confirmAccountNumber) {
-      return toast.error("Bank account number did not matched!");
-    }
 
-    if (mobile && !bankDetails.otp && Settings.otp) {
+    if (mobile && !usdtDetails.otp && Settings.otp) {
       return toast.error("Please enter otp to add new account");
     }
 
-    let bankData = {
-      accountName: bankDetails.accountName,
-      ifsc: bankDetails.ifsc,
-      accountNumber: bankDetails.accountNumber,
-      upiId: bankDetails.upiId,
-      type: "addBankAccount",
-      nonce: crypto.randomUUID(),
+    let payload = {
+      wallet_address: usdtDetails.wallet_address,
+      usdt_type: usdtDetails.usdt_type,
+      type: "addUSDTAccount",
     };
     if (mobile) {
-      bankData.mobile = mobile;
-      bankData.otp = bankDetails.otp;
-      bankData.orderId = orderId;
+      payload.mobile = mobile;
+      payload.otp = usdtDetails.otp;
+      payload.orderId = orderId;
     }
 
-    const res = await AxiosSecure.post(API.bankAccount, bankData);
+    const res = await AxiosSecure.post(API.bankAccount, payload);
     const data = res?.data;
 
     if (data?.success) {
@@ -72,29 +56,24 @@ const AddBank = ({ refetchBankData }) => {
       //   if (refetchWithdrawData) {
       //     refetchWithdrawData();
       //   }
-      closeModal();
+      setShowUSDTModal(false);
     } else {
       toast.error(data?.result?.message);
     }
   };
 
-  const validateForm = (bankDetails) => {
-    const isaccountNameFilled = bankDetails.accountName.trim() !== "";
-    const isaccountNumberFilled = bankDetails.accountNumber.trim() !== "";
-    const isIfscFilled = bankDetails.ifsc.trim() !== "";
-    const isOTPFilled =
-      mobile && Settings.otp ? bankDetails.otp.trim() !== "" : true;
+  const validateForm = (usdtDetails) => {
+    const isUSDTTypeFilled = usdtDetails.usdt_type.trim() !== "";
+    const isWalletAddressFilled = usdtDetails.wallet_address.trim() !== "";
+    const isOTPFilled = mobile ? usdtDetails.otp.trim() !== "" : true;
     const isFormValid =
-      isaccountNameFilled &&
-      isIfscFilled &&
-      isaccountNumberFilled &&
-      isOTPFilled;
+      isUSDTTypeFilled && isWalletAddressFilled && isOTPFilled;
     setIsFormValid(isFormValid);
   };
 
   useEffect(() => {
-    validateForm(bankDetails);
-  }, [bankDetails]);
+    validateForm(usdtDetails);
+  }, [usdtDetails]);
 
   const getOtp = async () => {
     const otpData = {
@@ -150,14 +129,14 @@ const AddBank = ({ refetchBankData }) => {
 
   return (
     <div className="Modal-Background  ">
-      <div className="card-add-bank" ref={addBankRef}>
+      <div className="card-add-bank" ref={addUSDTRef}>
         <div className="card-header">
           <h2 style={{ color: "black" }}>
-            {getLanguage(LanguageKey.ADD_BANK_ACCOUNT)}
+            {getLanguage(LanguageKey.ADD_USDT_ACCOUNT)}
           </h2>
           <div className="close-btn">
             <svg
-              onClick={closeModal}
+              onClick={() => setShowUSDTModal(false)}
               width="1rem"
               height="1rem"
               viewBox="0 0 14 15"
@@ -175,67 +154,63 @@ const AddBank = ({ refetchBankData }) => {
         </div>
         <div className="card-body">
           <div className="bank-popup">
-            <form onSubmit={handleAddBank}>
-              <div
-                onChange={(e) => {
-                  setBankDetails({
-                    ...bankDetails,
-                    upiId: e.target.value,
-                  });
-                }}
-                className="input-box "
-              >
-                <input type="text" placeholder="Enter UPI ID (Optional)" />
+            <form onSubmit={handleAddUSDTAccount}>
+              <div className="input-box">
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                  }}
+                >
+                  <p style={{ marginBottom: "0px", fontSize: "11px" }}>BEP20</p>
+                  <input
+                    onChange={(e) => {
+                      setUsdtDetails({
+                        ...usdtDetails,
+                        usdt_type: e.target.value,
+                      });
+                    }}
+                    type="radio"
+                    name="-usdt-type"
+                    value="BEP20"
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                    marginLeft: "10px",
+                  }}
+                >
+                  <p style={{ marginBottom: "0px", fontSize: "11px" }}>TRC20</p>
+                  <input
+                    onChange={(e) => {
+                      setUsdtDetails({
+                        ...usdtDetails,
+                        usdt_type: e.target.value,
+                      });
+                    }}
+                    type="radio"
+                    name="-usdt-type"
+                    value="TRC20"
+                  />
+                </div>
               </div>
               <div className="input-box ">
                 <input
                   onChange={(e) => {
-                    setBankDetails({
-                      ...bankDetails,
-                      accountName: e.target.value,
+                    setUsdtDetails({
+                      ...usdtDetails,
+                      wallet_address: e.target.value,
                     });
                   }}
                   type="text"
-                  placeholder="Enter Account Holder Name"
-                  name=""
+                  placeholder="Enter Wallet Address"
                 />
-              </div>
-              <div className="input-box ">
-                <input
-                  onChange={(e) => {
-                    setBankDetails({
-                      ...bankDetails,
-                      accountNumber: e.target.value,
-                    });
-                  }}
-                  placeholder="Enter Bank Account Number"
-                  type="text"
-                />
-              </div>
-              <div className="input-box ">
-                <input
-                  onChange={(e) => {
-                    setBankDetails({
-                      ...bankDetails,
-                      confirmAccountNumber: e.target.value,
-                    });
-                  }}
-                  type="text"
-                  name=""
-                  placeholder="Re-enter Bank Account Number"
-                />
-              </div>
-
-              <div
-                onChange={(e) => {
-                  setBankDetails({
-                    ...bankDetails,
-                    ifsc: e.target.value,
-                  });
-                }}
-                className="input-box "
-              >
-                <input type="text" placeholder="Enter IFSC" name="" />
               </div>
               {mobile && Settings.otp && (
                 <div style={{ position: "relative" }} className="input-box ">
@@ -269,20 +244,22 @@ const AddBank = ({ refetchBankData }) => {
                         gap: "3px",
                       }}
                     >
-                      {/* <button
-                        onClick={getOtpOnWhatsapp}
-                        style={{
-                          backgroundColor: "var(--theme-bg)",
-                          borderRadius: "4px",
-                          padding: "6px 0px",
-                          width: "110px",
-                          color: "white",
-                          fontSize: "11px",
-                        }}
-                        type="button"
-                      >
-                        {getLanguage(LanguageKey.GET_ID_ON_WHATSAPP)}
-                      </button> */}
+                      {/* {Settings.otpWhatsapp && (
+                        <button
+                          onClick={getOtpOnWhatsapp}
+                          style={{
+                            backgroundColor: "var(--theme-bg)",
+                            borderRadius: "4px",
+                            padding: "6px 0px",
+                            width: "110px",
+                            color: "white",
+                            fontSize: "11px",
+                          }}
+                          type="button"
+                        >
+                          Get OTP Whatsapp
+                        </button>
+                      )} */}
                       <button
                         onClick={getOtp}
                         style={{
@@ -304,12 +281,12 @@ const AddBank = ({ refetchBankData }) => {
               {mobile && Settings.otp && (
                 <div
                   onChange={(e) => {
-                    setBankDetails({
-                      ...bankDetails,
+                    setUsdtDetails({
+                      ...usdtDetails,
                       otp: e.target.value,
                     });
                   }}
-                  className="input-box"
+                  className="input-box "
                 >
                   <input
                     maxLength={6}
@@ -321,7 +298,10 @@ const AddBank = ({ refetchBankData }) => {
               )}
 
               <div className="btn-box ">
-                <button onClick={closeModal} className="cancel-btn ">
+                <button
+                  onClick={() => setShowUSDTModal(false)}
+                  className="cancel-btn "
+                >
                   <span className="">{getLanguage(LanguageKey.CANCEL)}</span>
                 </button>
                 <button
@@ -330,7 +310,7 @@ const AddBank = ({ refetchBankData }) => {
                   type="submit"
                 >
                   <span className="">
-                    {getLanguage(LanguageKey.ADD_BANK_ACCOUNT)}
+                    {getLanguage(LanguageKey.ADD_USDT_WALLET)}
                   </span>
                 </button>
               </div>
@@ -342,4 +322,4 @@ const AddBank = ({ refetchBankData }) => {
   );
 };
 
-export default AddBank;
+export default AddUSDTAccount;

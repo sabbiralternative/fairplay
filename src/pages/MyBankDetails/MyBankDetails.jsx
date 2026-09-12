@@ -11,8 +11,10 @@ import { setAddBank } from "../../redux/features/global/globalSlice";
 import { useBankAccountQuery } from "../../hooks/bankAccount";
 import useLanguage from "../../hooks/use-language";
 import { LanguageKey } from "../../const";
+import AddUSDTAccount from "../../components/modals/Bank/AddUSDTAccount";
 
 const MyBankDetails = () => {
+  const [showUSDTModal, setShowUSDTModal] = useState(false);
   const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const { addBank } = useSelector((state) => state.global);
@@ -92,6 +94,12 @@ const MyBankDetails = () => {
   return (
     <main id="main" className="main a23_css">
       {addBank && <AddBank refetchBankData={refetchBankData} />}
+      {showUSDTModal && (
+        <AddUSDTAccount
+          refetchBankData={refetchBankData}
+          setShowUSDTModal={setShowUSDTModal}
+        />
+      )}
       <div className="deposit-withdraw-btns">
         <div className="btns-animation ">
           <div className="btnBox ">
@@ -121,6 +129,17 @@ const MyBankDetails = () => {
           }}
         >
           {getLanguage(LanguageKey.ADD_NEW_BANK)}
+        </button>
+        <button
+          onClick={() => setShowUSDTModal(true)}
+          className="btn"
+          style={{
+            background: "var(--theme-bg)",
+            color: "white",
+            marginTop: "10px",
+          }}
+        >
+          {getLanguage(LanguageKey.ADD_USDT_ACCOUNT)}
         </button>
         <h5 style={{ marginTop: "5px", fontWeight: "500", color: "white" }}>
           {getLanguage(LanguageKey.BANK_DETAILS)}

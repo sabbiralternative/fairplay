@@ -6,6 +6,7 @@ import { setAddBank } from "../../redux/features/global/globalSlice";
 import images from "../../assets/images";
 import useLanguage from "../../hooks/use-language";
 import { LanguageKey } from "../../const";
+import AddUSDTAccount from "../../components/modals/Bank/AddUSDTAccount";
 
 const BankAccounts = ({
   bankData,
@@ -16,6 +17,7 @@ const BankAccounts = ({
   setBank,
   bank,
 }) => {
+  const [showUSDTModal, setShowUSDTModal] = useState(false);
   const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const { addBank } = useSelector((state) => state.global);
@@ -174,6 +176,20 @@ const BankAccounts = ({
               </span>
             </button>
             <button
+              onClick={() => setShowUSDTModal(true)}
+              className="plus-btn  "
+            >
+              <img
+                loading="lazy"
+                src="assets/img/plus-logo.svg"
+                alt=""
+                className=""
+              />
+              <span className="">
+                {getLanguage(LanguageKey.ADD_USDT_ACCOUNT)}
+              </span>
+            </button>
+            <button
               onClick={() => {
                 setConfirmWithdraw(true);
                 setShowBankAccount(false);
@@ -190,6 +206,12 @@ const BankAccounts = ({
         </div>
       </div>
       {addBank && <AddBank refetchBankData={refetchBankData} />}
+      {showUSDTModal && (
+        <AddUSDTAccount
+          refetchBankData={refetchBankData}
+          setShowUSDTModal={setShowUSDTModal}
+        />
+      )}
       {removeBank && (
         <DeleteBank
           refetchBankData={refetchBankData}
