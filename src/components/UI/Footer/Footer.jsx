@@ -59,6 +59,12 @@ const Footer = () => {
             <span>{getLanguage(LanguageKey.SPORTSBOOK)}</span>
           </a>
         </div>
+        <div className="mf_navbar">
+          <a onClick={() => handleNavigateToIFrame("fantasy-11", "595001")}>
+            <img src="/assets/img/icon/99991.png" />
+            <span>{getLanguage(LanguageKey.FANTASY_11)}</span>
+          </a>
+        </div>
       </div>
     </div>
   );

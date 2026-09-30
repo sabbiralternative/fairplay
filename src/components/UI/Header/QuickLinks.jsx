@@ -160,6 +160,22 @@ const QuickLinks = () => {
               </a>
             </li>
             <li role="presentation" className="nav-item">
+              <a
+                onClick={() => handleNavigateToIFrame("fantasy-11", "595001")}
+                id="Inplay-tab"
+                className={`nav-link  ${location.pathname === "/casino/fantasy-11/595001" ? "active" : ""}`}
+              >
+                <div className="menu-icon">
+                  <img
+                    alt=""
+                    className="me-2"
+                    src="/assets/img/icon/99991.png"
+                  />
+                </div>
+                {getLanguage(LanguageKey.FANTASY_11)}{" "}
+              </a>
+            </li>
+            <li role="presentation" className="nav-item">
               <Link
                 t
                 to="/?eventTypeId=7"

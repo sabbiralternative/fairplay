@@ -433,5 +433,6 @@ export const LanguageKey = {
   SOCIAL_LINK: "SOCIAL_LINK",
   BY_USERNAME: "BY_USERNAME",
   BY_PHONE: "BY_PHONE",
+  FANTASY_11: "FANTASY_11",
 };
 export const settingsAPI = "https://api7.live/api/exchange/diamond/settings";

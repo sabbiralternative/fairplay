@@ -164,6 +164,20 @@ const Sidebar = () => {
               </a>
             </li>
             <li className="nav-item">
+              <a
+                onClick={() => handleNavigateToIFrame("fantasy-11", "595001")}
+                className="nav-link final-link"
+              >
+                <img
+                  alt=""
+                  className="menu-icon"
+                  src="assets/img/icon/99991.png"
+                />
+                <span>{getLanguage(LanguageKey.FANTASY_11)}</span>
+                <MdOutlineKeyboardArrowRight className="ms-auto" size={24} />
+              </a>
+            </li>
+            <li className="nav-item">
               <Link
                 onClick={() => dispatch(setShowMobileSidebar(false))}
                 data-bs-toggle="collapse"
