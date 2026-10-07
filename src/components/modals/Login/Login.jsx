@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogo } from "../../../context/ApiProvider";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
@@ -15,8 +15,10 @@ import {
 import toast from "react-hot-toast";
 import { LanguageKey } from "../../../const";
 import useLanguage from "../../../hooks/use-language";
+import useCloseModalClickOutside from "../../../hooks/closeModal";
 
 const Login = () => {
+  const ref = useRef(null);
   const [tab, setTab] = useState("mobile");
   const { getLanguage } = useLanguage();
   const { closePopupForForever } = useSelector((state) => state.global);
@@ -29,6 +31,8 @@ const Login = () => {
   const closeModal = () => {
     dispatch(setShowLoginModal(false));
   };
+
+  useCloseModalClickOutside(ref, closeModal);
 
   const onSubmit = async ({ username, password }) => {
     const loginData = {
@@ -145,21 +149,22 @@ const Login = () => {
           <div className="modal-content">
             <div>
               <div className="modal-body">
-                <button
-                  onClick={closeModal}
-                  type="button"
-                  className="close"
-                  style={{ display: "block" }}
-                >
-                  <span aria-hidden="true">
-                    <i className="mdi mdi-home" />
-                  </span>
-                </button>
                 <form
+                  ref={ref}
                   onSubmit={handleSubmit(onSubmit)}
                   noValidate
                   className="col-md-4 col-12 ng-untouched ng-pristine ng-invalid a23_css"
                 >
+                  <button
+                    onClick={closeModal}
+                    type="button"
+                    className="close"
+                    style={{ display: "block" }}
+                  >
+                    <span aria-hidden="true">
+                      <i className="mdi mdi-close" />
+                    </span>
+                  </button>
                   <img
                     className="img-fluid"
                     tabIndex={0}

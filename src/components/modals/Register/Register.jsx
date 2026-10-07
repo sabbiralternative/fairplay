@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   useGetOtpMutation,
@@ -17,8 +17,10 @@ import { useLogo } from "../../../context/ApiProvider";
 import { LanguageKey } from "../../../const";
 import useLanguage from "../../../hooks/use-language";
 import { FaMobileAlt, FaRegUser } from "react-icons/fa";
+import useCloseModalClickOutside from "../../../hooks/closeModal";
 
 const Register = () => {
+  const ref = useRef(null);
   const [tab, setTab] = useState(
     Settings.registration_mobile ? "mobile" : "username",
   );
@@ -64,7 +66,7 @@ const Register = () => {
   const closeModal = () => {
     dispatch(setShowRegisterModal(false));
   };
-
+  useCloseModalClickOutside(ref, closeModal);
   const handleOTP = async () => {
     const res = await getOTP({ mobile }).unwrap();
     if (res?.success) {
@@ -142,7 +144,7 @@ const Register = () => {
   }, [timer]);
   return (
     <Fragment>
-      <div className="modal-backdrop fade in show"></div>
+      {/* <div className="modal-backdrop fade in show"></div> */}
       <div
         role="dialog"
         tabIndex={-1}
@@ -162,21 +164,22 @@ const Register = () => {
           <div className="modal-content">
             <div>
               <div className="modal-body">
-                <button
-                  onClick={closeModal}
-                  type="button"
-                  className="close"
-                  style={{ display: "block" }}
-                >
-                  <span aria-hidden="true">
-                    <i className="mdi mdi-home" />
-                  </span>
-                </button>
                 <form
+                  ref={ref}
                   onSubmit={handleSubmit(onSubmit)}
                   noValidate
                   className="col-md-4 col-12 ng-untouched ng-pristine ng-invalid"
                 >
+                  <button
+                    onClick={closeModal}
+                    type="button"
+                    className="close"
+                    style={{ display: "block" }}
+                  >
+                    <span aria-hidden="true">
+                      <i className="mdi mdi-close" />
+                    </span>
+                  </button>
                   <img
                     className="img-fluid"
                     tabIndex={0}

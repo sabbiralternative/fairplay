@@ -259,7 +259,7 @@ p.no-fancy-message {
 }
 .login_modal .modal-content {
   border: thin solid hsla(0, 0%, 100%, 0.12);
-  background-color: var(--dark-bg);
+  background-color: #000000a2;
   color: #fff;
   margin: 0;
   border-radius: 0;

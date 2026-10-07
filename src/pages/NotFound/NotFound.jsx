@@ -17,6 +17,7 @@ const NotFound = () => {
         dispatch(setShowRegisterModal(true));
       }
       if (location.pathname.includes("/ref/") && Settings.registration) {
+        sessionStorage.setItem("apk_modal_shown", true);
         const splitPath = location.pathname.split("/");
         const lastDigit = splitPath[splitPath?.length - 1];
         if (parseFloat(lastDigit)) {
