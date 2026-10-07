@@ -187,9 +187,11 @@ const Register = () => {
                     style={{
                       height: Settings.logo_height,
                       width: Settings.logo_width,
+                      margin: "35px auto",
+                      marginTop: "10px",
                     }}
                   />
-                  <div className="my-3">
+                  <div>
                     {Settings.registration_mobile &&
                       Settings.registration_username && (
                         <div
@@ -280,11 +282,17 @@ const Register = () => {
                           <a
                             onClick={() => setShowPassword(!showPassword)}
                             className="eye-on-off"
-                            style={{ right: "0px" }}
+                            style={{ right: "0px", top: "0.5px" }}
                           >
                             {timer > 0 ? (
                               <button
-                                style={{ height: "30px", marginBottom: "0px" }}
+                                style={{
+                                  height: "30px",
+                                  marginBottom: "0px",
+                                  fontSize: "12px",
+                                  padding: "4px 8px",
+                                  borderRadius: "0px",
+                                }}
                                 type="button"
                                 className="v-btn demobtn"
                               >
@@ -294,7 +302,13 @@ const Register = () => {
                               <button
                                 onClick={handleOTP}
                                 disabled={mobile?.length < 10}
-                                style={{ height: "30px", marginBottom: "0px" }}
+                                style={{
+                                  height: "30px",
+                                  marginBottom: "0px",
+                                  fontSize: "12px",
+                                  padding: "4px 8px",
+                                  borderRadius: "0px",
+                                }}
                                 type="button"
                                 className="v-btn demobtn"
                               >
@@ -406,7 +420,7 @@ const Register = () => {
                       </label>
                     </div>
 
-                    <div className="btn-group">
+                    <div className="btn-group" style={{ marginTop: "10px" }}>
                       <button type="submit" className="v-btn">
                         {getLanguage(LanguageKey.REGISTER)}
                       </button>

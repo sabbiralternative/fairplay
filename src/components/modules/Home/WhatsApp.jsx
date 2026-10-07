@@ -27,7 +27,7 @@ const WhatsApp = () => {
           cursor: "pointer",
           top: "calc(100dvh - 160px)",
           right: "17px",
-          zIndex: 999999,
+          zIndex: 1000,
           display: "flex",
           width: "max-content",
           height: "max-content",

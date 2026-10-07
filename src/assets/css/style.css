@@ -289,8 +289,8 @@ p.no-fancy-message {
   display: block;
 }
 .login_modal .form-group {
-  margin-bottom: 30px;
-  height: 40px;
+  margin-bottom: 20px;
+  height: 35px;
   /* background: #ffff; */
   border-radius: 1rem;
   position: relative;
