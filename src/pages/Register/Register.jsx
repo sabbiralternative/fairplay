@@ -8,10 +8,7 @@ import {
   useGetOtpMutation,
   useRegisterMutation,
 } from "../../redux/features/auth/authApi";
-import {
-  setShowBanner,
-  setShowLoginModal,
-} from "../../redux/features/global/globalSlice";
+import { setShowBanner } from "../../redux/features/global/globalSlice";
 
 import toast from "react-hot-toast";
 import { setUser } from "../../redux/features/auth/authSlice";
@@ -424,8 +421,7 @@ const Register = () => {
                       <span>Already have an account ? </span>
                       <a
                         onClick={() => {
-                          dispatch(setShowLoginModal(true));
-                          navigate("/");
+                          navigate("/login");
                         }}
                         style={{ textDecoration: "underline" }}
                       >
