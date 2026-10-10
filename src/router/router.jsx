@@ -20,6 +20,7 @@ import AppOnlyBonus from "../pages/AppOnlyBonus/AppOnlyBonus";
 import BlogsPage from "../pages/Blog/Blog";
 import OpenBets from "../pages/OpenBets/OpenBets";
 import NotFound from "../pages/NotFound/NotFound";
+import Register from "../pages/Register/Register";
 
 export const router = createBrowserRouter(
   [
@@ -106,6 +107,10 @@ export const router = createBrowserRouter(
     {
       path: "/blog",
       element: <BlogsPage />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
     },
   ],
   {
