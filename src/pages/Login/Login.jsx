@@ -300,7 +300,7 @@ const Login = () => {
                       <span>Don&apos;t have an account ? </span>
                       <a
                         onClick={() => {
-                          navigate("/register");
+                          navigate("/registration");
                         }}
                         style={{ textDecoration: "underline" }}
                       >
